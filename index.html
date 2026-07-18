@@ -2,6 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منصة توقعات الزعيم</title>
     <style>
         body { font-family: 'Segoe UI', sans-serif; background: #f4f4f4; padding: 20px; display: flex; justify-content: center; }
@@ -62,7 +63,6 @@
             var data = JSON.parse(localStorage.getItem('data') || '[]');
             var list = data.map((x,i) => (i+1)+"- "+x.n+" | "+x.r).join('\n');
             
-            // إضافة خاصية المسح هنا
             var action = prompt("قائمة التوقعات الحالية:\n\n" + (list || "لا توجد توقعات حالياً") + 
                                 "\n\n-----------------\nاكتب 'مسح' لتصفير البيانات للمباراة القادمة:");
             
