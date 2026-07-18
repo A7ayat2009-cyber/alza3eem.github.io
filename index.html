@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>منصة توقعات الزعيم</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f4f4; padding: 20px; display: flex; justify-content: center; }
+        .box { width: 100%; max-width: 450px; background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .title { text-align: center; color: #006400; font-size: 1.8rem; margin-bottom: 20px; cursor: pointer; }
+        .info-box { background: #fffde7; padding: 15px; border-radius: 10px; border-right: 5px solid #c5a059; margin-bottom: 20px; line-height: 1.6; color: #333; }
+        input, select { width: 100%; padding: 15px; margin: 8px 0; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; }
+        button { width: 100%; padding: 15px; background: #006400; color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 1rem; }
+    </style>
+</head>
+<body>
+
+<div class="box" id="app">
+    <div class="title" onclick="admin()">منصة توقعات الزعيم</div>
+    
+    <div class="info-box">
+        <b>قوانين وتدقيق:</b><br>
+        • <b>فوز العربي:</b> تأهل مباشر للسحب.<br>
+        • <b>التعادل:</b> اختيار عشوائي.<br>
+        • <b>الخسارة:</b> فرصة فوز للمتوقعين بالخسارة لواقعيتهم.<br>
+        <hr>
+        <small style="color: #c5a059; font-weight: bold;">* نضمن لكم العدل التام والدقة في التدقيق والمراجعة قبل اختيار الفائز.</small>
+    </div>
+
+    <input id="n" placeholder="الاسم الكريم">
+    <input id="i" placeholder="@حساب الإنستغرام">
+    <select id="r">
+        <option>فوز العربي</option>
+        <option>تعادل</option>
+        <option>خسارة</option>
+    </select>
+    <input id="s" placeholder="اسم الهداف المتوقع">
+    
+    <button onclick="send()">إرسال التوقع</button>
+</div>
+
+<script>
+    function send() {
+        var n = document.getElementById('n').value;
+        var i = document.getElementById('i').value;
+        if(!n || !i) { alert("يرجى تعبئة الاسم وحساب الإنستغرام"); return; }
+
+        var data = JSON.parse(localStorage.getItem('data') || '[]');
+        data.push({n: n, i: i, r: document.getElementById('r').value, s: document.getElementById('s').value});
+        localStorage.setItem('data', JSON.stringify(data));
+        
+        document.getElementById('app').innerHTML = `
+            <div style="text-align:center; padding: 40px 0;">
+                <h2 style="color:#006400;">تم إرسال توقعك بنجاح! ✅</h2>
+                <p style="color:#555;">شكراً لثقتك بالزعيم.<br>نؤكد لك أنه سيتم مراجعة وتدقيق توقعك بكل عدالة ومهنية عند اختيار الفائز.</p>
+            </div>
+        `;
+    }
+
+    function admin() {
+        var p = prompt("كلمة مرور الإدارة:");
+        if(p == "1234") {
+            var data = JSON.parse(localStorage.getItem('data') || '[]');
+            var list = data.map((x,i) => (i+1)+"- "+x.n+" | "+x.r).join('\n');
+            
+            // إضافة خاصية المسح هنا
+            var action = prompt("قائمة التوقعات الحالية:\n\n" + (list || "لا توجد توقعات حالياً") + 
+                                "\n\n-----------------\nاكتب 'مسح' لتصفير البيانات للمباراة القادمة:");
+            
+            if(action === "مسح") {
+                localStorage.removeItem('data');
+                alert("تم تصفير البيانات بنجاح! الموقع سيعاد تحميله الآن.");
+                location.reload();
+            }
+        }
+    }
+</script>
+</body>
+</html>
