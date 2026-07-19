@@ -9,12 +9,13 @@
         .box { width: 100%; max-width: 450px; background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
         .title { text-align: center; color: #006400; font-size: 1.6rem; margin-bottom: 15px; font-weight: bold; }
         .rules-box { background: #e8f5e9; padding: 15px; border-radius: 10px; margin-bottom: 20px; font-size: 0.9rem; color: #2e7d32; border-right: 4px solid #006400; }
-        .rules-box h3 { margin-top: 0; font-size: 1.1rem; }
+        .rules-box h3 { margin-top: 0; font-size: 1.1rem; color: #1b5e20; }
         input, select { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; }
-        button { width: 100%; padding: 14px; background: #006400; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        button { width: 100%; padding: 14px; background: #006400; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 10px; transition: background 0.3s; }
+        button:hover { background: #004d00; }
         .footer { text-align: center; margin-top: 25px; padding-top: 15px; border-top: 1px solid #eee; }
         .sponsor { margin-bottom: 15px; }
-        .admin-info { font-size: 0.8rem; color: #666; }
+        .admin-info { font-size: 0.8rem; color: #666; margin-top: 10px; }
     </style>
 </head>
 <body>
@@ -23,32 +24,29 @@
     <div class="title">منصة توقعات الزعيم ⚽️</div>
     
     <div class="rules-box">
-        <h3>نظام التوقعات:</h3>
-        <p>شاركونا توقعاتكم لكل مباراة للعربي:</p>
-        <ul style="padding-right: 20px;">
-            <li>توقع النتيجة (فوز، تعادل، خسارة).</li>
-            <li>توقع اسم لاعب سيسجل للنادي العربي.</li>
-            <li>تجمع النقاط حسب دقة توقعك.</li>
-            <li>**الفائز بأعلى نقاط نهاية الموسم له هدية مميزة!**</li>
+        <h3>آلية احتساب النقاط:</h3>
+        <ul style="padding-right: 20px; line-height: 1.7;">
+            <li>توقع النتيجة (فوز/تعادل/خسارة): <b>3 نقاط</b>.</li>
+            <li>توقع اسم لاعب سيسجل للنادي العربي: <b>5 نقاط</b>.</li>
+            <li>الفائز بأعلى نقاط نهاية الموسم: <b>بطاقة Gift Card بقيمة 10$</b> (من اختيارك).</li>
         </ul>
     </div>
 
     <form action="https://formspree.io/f/mykrwdop" method="POST">
         <input type="text" name="الاسم" placeholder="الاسم الكريم" required>
         <input type="text" name="حساب_الانستقرام" placeholder="@حساب الإنستغرام" required>
-        <label style="font-size: 0.8rem;">توقع نتيجة المباراة:</label>
+        <label style="font-size: 0.8rem; font-weight: bold;">توقع نتيجة المباراة:</label>
         <select name="التوقع">
             <option>فوز العربي</option>
             <option>تعادل</option>
             <option>خسارة</option>
         </select>
-        <input type="text" name="الهداف" placeholder="اسم الهداف المتوقع">
+        <input type="text" name="اسم_اللاعب" placeholder="توقع اسم لاعب سيسجل للنادي العربي">
         <button type="submit">إرسال التوقع</button>
     </form>
     
     <div class="footer">
         <div class="sponsor">
-            
             <a href="https://ar.imgbb.com/"><img src="https://i.ibb.co/WWWzTNgg/IMG-5105.png" alt="Mkhmkh Logo" style="width: 100px; height: auto;"></a>
         </div>
         <div class="admin-info">إدارة المنصة: @alza3eem__kw</div>
