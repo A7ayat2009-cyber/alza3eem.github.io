@@ -9,6 +9,7 @@
         .box { width: 100%; max-width: 450px; background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
         .title { text-align: center; color: #006400; font-size: 1.6rem; margin-bottom: 15px; font-weight: bold; }
         .rules-box { background: #e8f5e9; padding: 15px; border-radius: 10px; margin-bottom: 20px; font-size: 0.9rem; color: #2e7d32; border-right: 4px solid #006400; }
+        .derby-box { background: #fffdf0; border-right: 4px solid #ff9800; color: #856404; }
         .rules-box h3 { margin-top: 0; font-size: 1.1rem; color: #1b5e20; }
         input, select { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; }
         button { width: 100%; padding: 14px; background: #006400; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 10px; transition: background 0.3s; }
@@ -23,14 +24,20 @@
 <div class="box">
     <div class="title">منصة توقعات الزعيم ⚽️</div>
     
+    <!-- نظام الموسم والجدول -->
     <div class="rules-box">
-        <h3>نظام النقاط والجوائز:</h3>
+        <h3>🏆 نظام المسابقة (الموسم الكامل):</h3>
         <ul style="padding-right: 20px; line-height: 1.8;">
             <li>توقع النتيجة: <b>3 نقاط</b> | توقع المسجل: <b>5 نقاط</b>.</li>
-            <li><b>جائزة الفائز:</b></li>
-            <li>1. بطاقة Gift Card بقيمة 10$ (تختار المتجر المناسب لك، مثل: App Store، Google Play، PlayStation، PUBG، إلخ...).</li>
-            <li>2. تجربة لعبتين ترفيهية من منصة "مخمخ".</li>
+            <li><b>جدول التوب 10:</b> ترتيب تراكمي من أول مباراة إلى آخر مباراة في الموسم.</li>
+            <li><b>الجائزة:</b> صاحب المركز الأول في جدول الـ Top 10 يفوز بجائزة نهاية الموسم (بطاقة 10$ + لعبتين من مخمخ).</li>
         </ul>
+    </div>
+
+    <!-- نظام الديربيات الفوري -->
+    <div class="rules-box derby-box">
+        <h3>⚡ مباريات الديربي والحسم:</h3>
+        <p style="margin: 5px 0;">في المباريات الكبيرة، لدينا جوائز فورية (5$ + لعبة من مخمخ). <b>آلية الفوز:</b> يتم اختيار الفائز عن طريق <b>سحب عشوائي</b> بين جميع من شارك بتوقع تلك المباراة فقط.</p>
     </div>
 
     <form action="https://formspree.io/f/mykrwdop" method="POST">
@@ -43,7 +50,7 @@
             <option>خسارة</option>
         </select>
         <input type="text" name="اسم_اللاعب" placeholder="توقع اسم لاعب سيسجل للنادي العربي">
-        <button type="submit">إرسال التوقع</button>
+        <button type="submit">خلك مستعد قبل المباراة</button>
     </form>
     
     <div class="footer">
