@@ -7,59 +7,94 @@
     <style>
         body { font-family: 'Segoe UI', sans-serif; background: #f4f4f4; padding: 20px; display: flex; justify-content: center; }
         .box { width: 100%; max-width: 450px; background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .tabs { display: flex; gap: 10px; margin-bottom: 20px; }
+        .tab-btn { flex: 1; padding: 10px; border: none; background: #ddd; border-radius: 8px; cursor: pointer; font-weight: bold; }
+        .tab-btn.active { background: #006400; color: white; }
+        .content { display: none; }
+        .content.active { display: block; }
         .title { text-align: center; color: #006400; font-size: 1.6rem; margin-bottom: 15px; font-weight: bold; }
         .rules-box { background: #e8f5e9; padding: 15px; border-radius: 10px; margin-bottom: 20px; font-size: 0.9rem; color: #2e7d32; border-right: 4px solid #006400; }
         .derby-box { background: #fffdf0; border-right: 4px solid #ff9800; color: #856404; }
-        .rules-box h3 { margin-top: 0; font-size: 1.1rem; color: #1b5e20; }
         input, select { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; }
-        button { width: 100%; padding: 14px; background: #006400; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 10px; transition: background 0.3s; }
-        button:hover { background: #004d00; }
+        button { width: 100%; padding: 14px; background: #006400; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        .rank-card { background: #f9f9f9; padding: 12px; border-radius: 8px; margin-bottom: 8px; display: flex; justify-content: space-between; border-right: 4px solid #006400; font-weight: bold; }
         .footer { text-align: center; margin-top: 25px; padding-top: 15px; border-top: 1px solid #eee; }
-        .sponsor { margin-bottom: 15px; }
-        .admin-info { font-size: 0.8rem; color: #666; margin-top: 10px; }
     </style>
 </head>
 <body>
 
 <div class="box">
-    <div class="title">منصة توقعات الزعيم ⚽️</div>
-    
-    <!-- نظام الموسم والجدول -->
-    <div class="rules-box">
-        <h3>🏆 نظام المسابقة (الموسم الكامل):</h3>
-        <ul style="padding-right: 20px; line-height: 1.8;">
-            <li>توقع النتيجة: <b>3 نقاط</b> | توقع المسجل: <b>5 نقاط</b>.</li>
-            <li><b>جدول التوب 10:</b> ترتيب تراكمي من أول مباراة إلى آخر مباراة في الموسم.</li>
-            <li><b>الجائزة:</b> صاحب المركز الأول في جدول الـ Top 10 يفوز بجائزة نهاية الموسم (بطاقة 10$ + لعبتين من مخمخ).</li>
-        </ul>
+    <div class="tabs">
+        <button class="tab-btn active" onclick="showTab('prediction')">التوقعات</button>
+        <button class="tab-btn" onclick="showTab('leaderboard')">الجدول</button>
     </div>
 
-    <!-- نظام الديربيات الفوري -->
-    <div class="rules-box derby-box">
-        <h3>⚡ مباريات الديربي والحسم:</h3>
-        <p style="margin: 5px 0;">في المباريات الكبيرة، لدينا جوائز فورية (5$ + لعبة من مخمخ). <b>آلية الفوز:</b> يتم اختيار الفائز عن طريق <b>سحب عشوائي</b> بين جميع من شارك بتوقع تلك المباراة فقط.</p>
-    </div>
-
-    <form action="https://formspree.io/f/mykrwdop" method="POST">
-        <input type="text" name="الاسم" placeholder="الاسم الكريم" required>
-        <input type="text" name="حساب_الانستقرام" placeholder="@حساب الإنستغرام" required>
-        <label style="font-size: 0.8rem; font-weight: bold;">توقع نتيجة المباراة:</label>
-        <select name="التوقع">
-            <option>فوز العربي</option>
-            <option>تعادل</option>
-            <option>خسارة</option>
-        </select>
-        <input type="text" name="اسم_اللاعب" placeholder="توقع اسم لاعب سيسجل للنادي العربي">
-        <button type="submit">خلك مستعد قبل المباراة</button>
-    </form>
-    
-    <div class="footer">
-        <div class="sponsor">
-            <a href="https://ar.imgbb.com/"><img src="https://i.ibb.co/WWWzTNgg/IMG-5105.png" alt="Mkhmkh Logo" style="width: 100px; height: auto;"></a>
+    <div id="prediction" class="content active">
+        <div class="title">منصة توقعات الزعيم ⚽️</div>
+        <div class="rules-box">
+            <h3>🏆 نظام المسابقة (الموسم الكامل):</h3>
+            <ul style="padding-right: 20px; line-height: 1.8;">
+                <li>توقع النتيجة: <b>3 نقاط</b> | توقع المسجل: <b>5 نقاط</b>.</li>
+                <li><b>جدول التوب 10:</b> ترتيب تراكمي من أول مباراة إلى آخر مباراة في الموسم.</li>
+                <li><b>الجائزة:</b> صاحب المركز الأول يفوز (بطاقة 10$ + لعبتين من مخمخ).</li>
+            </ul>
         </div>
-        <div class="admin-info">إدارة المنصة: @alza3eem__kw</div>
+        <div class="rules-box derby-box">
+            <h3>⚡ مباريات الديربي والحسم:</h3>
+            <p>جوائز فورية (5$ + لعبة من مخمخ) عن طريق سحب عشوائي بين جميع من شارك.</p>
+        </div>
+        <form id="my-form" action="https://formspree.io/f/mykrwdop" method="POST">
+            <input type="text" name="الاسم" placeholder="الاسم الكريم" required>
+            <input type="text" name="حساب_الانستقرام" placeholder="@حساب الإنستغرام" required>
+            <select name="التوقع"><option>فوز العربي</option><option>تعادل</option><option>خسارة</option></select>
+            <input type="text" name="اسم_اللاعب" placeholder="توقع اسم لاعب سيسجل للنادي العربي">
+            <button type="submit">خلك مستعد قبل المباراة</button>
+        </form>
+        <p id="my-form-status" style="text-align:center; font-weight:bold; color:#006400; margin-top:10px;"></p>
+        <div class="footer">
+            <img src="https://i.ibb.co/WWWzTNgg/IMG-5105.png" alt="Mkhmkh" style="width: 100px; margin-bottom:10px;">
+            <div style="font-size: 0.8rem; color: #666;">إدارة المنصة: @alza3eem__kw</div>
+        </div>
+    </div>
+
+    <div id="leaderboard" class="content">
+        <div class="title">🏆 صدارة الزعيم</div>
+        <div id="rank-list">
+            </div>
+        <div class="footer">
+            <img src="https://i.ibb.co/WWWzTNgg/IMG-5105.png" alt="Mkhmkh" style="width: 100px; margin-bottom:10px;">
+            <div style="font-size: 0.8rem; color: #666;">إدارة المنصة: @alza3eem__kw</div>
+        </div>
     </div>
 </div>
+
+<script>
+    function showTab(tabId) {
+        document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+    }
+
+    // توليد 10 خانات للجدول
+    const rankList = document.getElementById('rank-list');
+    for(let i=1; i<=10; i++) {
+        rankList.innerHTML += `<div class="rank-card"><span>${i < 10 ? '0'+i : i}. مجهول</span> <b>0 نقطة</b></div>`;
+    }
+
+    // الفورم
+    var form = document.getElementById("my-form");
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        var status = document.getElementById("my-form-status");
+        var data = new FormData(form);
+        fetch(form.action, { method: form.method, body: data, headers: { 'Accept': 'application/json' } })
+        .then(() => {
+            status.innerHTML = "✅ تم استلام توقعك بنجاح!";
+            form.reset();
+        });
+    });
+</script>
 
 </body>
 </html>
