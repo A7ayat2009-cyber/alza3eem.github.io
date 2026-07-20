@@ -14,14 +14,17 @@
         .content.active { display: block; }
         .title { text-align: center; color: #006400; font-size: 1.6rem; margin-bottom: 15px; font-weight: bold; }
         .rules-box { background: #e8f5e9; padding: 15px; border-radius: 10px; margin-bottom: 20px; font-size: 0.9rem; color: #2e7d32; border-right: 4px solid #006400; }
+        .prize-section { margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px dashed #a5d6a7; }
+        .prize-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
         input, select { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; }
         button { width: 100%; padding: 14px; background: #006400; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 10px; }
         .rank-card { background: #f9f9f9; padding: 12px; border-radius: 8px; margin-bottom: 8px; display: flex; justify-content: space-between; border-right: 4px solid #006400; font-weight: bold; }
         .footer { text-align: center; margin-top: 25px; padding-top: 15px; border-top: 1px solid #eee; color: #666; font-size: 0.8rem; }
         
         .sponsor-container { margin-top: 15px; display: flex; flex-direction: column; align-items: center; gap: 5px; }
-        .samar-logo { width: 160px; height: auto; }
-        .other-logo { width: 80px; height: auto; opacity: 0.8; }
+        .sponsors-row { display: flex; justify-content: center; align-items: center; gap: 15px; width: 100%; margin-top: 5px; }
+        .samar-logo { width: 110px; height: auto; }
+        .other-logo { width: 70px; height: auto; opacity: 0.8; }
     </style>
 </head>
 <body>
@@ -36,12 +39,21 @@
         <div class="title">منصة توقعات الزعيم ⚽️</div>
         
         <div class="rules-box">
-            <h3>🏆 نظام الجوائز والبروتوكول:</h3>
-            <ul style="padding-right: 20px; line-height: 1.8;">
-                <li><b>المركز الأول (على مستوى الموسم):</b> 10$ + جوائز مميزة من لعبة <b>Samar</b>.</li>
-                <li><b>سحوبات المباريات (الدربيات):</b> 5$ + 1 كود لعبة من <b>Samar</b> وتطبيق <b>حلها</b> (فائز عشوائي يشترط متابعة حساب الراعي @7lha.app).</li>
-                <li>توقع النتيجة: 3 نقاط | توقع المسجل: 5 نقاط.</li>
-            </ul>
+            <h3 style="margin-top: 0; margin-bottom: 12px;">🏆 نظام الجوائز والبروتوكول:</h3>
+            
+            <div class="prize-section">
+                <div><b>المركز الأول (على مستوى الموسم):</b></div>
+                <div style="margin-top: 4px;">10$ ( gift card من اختيارك) + جوائز مميزة من لعبة <b>Samar</b>.</div>
+            </div>
+
+            <div class="prize-section">
+                <div><b>سحوبات المباريات (الدربيات):</b></div>
+                <div style="margin-top: 4px;">5$ ( gift card من اختيارك) + 1 كود لعبة من <b>Samar</b> وتطبيق <b>حلها</b> وجوائز من لعبة <b>وجولة من لعبةاضمنها</b> وجوائز من لعبة <b>أضمنها</b> (فائز عشوائي يشترط متابعة حسابات الرعاة: @7lha.app و @play_samar و @idmanhakw).</div>
+            </div>
+
+            <div style="margin-top: 10px; font-weight: bold;">
+                توقع النتيجة: 3 نقاط | توقع المسجل: 5 نقاط.
+            </div>
         </div>
         
         <form id="my-form" action="https://formspree.io/f/mykrwdop" method="POST">
@@ -57,8 +69,11 @@
             <p>إدارة المنصة: @alza3eem__kw</p>
             <div class="sponsor-container">
                 <p style="font-size: 0.75rem; font-weight: bold; margin: 0;">الرعاة الرسميون:</p>
-                <img src="https://i.ibb.co/RTXLRggY/IMG-5213.png" alt="Samar" class="samar-logo">
-                <a href="https://7lha.app" target="_blank"><img src="https://i.ibb.co/v6WXzMpR/IMG-5197.png" alt="حلها" class="other-logo"></a>
+                <div class="sponsors-row">
+                    <a href="https://7lha.app" target="_blank"><img src="https://i.ibb.co/v6WXzMpR/IMG-5197.png" alt="حلها" class="other-logo"></a>
+                    <img src="https://i.ibb.co/RTXLRggY/IMG-5213.png" alt="Samar" class="samar-logo">
+                    <img src="https://i.ibb.co/1JZ77zpt/IMG-5227.png" alt="الراعي الثالث" class="other-logo">
+                </div>
             </div>
         </div>
     </div>
@@ -70,8 +85,11 @@
             <p>إدارة المنصة: @alza3eem__kw</p>
             <div class="sponsor-container">
                 <p style="font-size: 0.75rem; font-weight: bold; margin: 0;">الرعاة الرسميون:</p>
-                <img src="https://i.ibb.co/RTXLRggY/IMG-5213.png" alt="Samar" class="samar-logo">
-                <a href="https://7lha.app" target="_blank"><img src="https://i.ibb.co/v6WXzMpR/IMG-5197.png" alt="حلها" class="other-logo"></a>
+                <div class="sponsors-row">
+                    <a href="https://7lha.app" target="_blank"><img src="https://i.ibb.co/v6WXzMpR/IMG-5197.png" alt="حلها" class="other-logo"></a>
+                    <img src="https://i.ibb.co/RTXLRggY/IMG-5213.png" alt="Samar" class="samar-logo">
+                    <img src="https://i.ibb.co/1JZ77zpt/IMG-5227.png" alt="الراعي الثالث" class="other-logo">
+                </div>
             </div>
         </div>
     </div>
