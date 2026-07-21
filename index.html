@@ -10,8 +10,8 @@
             --primary: #006400;
             --primary-dark: #004d00;
             --accent: #10b981;
-            --bg-gradient: linear-gradient(135deg, #090d16 0%, #111c2e 50%, #05160c 100%);
-            --card-bg: rgba(255, 255, 255, 0.99);
+            --bg-gradient: linear-gradient(135deg, #050b14 0%, #0d1b2a 50%, #021508 100%);
+            --card-bg: rgba(255, 255, 255, 0.98);
             --text-main: #0f172a;
             --text-muted: #64748b;
         }
@@ -25,16 +25,24 @@
             display: flex; 
             justify-content: center; 
             align-items: center;
+            overflow-x: hidden;
         }
 
         .box { 
             width: 100%; 
-            max-width: 460px; 
+            max-width: 480px; 
             background: var(--card-bg); 
-            padding: 32px; 
-            border-radius: 28px; 
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1) inset; 
-            backdrop-filter: blur(16px);
+            padding: 36px; 
+            border-radius: 32px; 
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.15) inset; 
+            backdrop-filter: blur(20px);
+            position: relative;
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .tabs { 
@@ -43,7 +51,7 @@
             margin-bottom: 25px; 
             background: #e2e8f0;
             padding: 6px;
-            border-radius: 16px;
+            border-radius: 18px;
         }
 
         .tab-btn { 
@@ -52,7 +60,7 @@
             border: none; 
             background: transparent; 
             color: var(--text-muted);
-            border-radius: 12px; 
+            border-radius: 14px; 
             cursor: pointer; 
             font-weight: 700; 
             font-family: 'Cairo', sans-serif;
@@ -63,36 +71,37 @@
         .tab-btn.active { 
             background: var(--primary); 
             color: white; 
-            box-shadow: 0 4px 20px rgba(0, 100, 0, 0.4);
+            box-shadow: 0 6px 20px rgba(0, 100, 0, 0.35);
+            transform: scale(1.02);
         }
 
         .content { display: none; }
         .content.active { display: block; animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
+            from { opacity: 0; transform: translateY(6px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .title { 
             text-align: center; 
             color: var(--primary); 
-            font-size: 1.85rem; 
+            font-size: 2rem; 
             margin-bottom: 20px; 
             font-weight: 900; 
             letter-spacing: -0.5px;
-            text-shadow: 0 2px 4px rgba(0,100,0,0.1);
+            text-shadow: 0 2px 8px rgba(0,100,0,0.15);
         }
 
         .rules-box { 
             background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); 
-            padding: 20px; 
-            border-radius: 18px; 
+            padding: 22px; 
+            border-radius: 20px; 
             margin-bottom: 25px; 
             font-size: 0.9rem; 
             color: #166534; 
             border-right: 6px solid var(--primary); 
-            box-shadow: 0 4px 15px rgba(0, 100, 0, 0.05);
+            box-shadow: 0 8px 20px rgba(0, 100, 0, 0.06);
         }
 
         .prize-section { 
@@ -115,16 +124,16 @@
 
         input, select { 
             width: 100%; 
-            padding: 14px 16px; 
-            margin: 8px 0; 
+            padding: 15px 18px; 
+            margin: 9px 0; 
             border: 2px solid #cbd5e1; 
-            border-radius: 14px; 
+            border-radius: 16px; 
             box-sizing: border-box; 
             font-family: 'Cairo', sans-serif;
             font-size: 0.95rem;
             background: #f8fafc;
             color: var(--text-main);
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         input:focus, select:focus {
@@ -132,6 +141,7 @@
             border-color: var(--primary);
             background: #fff;
             box-shadow: 0 0 0 5px rgba(0, 100, 0, 0.12);
+            transform: translateY(-1px);
         }
 
         button[type="submit"] { 
@@ -140,25 +150,29 @@
             background: linear-gradient(135deg, #006400 0%, #004d00 100%); 
             color: white; 
             border: none; 
-            border-radius: 14px; 
+            border-radius: 16px; 
             font-weight: 700; 
             font-family: 'Cairo', sans-serif;
             font-size: 1.05rem;
             cursor: pointer; 
             margin-top: 15px; 
-            transition: all 0.3s ease;
-            box-shadow: 0 6px 20px rgba(0, 100, 0, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 25px rgba(0, 100, 0, 0.35);
         }
 
         button[type="submit"]:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 100, 0, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 100, 0, 0.45);
+        }
+
+        button[type="submit"]:active {
+            transform: translateY(-1px);
         }
 
         .rank-card { 
             background: #f8fafc; 
             padding: 16px 18px; 
-            border-radius: 14px; 
+            border-radius: 16px; 
             margin-bottom: 12px; 
             display: flex; 
             justify-content: space-between; 
@@ -166,15 +180,16 @@
             border-right: 6px solid var(--primary); 
             font-weight: 700; 
             color: var(--text-main);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
             border: 1px solid #e2e8f0;
             border-right-width: 6px;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
         }
 
         .rank-card:hover {
             transform: translateX(-4px);
-            box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border-color: #cbd5e1;
         }
 
         .footer { 
@@ -207,25 +222,35 @@
         .samar-logo { 
             width: 110px; 
             height: auto; 
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.08));
-            transition: transform 0.3s ease;
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.1));
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .samar-logo:hover {
-            transform: scale(1.05);
+            transform: scale(1.08);
         }
 
         .other-logo { 
             width: 70px; 
             height: auto; 
             opacity: 0.9; 
-            transition: all 0.3s ease;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.08));
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.1));
         }
 
         .other-logo:hover {
             opacity: 1;
-            transform: scale(1.08);
+            transform: scale(1.1);
+        }
+
+        /* رسالة الحالة بتصميم فاخر */
+        #my-form-status {
+            text-align: center;
+            font-weight: 700;
+            color: var(--primary);
+            margin-top: 12px;
+            font-size: 0.95rem;
+            min-height: 24px;
         }
     </style>
 </head>
@@ -270,8 +295,14 @@
             </div>
         </div>
         
-        <form id="my-form" action="https://api.web3forms.com/submit" method="POST">
-            <input type="hidden" name="access_key" value="7d3a8f55-7eaf-4fbf-95e7-a851f3efad05">
+        <form action="https://formsubmit.co/alza3eem.kw@gmail.com" method="POST" id="my-form">
+            <!-- إلغاء صفحة التحقق -->
+            <input type="hidden" name="_captcha" value="false">
+            <!-- تحديد عنوان الرسالة الإيميل -->
+            <input type="hidden" name="_subject" value="توقع جديد في منصة الزعيم ⚽️">
+            <!-- إعادة التوجيه لصفحة المنصة أو نفس الصفحة -->
+            <input type="hidden" name="_next" value="https://tinyurl.com/alza3eem-prediction">
+
             <input type="text" name="الاسم" placeholder="الاسم الكريم" required>
             <input type="text" name="حساب_الانستقرام" placeholder="@حساب الإنستغرام" required>
             <select name="التوقع"><option>فوز العربي</option><option>تعادل</option><option>خسارة</option></select>
@@ -279,7 +310,7 @@
             <select name="عدد_الاهداف"><option value="" disabled selected>توقع عدد أهداف العربي</option><option>صفر</option><option>أقل من 3</option><option>أكثر من ثلاثة</option></select>
             <button type="submit">إرسال التوقع</button>
         </form>
-        <p id="my-form-status" style="text-align:center; font-weight:700; color:var(--primary); margin-top:10px;"></p>
+        <p id="my-form-status"></p>
         
         <div class="footer">
             <p>إدارة المنصة: @alza3eem__kw</p>
@@ -324,25 +355,28 @@
         rankList.innerHTML += `<div class="rank-card"><span>${i < 10 ? '0'+i : i}. مجهول</span> <b>0 نقطة</b></div>`;
     }
 
+    // إرسال سلس عبر الـ AJAX مع رسالة نجاح فاخرة بدون مغادرة الصفحة
     var form = document.getElementById("my-form");
     form.addEventListener("submit", function(event) {
         event.preventDefault();
         var status = document.getElementById("my-form-status");
         var data = new FormData(form);
-        status.innerHTML = "⏳ جاري إرسال توقعك...";
+        status.innerHTML = "⏳ جاري إرسال توقعك... بانتظار إبداعك!";
         
-        fetch(form.action, { method: form.method, body: data })
-        .then(response => response.json())
-        .then(result => {
-            if (result.success) {
-                status.innerHTML = "✅ تم استلام توقعك بنجاح!";
+        fetch(form.action, {
+            method: form.method,
+            body: data,
+            headers: { 'Accept': 'application/json' }
+        }).then(response => {
+            if (response.ok) {
+                status.innerHTML = "✅ تم استلام توقعك بنجاح وسيصلك التأكيد!";
                 form.reset();
+                setTimeout(() => { status.innerHTML = ""; }, 5000);
             } else {
                 status.innerHTML = "❌ حدث خطأ، يرجى المحاولة مرة أخرى.";
             }
-        })
-        .catch(error => {
-            status.innerHTML = "❌ حدث خطأ في الاتصال.";
+        }).catch(error => {
+            status.innerHTML = "❌ حدث خطأ في الاتصال بالشبكة.";
         });
     });
 </script>
