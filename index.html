@@ -4,21 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منصة توقعات الزعيم</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #006400;
-            --primary-dark: #004d00;
+            --primary: #008000;
+            --primary-glow: #00ff00;
             --accent: #10b981;
-            --bg-gradient: linear-gradient(135deg, #050b14 0%, #0d1b2a 50%, #021508 100%);
-            --card-bg: rgba(255, 255, 255, 0.98);
-            --text-main: #0f172a;
-            --text-muted: #64748b;
+            --bg-deep: #020617;
+            --card-glass: rgba(15, 23, 42, 0.82);
+            --card-border: rgba(255, 255, 255, 0.15);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body { 
             font-family: 'Cairo', sans-serif; 
-            background: var(--bg-gradient); 
+            background: var(--bg-deep);
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(0, 128, 0, 0.25) 0%, transparent 45%),
+                radial-gradient(circle at 85% 85%, rgba(16, 185, 129, 0.18) 0%, transparent 45%),
+                radial-gradient(circle at 50% 50%, rgba(2, 6, 23, 0.9) 0%, transparent 100%);
+            background-attachment: fixed;
             min-height: 100vh;
             margin: 0;
             padding: 20px; 
@@ -26,41 +37,62 @@
             justify-content: center; 
             align-items: center;
             overflow-x: hidden;
+            color: var(--text-main);
+        }
+
+        /* الإضاءة الخلفية المتحركة للتأثير الخيالي */
+        .glow-orb {
+            position: fixed;
+            width: 320px;
+            height: 320px;
+            background: radial-gradient(circle, rgba(0,255,0,0.15) 0%, rgba(0,128,0,0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+            animation: pulseGlow 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1) translate(-30px, -30px); opacity: 0.6; }
+            100% { transform: scale(1.3) translate(30px, 30px); opacity: 0.9; }
         }
 
         .box { 
             width: 100%; 
             max-width: 480px; 
-            background: var(--card-bg); 
-            padding: 36px; 
-            border-radius: 32px; 
-            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.15) inset; 
-            backdrop-filter: blur(20px);
+            background: var(--card-glass); 
+            padding: 38px 30px; 
+            border-radius: 36px; 
+            box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.8), 
+                        0 0 0 1px var(--card-border) inset,
+                        0 0 35px rgba(0, 128, 0, 0.15); 
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
             position: relative;
-            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(25px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         .tabs { 
             display: flex; 
             gap: 8px; 
-            margin-bottom: 25px; 
-            background: #e2e8f0;
+            margin-bottom: 28px; 
+            background: rgba(255, 255, 255, 0.04);
             padding: 6px;
-            border-radius: 18px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .tab-btn { 
             flex: 1; 
-            padding: 12px; 
+            padding: 13px; 
             border: none; 
             background: transparent; 
             color: var(--text-muted);
-            border-radius: 14px; 
+            border-radius: 15px; 
             cursor: pointer; 
             font-weight: 700; 
             font-family: 'Cairo', sans-serif;
@@ -69,45 +101,49 @@
         }
 
         .tab-btn.active { 
-            background: var(--primary); 
-            color: white; 
-            box-shadow: 0 6px 20px rgba(0, 100, 0, 0.35);
-            transform: scale(1.02);
+            background: linear-gradient(135deg, #009900 0%, #005a00 100%); 
+            color: #ffffff; 
+            box-shadow: 0 8px 25px rgba(0, 128, 0, 0.45);
+            transform: translateY(-1px);
         }
 
         .content { display: none; }
-        .content.active { display: block; animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .content.active { display: block; animation: fadeInTab 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(6px); }
+        @keyframes fadeInTab {
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .title { 
             text-align: center; 
-            color: var(--primary); 
-            font-size: 2rem; 
-            margin-bottom: 20px; 
+            font-size: 2.1rem; 
+            margin-bottom: 24px; 
             font-weight: 900; 
             letter-spacing: -0.5px;
-            text-shadow: 0 2px 8px rgba(0,100,0,0.15);
+            background: linear-gradient(180deg, #ffffff 30%, #a7f3d0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            drop-shadow: 0 4px 15px rgba(0, 128, 0, 0.3);
         }
 
         .rules-box { 
-            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); 
-            padding: 22px; 
-            border-radius: 20px; 
-            margin-bottom: 25px; 
+            background: linear-gradient(135deg, rgba(6, 78, 36, 0.5) 0%, rgba(2, 44, 19, 0.7) 100%); 
+            padding: 24px; 
+            border-radius: 24px; 
+            margin-bottom: 26px; 
             font-size: 0.9rem; 
-            color: #166534; 
-            border-right: 6px solid var(--primary); 
-            box-shadow: 0 8px 20px rgba(0, 100, 0, 0.06);
+            color: #ecfdf5; 
+            border-right: 5px solid var(--accent); 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            border-right-width: 5px;
         }
 
         .prize-section { 
             margin-bottom: 14px; 
             padding-bottom: 12px; 
-            border-bottom: 1px dashed #86efac; 
+            border-bottom: 1px dashed rgba(167, 243, 208, 0.2); 
         }
 
         .prize-section:last-child { 
@@ -120,49 +156,75 @@
             margin: 8px 0 0 0; 
             padding-right: 20px; 
             line-height: 1.7; 
+            color: #a7f3d0;
         }
 
         input, select { 
             width: 100%; 
-            padding: 15px 18px; 
+            padding: 16px 18px; 
             margin: 9px 0; 
-            border: 2px solid #cbd5e1; 
-            border-radius: 16px; 
+            border: 1.5px solid rgba(255, 255, 255, 0.12); 
+            border-radius: 18px; 
             box-sizing: border-box; 
             font-family: 'Cairo', sans-serif;
             font-size: 0.95rem;
-            background: #f8fafc;
-            color: var(--text-main);
+            background: rgba(15, 23, 42, 0.65);
+            color: #ffffff;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        input::placeholder {
+            color: #64748b;
+        }
+
+        select option {
+            background: #0f172a;
+            color: #ffffff;
         }
 
         input:focus, select:focus {
             outline: none;
-            border-color: var(--primary);
-            background: #fff;
-            box-shadow: 0 0 0 5px rgba(0, 100, 0, 0.12);
-            transform: translateY(-1px);
+            border-color: var(--accent);
+            background: rgba(15, 23, 42, 0.95);
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+            transform: translateY(-2px);
         }
 
         button[type="submit"] { 
             width: 100%; 
-            padding: 16px; 
-            background: linear-gradient(135deg, #006400 0%, #004d00 100%); 
+            padding: 17px; 
+            background: linear-gradient(135deg, #009900 0%, #004d00 100%); 
             color: white; 
             border: none; 
-            border-radius: 16px; 
-            font-weight: 700; 
+            border-radius: 18px; 
+            font-weight: 800; 
             font-family: 'Cairo', sans-serif;
             font-size: 1.05rem;
             cursor: pointer; 
-            margin-top: 15px; 
+            margin-top: 16px; 
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 8px 25px rgba(0, 100, 0, 0.35);
+            box-shadow: 0 10px 30px rgba(0, 128, 0, 0.45);
+            position: relative;
+            overflow: hidden;
+        }
+
+        button[type="submit"]::before {
+            content: '';
+            position: absolute;
+            top: 0; right: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+            transition: 0.6s;
+        }
+
+        button[type="submit"]:hover::before {
+            right: 100%;
         }
 
         button[type="submit"]:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(0, 100, 0, 0.45);
+            box-shadow: 0 14px 35px rgba(0, 128, 0, 0.65);
+            filter: brightness(1.1);
         }
 
         button[type="submit"]:active {
@@ -170,91 +232,94 @@
         }
 
         .rank-card { 
-            background: #f8fafc; 
-            padding: 16px 18px; 
-            border-radius: 16px; 
+            background: rgba(15, 23, 42, 0.65); 
+            padding: 16px 20px; 
+            border-radius: 18px; 
             margin-bottom: 12px; 
             display: flex; 
             justify-content: space-between; 
             align-items: center;
-            border-right: 6px solid var(--primary); 
+            border-right: 5px solid var(--accent); 
             font-weight: 700; 
-            color: var(--text-main);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            border: 1px solid #e2e8f0;
-            border-right-width: 6px;
-            transition: all 0.3s ease;
+            color: #ffffff;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-right-width: 5px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .rank-card:hover {
-            transform: translateX(-4px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-            border-color: #cbd5e1;
+            transform: translateX(-5px);
+            background: rgba(30, 41, 59, 0.85);
+            border-color: rgba(255, 255, 255, 0.2);
+            border-right-color: var(--accent);
         }
 
         .footer { 
             text-align: center; 
-            margin-top: 30px; 
-            padding-top: 20px; 
-            border-top: 1px solid #e2e8f0; 
+            margin-top: 32px; 
+            padding-top: 22px; 
+            border-top: 1px solid rgba(255, 255, 255, 0.08); 
             color: var(--text-muted); 
             font-size: 0.85rem; 
             font-weight: 600;
         }
         
         .sponsor-container { 
-            margin-top: 15px; 
+            margin-top: 16px; 
             display: flex; 
             flex-direction: column; 
             align-items: center; 
-            gap: 10px; 
+            gap: 12px; 
         }
 
         .sponsors-row { 
             display: flex; 
             justify-content: center; 
             align-items: center; 
-            gap: 18px; 
+            gap: 20px; 
             width: 100%; 
-            margin-top: 5px; 
+            margin-top: 6px; 
         }
 
         .samar-logo { 
-            width: 110px; 
+            width: 115px; 
             height: auto; 
-            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.1));
+            filter: drop-shadow(0 6px 15px rgba(0,0,0,0.5));
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .samar-logo:hover {
-            transform: scale(1.08);
+            transform: scale(1.1);
         }
 
         .other-logo { 
-            width: 70px; 
+            width: 75px; 
             height: auto; 
             opacity: 0.9; 
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.1));
+            filter: drop-shadow(0 6px 15px rgba(0,0,0,0.5));
         }
 
         .other-logo:hover {
             opacity: 1;
-            transform: scale(1.1);
+            transform: scale(1.12);
         }
 
-        /* رسالة الحالة بتصميم فاخر */
         #my-form-status {
             text-align: center;
             font-weight: 700;
-            color: var(--primary);
-            margin-top: 12px;
+            color: var(--accent);
+            margin-top: 15px;
             font-size: 0.95rem;
             min-height: 24px;
+            text-shadow: 0 2px 10px rgba(16, 185, 129, 0.4);
         }
     </style>
 </head>
 <body>
+
+<div class="glow-orb"></div>
 
 <div class="box">
     <div class="tabs">
@@ -281,7 +346,7 @@
                     <li>كود لعبة من حلها</li>
                     <li>جولة من لعبة اضمنها</li>
                 </ul>
-                <div style="margin-top: 8px; font-size: 0.85rem; font-weight: 700; line-height: 1.6;">
+                <div style="margin-top: 8px; font-size: 0.85rem; font-weight: 700; line-height: 1.6; color: #e2e8f0;">
                     سيتم سحب اسم عشوائياً من الذين توقعوا توقع صحيح<br>
                     يشترط إضافة حسابات الرعاة:<br>
                     @7lha.app<br>
@@ -290,7 +355,7 @@
                 </div>
             </div>
 
-            <div style="margin-top: 12px; font-weight: 700; background: rgba(0,100,0,0.08); padding: 8px 12px; border-radius: 8px;">
+            <div style="margin-top: 12px; font-weight: 700; background: rgba(0,128,0,0.3); padding: 9px 14px; border-radius: 10px; border: 1px solid rgba(16,185,129,0.35);">
                 نقطتين للنتيجة | ٤ نقاط للاعب المسجل | ٥ نقاط لعدد الأهداف.
             </div>
         </div>
@@ -315,7 +380,7 @@
         <div class="footer">
             <p>إدارة المنصة: @alza3eem__kw</p>
             <div class="sponsor-container">
-                <p style="font-size: 0.75rem; font-weight: 700; margin: 0;">الرعاة الرسميون:</p>
+                <p style="font-size: 0.75rem; font-weight: 700; margin: 0; color: #94a3b8;">الرعاة الرسميون:</p>
                 <div class="sponsors-row">
                     <a href="https://7lha.app" target="_blank"><img src="https://i.ibb.co/v6WXzMpR/IMG-5197.png" alt="حلها" class="other-logo"></a>
                     <img src="https://i.ibb.co/RTXLRggY/IMG-5213.png" alt="Samar" class="samar-logo">
@@ -331,7 +396,7 @@
         <div class="footer">
             <p>إدارة المنصة: @alza3eem__kw</p>
             <div class="sponsor-container">
-                <p style="font-size: 0.75rem; font-weight: 700; margin: 0;">الرعاة الرسميون:</p>
+                <p style="font-size: 0.75rem; font-weight: 700; margin: 0; color: #94a3b8;">الرعاة الرسميون:</p>
                 <div class="sponsors-row">
                     <a href="https://7lha.app" target="_blank"><img src="https://i.ibb.co/v6WXzMpR/IMG-5197.png" alt="حلها" class="other-logo"></a>
                     <img src="https://i.ibb.co/RTXLRggY/IMG-5213.png" alt="Samar" class="samar-logo">
@@ -355,7 +420,6 @@
         rankList.innerHTML += `<div class="rank-card"><span>${i < 10 ? '0'+i : i}. مجهول</span> <b>0 نقطة</b></div>`;
     }
 
-    // إرسال سلس عبر الـ AJAX مع رسالة نجاح فاخرة بدون مغادرة الصفحة
     var form = document.getElementById("my-form");
     form.addEventListener("submit", function(event) {
         event.preventDefault();
@@ -369,7 +433,7 @@
             headers: { 'Accept': 'application/json' }
         }).then(response => {
             if (response.ok) {
-                status.innerHTML = "✅تم استلام توقعك بنجاح !";
+                status.innerHTML = "✅ تم استلام توقعك بنجاح وسيصلك التأكيد!";
                 form.reset();
                 setTimeout(() => { status.innerHTML = ""; }, 5000);
             } else {
