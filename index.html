@@ -7,14 +7,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #006600;
-            --primary-light: #00a83a;
-            --accent: #10b981;
-            --bg-deep: #050e08;
-            --card-glass: rgba(6, 20, 10, 0.85);
-            --card-border: rgba(0, 255, 85, 0.25);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
+            --primary: #008f32;
+            --emerald-glow: #00ff55;
+            --emerald-deep: #022c14;
+            --bg-base: #010603;
+            --glass-bg: rgba(2, 18, 8, 0.78);
+            --glass-border: rgba(0, 255, 85, 0.22);
+            --text-light: #f8fafc;
+            --text-dim: #94a3b8;
         }
 
         * {
@@ -24,11 +24,12 @@
 
         body { 
             font-family: 'Cairo', sans-serif; 
-            background: var(--bg-deep);
+            background: var(--bg-base);
             background-image: 
-                radial-gradient(circle at 10% 15%, rgba(0, 120, 40, 0.35) 0%, transparent 40%),
-                radial-gradient(circle at 90% 85%, rgba(0, 200, 80, 0.2) 0%, transparent 45%),
-                linear-gradient(135deg, #020804 0%, #061a0b 50%, #010502 100%);
+                radial-gradient(circle at 50% -20%, rgba(0, 255, 85, 0.22) 0%, transparent 60%),
+                radial-gradient(circle at 10% 90%, rgba(0, 143, 50, 0.18) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(0, 200, 70, 0.12) 0%, transparent 50%),
+                linear-gradient(135deg, #000201 0%, #031207 50%, #010502 100%);
             background-attachment: fixed;
             min-height: 100vh;
             margin: 0;
@@ -37,57 +38,79 @@
             justify-content: center; 
             align-items: center;
             overflow-x: hidden;
-            color: var(--text-main);
+            color: var(--text-light);
         }
 
-        /* إضاءة ملاعب احترافية ملكية */
-        .stadium-glow {
+        /* شبكة ملعب رقمية ثلاثية الأبعاد متحركة في الخلفية */
+        .pitch-grid {
             position: fixed;
-            top: 50%;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 85, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 85, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -2;
+            transform: perspective(500px) rotateX(60deg) scale(2);
+            transform-origin: top center;
+            animation: gridMove 20s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes gridMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 40px; }
+        }
+
+        /* إضاءة كشافات الملعب الملكية */
+        .stadium-spotlight {
+            position: fixed;
+            top: -150px;
             left: 50%;
-            transform: translate(-50%, -50%);
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(0,255,80,0.12) 0%, rgba(0,100,30,0) 70%);
-            border-radius: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 350px;
+            background: radial-gradient(ellipse at center, rgba(0,255,85,0.2) 0%, rgba(0,143,50,0.05) 50%, transparent 70%);
             z-index: -1;
             pointer-events: none;
-            animation: pulseStadium 6s ease-in-out infinite alternate;
+            filter: blur(40px);
+            animation: lightPulse 5s ease-in-out infinite alternate;
         }
 
-        @keyframes pulseStadium {
-            0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.5; }
-            100% { transform: translate(-50%, -50%) scale(1.25); opacity: 1; }
+        @keyframes lightPulse {
+            0% { opacity: 0.6; transform: translateX(-50%) scale(0.9); }
+            100% { opacity: 1; transform: translateX(-50%) scale(1.1); }
         }
 
         .box { 
             width: 100%; 
             max-width: 480px; 
-            background: var(--card-glass); 
+            background: var(--glass-bg); 
             padding: 38px 30px; 
             border-radius: 36px; 
-            box-shadow: 0 30px 80px -15px rgba(0, 0, 0, 0.9), 
-                        0 0 0 1px var(--card-border) inset,
-                        0 0 50px rgba(0, 168, 58, 0.2); 
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
+            box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.95), 
+                        0 0 0 1px var(--glass-border) inset,
+                        0 0 60px rgba(0, 255, 85, 0.15),
+                        0 0 120px rgba(0, 143, 50, 0.1); 
+            backdrop-filter: blur(35px);
+            -webkit-backdrop-filter: blur(35px);
             position: relative;
-            animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: cinematicEntry 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        @keyframes slideUpFade {
-            from { opacity: 0; transform: translateY(25px) scale(0.97); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
+        @keyframes cinematicEntry {
+            from { opacity: 0; transform: translateY(35px) scale(0.94); filter: blur(10px); }
+            to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
         }
 
         .tabs { 
             display: flex; 
             gap: 8px; 
             margin-bottom: 28px; 
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.55);
             padding: 6px;
             border-radius: 20px;
-            border: 1px solid rgba(0, 255, 85, 0.15);
+            border: 1px solid rgba(0, 255, 85, 0.18);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) inset;
         }
 
         .tab-btn { 
@@ -95,28 +118,31 @@
             padding: 13px; 
             border: none; 
             background: transparent; 
-            color: var(--text-muted);
+            color: var(--text-dim);
             border-radius: 15px; 
             cursor: pointer; 
             font-weight: 700; 
             font-family: 'Cairo', sans-serif;
             font-size: 0.95rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
         }
 
         .tab-btn.active { 
-            background: linear-gradient(135deg, #008f32 0%, #004d1a 100%); 
+            background: linear-gradient(135deg, #009933 0%, #004514 100%); 
             color: #ffffff; 
-            box-shadow: 0 8px 25px rgba(0, 143, 50, 0.5);
-            transform: translateY(-1px);
-            border: 1px solid rgba(0, 255, 85, 0.4);
+            box-shadow: 0 8px 30px rgba(0, 255, 85, 0.45), 
+                        0 0 15px rgba(0, 255, 85, 0.2) inset;
+            transform: translateY(-2px);
+            border: 1px solid rgba(0, 255, 85, 0.5);
         }
 
         .content { display: none; }
-        .content.active { display: block; animation: fadeInTab 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .content.active { display: block; animation: contentFadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
 
-        @keyframes fadeInTab {
-            from { opacity: 0; transform: translateY(10px); }
+        @keyframes contentFadeIn {
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -126,29 +152,45 @@
             margin-bottom: 24px; 
             font-weight: 900; 
             letter-spacing: -0.5px;
-            background: linear-gradient(180deg, #ffffff 20%, #7ef7b5 100%);
+            background: linear-gradient(180deg, #ffffff 15%, #a3ffcb 50%, #00ff55 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 4px 15px rgba(0, 168, 58, 0.4));
+            filter: drop-shadow(0 4px 20px rgba(0, 255, 85, 0.5));
         }
 
         .rules-box { 
-            background: linear-gradient(135deg, rgba(2, 45, 18, 0.8) 0%, rgba(1, 26, 10, 0.95) 100%); 
+            background: linear-gradient(135deg, rgba(2, 44, 20, 0.88) 0%, rgba(1, 20, 8, 0.96) 100%); 
             padding: 24px; 
             border-radius: 24px; 
             margin-bottom: 26px; 
             font-size: 0.9rem; 
             color: #e2fceb; 
             border-right: 5px solid #00ff55; 
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 
+                        0 0 25px rgba(0, 255, 85, 0.1) inset;
             border: 1px solid rgba(0, 255, 85, 0.3);
             border-right-width: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rules-box::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 85, 0.05), transparent);
+            transform: translateX(-100%);
+            animation: shimmerEffect 4s infinite;
+        }
+
+        @keyframes shimmerEffect {
+            100% { transform: translateX(100%); }
         }
 
         .prize-section { 
             margin-bottom: 14px; 
             padding-bottom: 12px; 
-            border-bottom: 1px dashed rgba(0, 255, 85, 0.2); 
+            border-bottom: 1px dashed rgba(0, 255, 85, 0.25); 
         }
 
         .prize-section:last-child { 
@@ -161,21 +203,22 @@
             margin: 8px 0 0 0; 
             padding-right: 20px; 
             line-height: 1.7; 
-            color: #a7f3d0;
+            color: #a3ffcb;
         }
 
         input, select { 
             width: 100%; 
             padding: 16px 18px; 
             margin: 9px 0; 
-            border: 1.5px solid rgba(0, 255, 85, 0.2); 
+            border: 1.5px solid rgba(0, 255, 85, 0.22); 
             border-radius: 18px; 
             box-sizing: border-box; 
             font-family: 'Cairo', sans-serif;
             font-size: 0.95rem;
-            background: rgba(2, 15, 6, 0.7);
+            background: rgba(1, 12, 5, 0.75);
             color: #ffffff;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3) inset;
         }
 
         input::placeholder {
@@ -183,22 +226,22 @@
         }
 
         select option {
-            background: #061a0b;
+            background: #031207;
             color: #ffffff;
         }
 
         input:focus, select:focus {
             outline: none;
             border-color: #00ff55;
-            background: rgba(2, 20, 8, 0.95);
-            box-shadow: 0 0 0 4px rgba(0, 255, 85, 0.25);
+            background: rgba(2, 25, 10, 0.95);
+            box-shadow: 0 0 0 4px rgba(0, 255, 85, 0.25), 0 0 20px rgba(0, 255, 85, 0.3) inset;
             transform: translateY(-2px);
         }
 
         button[type="submit"] { 
             width: 100%; 
-            padding: 17px; 
-            background: linear-gradient(135deg, #008f32 0%, #003d14 100%); 
+            padding: 18px; 
+            background: linear-gradient(135deg, #00b33c 0%, #004d1a 100%); 
             color: white; 
             border: none; 
             border-radius: 18px; 
@@ -207,11 +250,12 @@
             font-size: 1.05rem;
             cursor: pointer; 
             margin-top: 16px; 
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 10px 30px rgba(0, 143, 50, 0.5);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 12px 35px rgba(0, 179, 60, 0.55),
+                        0 0 20px rgba(0, 255, 85, 0.3) inset;
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(0, 255, 85, 0.3);
+            border: 1px solid rgba(0, 255, 85, 0.4);
         }
 
         button[type="submit"]::before {
@@ -219,8 +263,8 @@
             position: absolute;
             top: 0; right: -100%;
             width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: 0.6s;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+            transition: 0.7s;
         }
 
         button[type="submit"]:hover::before {
@@ -229,7 +273,8 @@
 
         button[type="submit"]:hover {
             transform: translateY(-3px);
-            box-shadow: 0 14px 40px rgba(0, 200, 70, 0.7);
+            box-shadow: 0 16px 45px rgba(0, 255, 85, 0.75),
+                        0 0 30px rgba(0, 255, 85, 0.5) inset;
             filter: brightness(1.15);
         }
 
@@ -238,7 +283,7 @@
         }
 
         .rank-card { 
-            background: rgba(2, 15, 6, 0.75); 
+            background: rgba(2, 18, 8, 0.85); 
             padding: 16px 20px; 
             border-radius: 18px; 
             margin-bottom: 12px; 
@@ -248,25 +293,26 @@
             border-right: 5px solid #00ff55; 
             font-weight: 700; 
             color: #ffffff;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-            border: 1px solid rgba(0, 255, 85, 0.15);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.45), 0 0 15px rgba(0,255,85,0.05) inset;
+            border: 1px solid rgba(0, 255, 85, 0.18);
             border-right-width: 5px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .rank-card:hover {
-            transform: translateX(-5px);
-            background: rgba(4, 30, 12, 0.9);
-            border-color: rgba(0, 255, 85, 0.4);
+            transform: translateX(-6px) scale(1.01);
+            background: rgba(4, 35, 15, 0.95);
+            border-color: rgba(0, 255, 85, 0.5);
             border-right-color: #00ff55;
+            box-shadow: 0 10px 35px rgba(0, 255, 85, 0.25), 0 0 20px rgba(0, 255, 85, 0.15) inset;
         }
 
         .footer { 
             text-align: center; 
             margin-top: 32px; 
             padding-top: 22px; 
-            border-top: 1px solid rgba(0, 255, 85, 0.15); 
-            color: var(--text-muted); 
+            border-top: 1px solid rgba(0, 255, 85, 0.18); 
+            color: var(--text-dim); 
             font-size: 0.85rem; 
             font-weight: 600;
         }
@@ -291,25 +337,25 @@
         .samar-logo { 
             width: 115px; 
             height: auto; 
-            filter: drop-shadow(0 6px 15px rgba(0,0,0,0.6));
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: drop-shadow(0 8px 20px rgba(0,0,0,0.7));
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .samar-logo:hover {
-            transform: scale(1.1);
+            transform: scale(1.12) rotate(2deg);
         }
 
         .other-logo { 
             width: 75px; 
             height: auto; 
             opacity: 0.9; 
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            filter: drop-shadow(0 6px 15px rgba(0,0,0,0.6));
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: drop-shadow(0 8px 20px rgba(0,0,0,0.7));
         }
 
         .other-logo:hover {
             opacity: 1;
-            transform: scale(1.12);
+            transform: scale(1.15) rotate(-2deg);
         }
 
         #my-form-status {
@@ -319,13 +365,14 @@
             margin-top: 15px;
             font-size: 0.95rem;
             min-height: 24px;
-            text-shadow: 0 2px 10px rgba(0, 255, 85, 0.4);
+            text-shadow: 0 2px 15px rgba(0, 255, 85, 0.5);
         }
     </style>
 </head>
 <body>
 
-<div class="stadium-glow"></div>
+<div class="pitch-grid"></div>
+<div class="stadium-spotlight"></div>
 
 <div class="box">
     <div class="tabs">
@@ -361,7 +408,7 @@
                 </div>
             </div>
 
-            <div style="margin-top: 12px; font-weight: 700; background: rgba(0,140,40,0.35); padding: 9px 14px; border-radius: 10px; border: 1px solid rgba(0,255,85,0.4);">
+            <div style="margin-top: 12px; font-weight: 700; background: rgba(0,160,50,0.35); padding: 9px 14px; border-radius: 10px; border: 1px solid rgba(0,255,85,0.45);">
                 نقطتين للنتيجة | ٤ نقاط للاعب المسجل | ٥ نقاط لعدد الأهداف.
             </div>
         </div>
