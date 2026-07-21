@@ -369,7 +369,7 @@
             headers: { 'Accept': 'application/json' }
         }).then(response => {
             if (response.ok) {
-                status.innerHTML = "✅ تم استلام توقعك بنجاح وسيصلك التأكيد!";
+                status.innerHTML = "✅تم استلام توقعك بنجاح !";
                 form.reset();
                 setTimeout(() => { status.innerHTML = ""; }, 5000);
             } else {
