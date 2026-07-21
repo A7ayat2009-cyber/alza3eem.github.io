@@ -7,12 +7,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #008f32;
-            --emerald-glow: #00ff55;
-            --emerald-deep: #022c14;
-            --bg-base: #010603;
-            --glass-bg: rgba(2, 18, 8, 0.78);
-            --glass-border: rgba(0, 255, 85, 0.22);
+            --primary: #008000;
+            --emerald-glow: #10b981;
+            --bg-base: #0c1629;
+            --glass-bg: rgba(23, 37, 65, 0.82);
+            --glass-border: rgba(255, 255, 255, 0.15);
             --text-light: #f8fafc;
             --text-dim: #94a3b8;
         }
@@ -26,10 +25,9 @@
             font-family: 'Cairo', sans-serif; 
             background: var(--bg-base);
             background-image: 
-                radial-gradient(circle at 50% -20%, rgba(0, 255, 85, 0.22) 0%, transparent 60%),
-                radial-gradient(circle at 10% 90%, rgba(0, 143, 50, 0.18) 0%, transparent 50%),
-                radial-gradient(circle at 90% 80%, rgba(0, 200, 70, 0.12) 0%, transparent 50%),
-                linear-gradient(135deg, #000201 0%, #031207 50%, #010502 100%);
+                radial-gradient(circle at 15% 15%, rgba(0, 128, 0, 0.16) 0%, transparent 45%),
+                radial-gradient(circle at 85% 85%, rgba(16, 185, 129, 0.12) 0%, transparent 45%),
+                linear-gradient(135deg, #09111e 0%, #172541 100%);
             background-attachment: fixed;
             min-height: 100vh;
             margin: 0;
@@ -41,156 +39,90 @@
             color: var(--text-light);
         }
 
-        /* شبكة ملعب رقمية ثلاثية الأبعاد متحركة في الخلفية */
-        .pitch-grid {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: 
-                linear-gradient(rgba(0, 255, 85, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 85, 0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
-            z-index: -2;
-            transform: perspective(500px) rotateX(60deg) scale(2);
-            transform-origin: top center;
-            animation: gridMove 20s linear infinite;
-            pointer-events: none;
-        }
-
-        @keyframes gridMove {
-            0% { background-position: 0 0; }
-            100% { background-position: 0 40px; }
-        }
-
-        /* إضاءة كشافات الملعب الملكية */
-        .stadium-spotlight {
-            position: fixed;
-            top: -150px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 600px;
-            height: 350px;
-            background: radial-gradient(ellipse at center, rgba(0,255,85,0.2) 0%, rgba(0,143,50,0.05) 50%, transparent 70%);
-            z-index: -1;
-            pointer-events: none;
-            filter: blur(40px);
-            animation: lightPulse 5s ease-in-out infinite alternate;
-        }
-
-        @keyframes lightPulse {
-            0% { opacity: 0.6; transform: translateX(-50%) scale(0.9); }
-            100% { opacity: 1; transform: translateX(-50%) scale(1.1); }
-        }
-
         .box { 
             width: 100%; 
             max-width: 480px; 
             background: var(--glass-bg); 
-            padding: 38px 30px; 
-            border-radius: 36px; 
-            box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.95), 
-                        0 0 0 1px var(--glass-border) inset,
-                        0 0 60px rgba(0, 255, 85, 0.15),
-                        0 0 120px rgba(0, 143, 50, 0.1); 
-            backdrop-filter: blur(35px);
-            -webkit-backdrop-filter: blur(35px);
+            padding: 32px 24px; 
+            border-radius: 32px; 
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 
+                        0 0 0 1px var(--glass-border) inset; 
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
             position: relative;
-            animation: cinematicEntry 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: fadeIn 0.5s ease-out;
         }
 
-        @keyframes cinematicEntry {
-            from { opacity: 0; transform: translateY(35px) scale(0.94); filter: blur(10px); }
-            to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .tabs { 
             display: flex; 
-            gap: 8px; 
-            margin-bottom: 28px; 
-            background: rgba(0, 0, 0, 0.55);
-            padding: 6px;
-            border-radius: 20px;
-            border: 1px solid rgba(0, 255, 85, 0.18);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) inset;
+            gap: 6px; 
+            margin-bottom: 24px; 
+            background: rgba(255, 255, 255, 0.06);
+            padding: 5px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .tab-btn { 
             flex: 1; 
-            padding: 13px; 
+            padding: 10px 8px; 
             border: none; 
             background: transparent; 
             color: var(--text-dim);
-            border-radius: 15px; 
+            border-radius: 12px; 
             cursor: pointer; 
             font-weight: 700; 
             font-family: 'Cairo', sans-serif;
-            font-size: 0.95rem;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
         }
 
         .tab-btn.active { 
-            background: linear-gradient(135deg, #009933 0%, #004514 100%); 
+            background: linear-gradient(135deg, #009900 0%, #006600 100%); 
             color: #ffffff; 
-            box-shadow: 0 8px 30px rgba(0, 255, 85, 0.45), 
-                        0 0 15px rgba(0, 255, 85, 0.2) inset;
-            transform: translateY(-2px);
-            border: 1px solid rgba(0, 255, 85, 0.5);
+            box-shadow: 0 4px 15px rgba(0, 153, 0, 0.35);
         }
 
         .content { display: none; }
-        .content.active { display: block; animation: contentFadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        .content.active { display: block; animation: tabFade 0.3s ease-out; }
 
-        @keyframes contentFadeIn {
-            from { opacity: 0; transform: translateY(15px); }
+        @keyframes tabFade {
+            from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .title { 
             text-align: center; 
-            font-size: 2.2rem; 
-            margin-bottom: 24px; 
+            font-size: 1.8rem; 
+            margin-bottom: 20px; 
             font-weight: 900; 
             letter-spacing: -0.5px;
-            background: linear-gradient(180deg, #ffffff 15%, #a3ffcb 50%, #00ff55 100%);
+            background: linear-gradient(180deg, #ffffff 30%, #86efac 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 4px 20px rgba(0, 255, 85, 0.5));
         }
 
         .rules-box { 
-            background: linear-gradient(135deg, rgba(2, 44, 20, 0.88) 0%, rgba(1, 20, 8, 0.96) 100%); 
-            padding: 24px; 
-            border-radius: 24px; 
-            margin-bottom: 26px; 
-            font-size: 0.9rem; 
-            color: #e2fceb; 
-            border-right: 5px solid #00ff55; 
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 
-                        0 0 25px rgba(0, 255, 85, 0.1) inset;
-            border: 1px solid rgba(0, 255, 85, 0.3);
-            border-right-width: 5px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .rules-box::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 85, 0.05), transparent);
-            transform: translateX(-100%);
-            animation: shimmerEffect 4s infinite;
-        }
-
-        @keyframes shimmerEffect {
-            100% { transform: translateX(100%); }
+            background: rgba(23, 37, 65, 0.65); 
+            padding: 20px; 
+            border-radius: 20px; 
+            margin-bottom: 22px; 
+            font-size: 0.88rem; 
+            color: #e2e8f0; 
+            border-right: 4px solid var(--emerald-glow); 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-right-width: 4px;
         }
 
         .prize-section { 
-            margin-bottom: 14px; 
-            padding-bottom: 12px; 
-            border-bottom: 1px dashed rgba(0, 255, 85, 0.25); 
+            margin-bottom: 12px; 
+            padding-bottom: 10px; 
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.12); 
         }
 
         .prize-section:last-child { 
@@ -200,25 +132,24 @@
         }
 
         .draw-list { 
-            margin: 8px 0 0 0; 
-            padding-right: 20px; 
-            line-height: 1.7; 
-            color: #a3ffcb;
+            margin: 6px 0 0 0; 
+            padding-right: 18px; 
+            line-height: 1.6; 
+            color: #94a3b8;
         }
 
         input, select { 
             width: 100%; 
-            padding: 16px 18px; 
-            margin: 9px 0; 
-            border: 1.5px solid rgba(0, 255, 85, 0.22); 
-            border-radius: 18px; 
+            padding: 14px 16px; 
+            margin: 8px 0; 
+            border: 1px solid rgba(255, 255, 255, 0.12); 
+            border-radius: 14px; 
             box-sizing: border-box; 
             font-family: 'Cairo', sans-serif;
-            font-size: 0.95rem;
-            background: rgba(1, 12, 5, 0.75);
+            font-size: 0.9rem;
+            background: rgba(10, 18, 35, 0.7);
             color: #ffffff;
-            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3) inset;
+            transition: all 0.3s ease;
         }
 
         input::placeholder {
@@ -226,103 +157,70 @@
         }
 
         select option {
-            background: #031207;
+            background: #172541;
             color: #ffffff;
         }
 
         input:focus, select:focus {
             outline: none;
-            border-color: #00ff55;
-            background: rgba(2, 25, 10, 0.95);
-            box-shadow: 0 0 0 4px rgba(0, 255, 85, 0.25), 0 0 20px rgba(0, 255, 85, 0.3) inset;
-            transform: translateY(-2px);
+            border-color: var(--emerald-glow);
+            background: rgba(10, 18, 35, 0.95);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
         }
 
         button[type="submit"] { 
             width: 100%; 
-            padding: 18px; 
-            background: linear-gradient(135deg, #00b33c 0%, #004d1a 100%); 
+            padding: 15px; 
+            background: linear-gradient(135deg, #009900 0%, #005500 100%); 
             color: white; 
             border: none; 
-            border-radius: 18px; 
+            border-radius: 14px; 
             font-weight: 800; 
             font-family: 'Cairo', sans-serif;
-            font-size: 1.05rem;
+            font-size: 1rem;
             cursor: pointer; 
-            margin-top: 16px; 
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 12px 35px rgba(0, 179, 60, 0.55),
-                        0 0 20px rgba(0, 255, 85, 0.3) inset;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(0, 255, 85, 0.4);
-        }
-
-        button[type="submit"]::before {
-            content: '';
-            position: absolute;
-            top: 0; right: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
-            transition: 0.7s;
-        }
-
-        button[type="submit"]:hover::before {
-            right: 100%;
+            margin-top: 14px; 
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0, 153, 0, 0.35);
         }
 
         button[type="submit"]:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 16px 45px rgba(0, 255, 85, 0.75),
-                        0 0 30px rgba(0, 255, 85, 0.5) inset;
-            filter: brightness(1.15);
-        }
-
-        button[type="submit"]:active {
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 153, 0, 0.5);
+            filter: brightness(1.1);
         }
 
         .rank-card { 
-            background: rgba(2, 18, 8, 0.85); 
-            padding: 16px 20px; 
-            border-radius: 18px; 
-            margin-bottom: 12px; 
+            background: rgba(10, 18, 35, 0.6); 
+            padding: 14px 18px; 
+            border-radius: 14px; 
+            margin-bottom: 10px; 
             display: flex; 
             justify-content: space-between; 
             align-items: center;
-            border-right: 5px solid #00ff55; 
+            border-right: 4px solid var(--emerald-glow); 
             font-weight: 700; 
             color: #ffffff;
-            box-shadow: 0 6px 25px rgba(0,0,0,0.45), 0 0 15px rgba(0,255,85,0.05) inset;
-            border: 1px solid rgba(0, 255, 85, 0.18);
-            border-right-width: 5px;
-            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .rank-card:hover {
-            transform: translateX(-6px) scale(1.01);
-            background: rgba(4, 35, 15, 0.95);
-            border-color: rgba(0, 255, 85, 0.5);
-            border-right-color: #00ff55;
-            box-shadow: 0 10px 35px rgba(0, 255, 85, 0.25), 0 0 20px rgba(0, 255, 85, 0.15) inset;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-right-width: 4px;
         }
 
         .footer { 
             text-align: center; 
-            margin-top: 32px; 
-            padding-top: 22px; 
-            border-top: 1px solid rgba(0, 255, 85, 0.18); 
+            margin-top: 26px; 
+            padding-top: 18px; 
+            border-top: 1px solid rgba(255, 255, 255, 0.08); 
             color: var(--text-dim); 
-            font-size: 0.85rem; 
+            font-size: 0.82rem; 
             font-weight: 600;
         }
         
         .sponsor-container { 
-            margin-top: 16px; 
+            margin-top: 14px; 
             display: flex; 
             flex-direction: column; 
             align-items: center; 
-            gap: 12px; 
+            gap: 10px; 
         }
 
         .sponsors-row { 
@@ -331,57 +229,58 @@
             align-items: center; 
             gap: 20px; 
             width: 100%; 
-            margin-top: 6px; 
+            margin-top: 4px; 
         }
 
         .samar-logo { 
             width: 115px; 
             height: auto; 
-            filter: drop-shadow(0 8px 20px rgba(0,0,0,0.7));
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4));
+            transition: transform 0.3s ease;
         }
 
         .samar-logo:hover {
-            transform: scale(1.12) rotate(2deg);
+            transform: scale(1.05);
         }
 
         .other-logo { 
             width: 75px; 
             height: auto; 
             opacity: 0.9; 
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            filter: drop-shadow(0 8px 20px rgba(0,0,0,0.7));
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4));
         }
 
         .other-logo:hover {
             opacity: 1;
-            transform: scale(1.15) rotate(-2deg);
+            transform: scale(1.05);
         }
 
         #my-form-status {
             text-align: center;
             font-weight: 700;
-            color: #00ff55;
-            margin-top: 15px;
-            font-size: 0.95rem;
-            min-height: 24px;
-            text-shadow: 0 2px 15px rgba(0, 255, 85, 0.5);
+            color: var(--emerald-glow);
+            margin-top: 12px;
+            font-size: 0.9rem;
+            min-height: 22px;
         }
     </style>
 </head>
 <body>
 
-<div class="pitch-grid"></div>
-<div class="stadium-spotlight"></div>
-
 <div class="box">
     <div class="tabs">
-        <button class="tab-btn active" onclick="showTab('prediction')">التوقعات</button>
+        <button class="tab-btn active" onclick="showTab('about')">منصتنا</button>
+        <button class="tab-btn" onclick="showTab('prediction')">سجل توقعك</button>
         <button class="tab-btn" onclick="showTab('leaderboard')">الجدول</button>
     </div>
 
-    <div id="prediction" class="content active">
+    <!-- الصفحة الأولى: منصتنا -->
+    <div id="about" class="content active">
         <div class="title">منصة توقعات الزعيم ⚽️</div>
+        <div class="rules-box" style="text-align: center; line-height: 1.7; font-size: 0.95rem;">
+            منصة تفاعلية مخصصة لجماهير النادي العربي لتوقع نتائج المباريات والمنافسة على جوائز قييمة طوال الموسم بكل حماس واثارة.
+        </div>
         
         <div class="rules-box">
             <h3 style="margin-top: 0; margin-bottom: 12px; font-weight: 700;">🏆 نظام الجوائز والبروتوكول:</h3>
@@ -399,8 +298,9 @@
                     <li>كود لعبة من حلها</li>
                     <li>جولة من لعبة اضمنها</li>
                 </ul>
-                <div style="margin-top: 8px; font-size: 0.85rem; font-weight: 700; line-height: 1.6; color: #e2fceb;">
+                <div style="margin-top: 8px; font-size: 0.82rem; font-weight: 700; line-height: 1.6; color: #cbd5e1;">
                     سيتم سحب اسم عشوائياً من الذين توقعوا توقع صحيح<br>
+                    (على المباريات التي سيتم الاعلان عنها بالحساب (انستا))<br>
                     يشترط إضافة حسابات الرعاة:<br>
                     @7lha.app<br>
                     @play_samar<br>
@@ -408,32 +308,15 @@
                 </div>
             </div>
 
-            <div style="margin-top: 12px; font-weight: 700; background: rgba(0,160,50,0.35); padding: 9px 14px; border-radius: 10px; border: 1px solid rgba(0,255,85,0.45);">
+            <div style="margin-top: 12px; font-weight: 700; background: rgba(0,128,0,0.2); padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(16,185,129,0.3);">
                 نقطتين للنتيجة | ٤ نقاط للاعب المسجل | ٥ نقاط لعدد الأهداف.
             </div>
         </div>
-        
-        <form action="https://formsubmit.co/alza3eem.kw@gmail.com" method="POST" id="my-form">
-            <!-- إلغاء صفحة التحقق -->
-            <input type="hidden" name="_captcha" value="false">
-            <!-- تحديد عنوان الرسالة الإيميل -->
-            <input type="hidden" name="_subject" value="توقع جديد في منصة الزعيم ⚽️">
-            <!-- إعادة التوجيه لصفحة المنصة أو نفس الصفحة -->
-            <input type="hidden" name="_next" value="https://tinyurl.com/alza3eem-prediction">
 
-            <input type="text" name="الاسم" placeholder="الاسم الكريم" required>
-            <input type="text" name="حساب_الانستقرام" placeholder="@حساب الإنستغرام" required>
-            <select name="التوقع"><option>فوز العربي</option><option>تعادل</option><option>خسارة</option></select>
-            <input type="text" name="اسم_اللاعب" placeholder="توقع اسم لاعب سيسجل للنادي العربي">
-            <select name="عدد_الاهداف"><option value="" disabled selected>توقع عدد أهداف العربي</option><option>صفر</option><option>أقل من 3</option><option>أكثر من ثلاثة</option></select>
-            <button type="submit">إرسال التوقع</button>
-        </form>
-        <p id="my-form-status"></p>
-        
         <div class="footer">
             <p>إدارة المنصة: @alza3eem__kw</p>
             <div class="sponsor-container">
-                <p style="font-size: 0.75rem; font-weight: 700; margin: 0; color: #94a3b8;">الرعاة الرسميون:</p>
+                <p style="font-size: 0.75rem; font-weight: 700; margin: 0; color: var(--text-dim);">الرعاة الرسميون:</p>
                 <div class="sponsors-row">
                     <a href="https://7lha.app" target="_blank"><img src="https://i.ibb.co/v6WXzMpR/IMG-5197.png" alt="حلها" class="other-logo"></a>
                     <img src="https://i.ibb.co/RTXLRggY/IMG-5213.png" alt="Samar" class="samar-logo">
@@ -443,13 +326,48 @@
         </div>
     </div>
 
+    <!-- الصفحة الثانية: سجل توقعك -->
+    <div id="prediction" class="content">
+        <div class="title">منصة توقعات الزعيم ⚽️</div>
+        
+        <form action="https://formsubmit.co/alza3eem.kw@gmail.com" method="POST" id="my-form">
+            <!-- إلغاء صفحة التحقق -->
+            <input type="hidden" name="_captcha" value="false">
+            <!-- تحديد عنوان الرسالة الإيميل -->
+            <input type="hidden" name="_subject" value="توقع جديد في منصة الزعيم ⚽️">
+            <!-- إعادة التوجيه لصفحة المنصة أو نفس الصفحة -->
+            <input type="hidden" name="_next" value="https://tinyurl.com/alza3eem-prediction">
+
+            <input type="text" name="الاسم" id="name-input" placeholder="الاسم الكريم" required>
+            <input type="text" name="حساب_الانستقرام" id="insta-input" placeholder="@حساب الإنستغرام" required>
+            <select name="التوقع" id="prediction-select"><option value="" disabled selected>اختر توقع النتيجة</option><option>فوز العربي</option><option>تعادل</option><option>خسارة</option></select>
+            <input type="text" name="اسم_اللاعب" id="player-input" placeholder="توقع اسم لاعب سيسجل للنادي العربي" required>
+            <select name="عدد_الاهداف" id="goals-select"><option value="" disabled selected>توقع عدد أهداف العربي</option><option>صفر</option><option>أقل من 3</option><option>أكثر من ثلاثة</option></select>
+            <button type="submit">إرسال التوقع</button>
+        </form>
+        <p id="my-form-status"></p>
+        
+        <div class="footer">
+            <p>إدارة المنصة: @alza3eem__kw</p>
+            <div class="sponsor-container">
+                <p style="font-size: 0.75rem; font-weight: 700; margin: 0; color: var(--text-dim);">الرعاة الرسميون:</p>
+                <div class="sponsors-row">
+                    <a href="https://7lha.app" target="_blank"><img src="https://i.ibb.co/v6WXzMpR/IMG-5197.png" alt="حلها" class="other-logo"></a>
+                    <img src="https://i.ibb.co/RTXLRggY/IMG-5213.png" alt="Samar" class="samar-logo">
+                    <img src="https://i.ibb.co/1JZ77zpt/IMG-5227.png" alt="الراعي الثالث" class="other-logo">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- صفحة الجدول -->
     <div id="leaderboard" class="content">
         <div class="title">🏆 صدارة الزعيم</div>
         <div id="rank-list"></div>
         <div class="footer">
             <p>إدارة المنصة: @alza3eem__kw</p>
             <div class="sponsor-container">
-                <p style="font-size: 0.75rem; font-weight: 700; margin: 0; color: #94a3b8;">الرعاة الرسميون:</p>
+                <p style="font-size: 0.75rem; font-weight: 700; margin: 0; color: var(--text-dim);">الرعاة الرسميون:</p>
                 <div class="sponsors-row">
                     <a href="https://7lha.app" target="_blank"><img src="https://i.ibb.co/v6WXzMpR/IMG-5197.png" alt="حلها" class="other-logo"></a>
                     <img src="https://i.ibb.co/RTXLRggY/IMG-5213.png" alt="Samar" class="samar-logo">
@@ -477,8 +395,21 @@
     form.addEventListener("submit", function(event) {
         event.preventDefault();
         var status = document.getElementById("my-form-status");
+        
+        var nameVal = document.getElementById("name-input").value.trim();
+        var instaVal = document.getElementById("insta-input").value.trim();
+        var predVal = document.getElementById("prediction-select").value;
+        var playerVal = document.getElementById("player-input").value.trim();
+        var goalsVal = document.getElementById("goals-select").value;
+
+        if (!nameVal || !instaVal || !predVal || !playerVal || !goalsVal) {
+            status.innerHTML = "❌ الرجاء تعبئة كل البيانات قبل الارسال";
+            setTimeout(() => { status.innerHTML = ""; }, 4000);
+            return;
+        }
+
         var data = new FormData(form);
-        status.innerHTML = "⏳ جاري إرسال توقعك... بانتظار إبداعك!";
+        status.innerHTML = "⏳ جاري إرسال توقعك...";
         
         fetch(form.action, {
             method: form.method,
@@ -486,7 +417,7 @@
             headers: { 'Accept': 'application/json' }
         }).then(response => {
             if (response.ok) {
-                status.innerHTML = "✅ تم استلام توقعك بنجاح وسيصلك التأكيد!";
+                status.innerHTML = "✅ تم استلام توقعك بنجاح!";
                 form.reset();
                 setTimeout(() => { status.innerHTML = ""; }, 5000);
             } else {
