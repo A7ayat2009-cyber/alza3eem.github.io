@@ -43,7 +43,7 @@
             width: 100%; 
             max-width: 480px; 
             background: var(--glass-bg); 
-            padding: 32px 24px; 
+            padding: 32px 20px; 
             border-radius: 32px; 
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 
                         0 0 0 1px var(--glass-border) inset; 
@@ -117,6 +117,19 @@
             border-right: 4px solid var(--emerald-glow); 
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-right-width: 4px;
+        }
+
+        .notice-box {
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            border-right: 4px solid var(--emerald-glow);
+            padding: 14px 16px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            color: #ffffff;
+            line-height: 1.6;
+            font-weight: 600;
         }
 
         .prize-section { 
@@ -216,44 +229,66 @@
         }
         
         .sponsor-container { 
-            margin-top: 14px; 
+            margin-top: 12px; 
             display: flex; 
             flex-direction: column; 
             align-items: center; 
-            gap: 10px; 
+            gap: 6px; 
+            width: 100%;
         }
 
         .sponsors-row { 
             display: flex; 
             justify-content: center; 
             align-items: center; 
-            gap: 20px; 
+            gap: 12px; 
             width: 100%; 
-            margin-top: 4px; 
+            max-width: 100%;
+            margin-top: 4px;
+            overflow: hidden;
         }
 
-        .samar-logo { 
-            width: 115px; 
-            height: auto; 
-            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4));
+        /* شعار اضمنها (اليمين) بحجم متناسق ومحتوى داخل الكارد */
+        .sponsor-logo-uniform { 
+            width: 70px; 
+            height: 70px; 
+            object-fit: contain;
+            display: block;
+            flex-shrink: 0;
             transition: transform 0.3s ease;
-        }
-
-        .samar-logo:hover {
-            transform: scale(1.05);
-        }
-
-        .other-logo { 
-            width: 75px; 
-            height: auto; 
-            opacity: 0.9; 
-            transition: all 0.3s ease;
             filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4));
         }
 
-        .other-logo:hover {
-            opacity: 1;
+        /* شعار حلها بالحجم المضاعف والمحتوى داخل الكارد */
+        #halha-logo {
+            width: 95px;
+            height: 95px;
+            object-fit: contain;
+            display: block;
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4));
+        }
+
+        /* شعار سمر (اللي بالنص) مكبر وبارز وبداخل الحدود */
+        #samar-logo {
+            width: 110px;
+            height: 110px;
+            object-fit: contain;
+            display: block;
+            flex-shrink: 0;
+            transform: scale(1.5);
+            margin: 0 5px;
+            transition: transform 0.3s ease;
+            filter: drop-shadow(0 6px 15px rgba(0,0,0,0.6));
+        }
+
+        .sponsors-row img:hover {
             transform: scale(1.05);
+        }
+
+        #samar-logo:hover {
+            transform: scale(1.65);
         }
 
         #my-form-status {
@@ -278,8 +313,14 @@
     <!-- الصفحة الأولى: منصتنا -->
     <div id="about" class="content active">
         <div class="title">منصة توقعات الزعيم ⚽️</div>
+        
+        <div class="notice-box">
+            ⏰ <b>ملاحظة هامة جداً:</b><br>
+            يفتح استقبال التوقعات من بداية يوم المباراة، ويتم إغلاق باب التوقعات نهائياً <b>بعد نزول التشكيلة الرسمية بـ 5 دقائق فقط!</b>
+        </div>
+
         <div class="rules-box" style="text-align: center; line-height: 1.7; font-size: 0.95rem;">
-            منصة تفاعلية مخصصة لجماهير النادي العربي ولمتابعين الكرة الكويتيه بشكل عام لتوقع نتائج مباريات النادي العربي والمنافسة على جوائز قييمة طوال الموسم بكل حماس واثارة.
+            منصة تفاعلية مخصصة لجماهير النادي العربي لتوقع نتائج المباريات والمنافسة على جوائز قييمة طوال الموسم بكل حماس واثارة.
         </div>
         
         <div class="rules-box">
@@ -309,7 +350,7 @@
             </div>
 
             <div style="margin-top: 12px; font-weight: 700; background: rgba(0,128,0,0.2); padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(16,185,129,0.3);">
-             نقطتين للنتيجة | ٣ نقاط لعدد الأهداف |٤ نقاط لإسم اللاعب المسجل.
+                نقطتين للنتيجة | ثلاثة نقاط لتوقع عدد الأهداف | اربعة نقاط لتوقع اسم اللاعب المسجل.
             </div>
         </div>
 
@@ -318,9 +359,9 @@
             <div class="sponsor-container">
                 <p style="font-size: 0.75rem; font-weight: 700; margin: 0; color: var(--text-dim);">الرعاة الرسميون:</p>
                 <div class="sponsors-row">
-                    <a href="https://7lha.app" target="_blank"><img src="https://i.ibb.co/v6WXzMpR/IMG-5197.png" alt="حلها" class="other-logo"></a>
-                    <img src="https://i.ibb.co/RTXLRggY/IMG-5213.png" alt="Samar" class="samar-logo">
-                    <img src="https://i.ibb.co/1JZ77zpt/IMG-5227.png" alt="الراعي الثالث" class="other-logo">
+                    <img src="https://i.ibb.co/v6WXzMpR/IMG-5197.png" alt="حلها" id="halha-logo">
+                    <img src="https://i.ibb.co/RTXLRggY/IMG-5213.png" alt="Samar" id="samar-logo">
+                    <img src="https://i.ibb.co/1JZ77zpt/IMG-5227.png" alt="اضمنها" class="sponsor-logo-uniform">
                 </div>
             </div>
         </div>
@@ -330,12 +371,14 @@
     <div id="prediction" class="content">
         <div class="title">منصة توقعات الزعيم ⚽️</div>
         
+        <div class="notice-box">
+            ⏰ <b>ملاحظة هامة جداً:</b><br>
+            يفتح استقبال التوقعات من بداية يوم المباراة، ويتم إغلاق باب التوقعات نهائياً <b>بعد نزول التشكيلة الرسمية بـ 5 دقائق فقط!</b>
+        </div>
+        
         <form action="https://formsubmit.co/alza3eem.kw@gmail.com" method="POST" id="my-form">
-            <!-- إلغاء صفحة التحقق -->
             <input type="hidden" name="_captcha" value="false">
-            <!-- تحديد عنوان الرسالة الإيميل -->
             <input type="hidden" name="_subject" value="توقع جديد في منصة الزعيم ⚽️">
-            <!-- إعادة التوجيه لصفحة المنصة أو نفس الصفحة -->
             <input type="hidden" name="_next" value="https://tinyurl.com/alza3eem-prediction">
 
             <input type="text" name="الاسم" id="name-input" placeholder="الاسم الكريم" required>
@@ -352,9 +395,9 @@
             <div class="sponsor-container">
                 <p style="font-size: 0.75rem; font-weight: 700; margin: 0; color: var(--text-dim);">الرعاة الرسميون:</p>
                 <div class="sponsors-row">
-                    <a href="https://7lha.app" target="_blank"><img src="https://i.ibb.co/v6WXzMpR/IMG-5197.png" alt="حلها" class="other-logo"></a>
-                    <img src="https://i.ibb.co/RTXLRggY/IMG-5213.png" alt="Samar" class="samar-logo">
-                    <img src="https://i.ibb.co/1JZ77zpt/IMG-5227.png" alt="الراعي الثالث" class="other-logo">
+                    <img src="https://i.ibb.co/v6WXzMpR/IMG-5197.png" alt="حلها" id="halha-logo">
+                    <img src="https://i.ibb.co/RTXLRggY/IMG-5213.png" alt="Samar" id="samar-logo">
+                    <img src="https://i.ibb.co/1JZ77zpt/IMG-5227.png" alt="اضمنها" class="sponsor-logo-uniform">
                 </div>
             </div>
         </div>
@@ -362,16 +405,16 @@
 
     <!-- صفحة الجدول -->
     <div id="leaderboard" class="content">
-        <div class="title">🏆 التوب 10</div>
+        <div class="title">🏆 صدارة الزعيم</div>
         <div id="rank-list"></div>
         <div class="footer">
             <p>إدارة المنصة: @alza3eem__kw</p>
             <div class="sponsor-container">
                 <p style="font-size: 0.75rem; font-weight: 700; margin: 0; color: var(--text-dim);">الرعاة الرسميون:</p>
                 <div class="sponsors-row">
-                    <a href="https://7lha.app" target="_blank"><img src="https://i.ibb.co/v6WXzMpR/IMG-5197.png" alt="حلها" class="other-logo"></a>
-                    <img src="https://i.ibb.co/RTXLRggY/IMG-5213.png" alt="Samar" class="samar-logo">
-                    <img src="https://i.ibb.co/1JZ77zpt/IMG-5227.png" alt="الراعي الثالث" class="other-logo">
+                    <img src="https://i.ibb.co/v6WXzMpR/IMG-5197.png" alt="حلها" id="halha-logo">
+                    <img src="https://i.ibb.co/RTXLRggY/IMG-5213.png" alt="Samar" id="samar-logo">
+                    <img src="https://i.ibb.co/1JZ77zpt/IMG-5227.png" alt="اضمنها" class="sponsor-logo-uniform">
                 </div>
             </div>
         </div>
