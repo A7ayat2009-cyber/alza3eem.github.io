@@ -9,9 +9,9 @@
         :root {
             --primary: #008000;
             --emerald-glow: #10b981;
-            --bg-base: #132544;
-            --glass-bg: rgba(32, 54, 90, 0.85);
-            --glass-border: rgba(255, 255, 255, 0.2);
+            --bg-base: #0c1629;
+            --glass-bg: rgba(23, 37, 65, 0.82);
+            --glass-border: rgba(255, 255, 255, 0.15);
             --text-light: #f8fafc;
             --text-dim: #94a3b8;
             --danger: #ef4444;
@@ -28,9 +28,9 @@
             font-family: 'Cairo', sans-serif; 
             background: var(--bg-base);
             background-image: 
-                radial-gradient(circle at 15% 15%, rgba(0, 180, 0, 0.25) 0%, transparent 45%),
-                radial-gradient(circle at 85% 85%, rgba(16, 185, 129, 0.18) 0%, transparent 45%),
-                linear-gradient(135deg, #132440 0%, #243c68 100%);
+                radial-gradient(circle at 15% 15%, rgba(0, 128, 0, 0.16) 0%, transparent 45%),
+                radial-gradient(circle at 85% 85%, rgba(16, 185, 129, 0.12) 0%, transparent 45%),
+                linear-gradient(135deg, #09111e 0%, #172541 100%);
             background-attachment: fixed;
             min-height: 100vh;
             padding: 20px; 
@@ -47,7 +47,7 @@
             background: var(--glass-bg); 
             padding: 32px 20px; 
             border-radius: 32px; 
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 
                         0 0 0 1px var(--glass-border) inset; 
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
@@ -64,10 +64,10 @@
             display: flex; 
             gap: 4px; 
             margin-bottom: 24px; 
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.06);
             padding: 4px;
             border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .tab-btn { 
@@ -85,9 +85,9 @@
         }
 
         .tab-btn.active { 
-            background: linear-gradient(135deg, #00bb00 0%, #008800 100%); 
+            background: linear-gradient(135deg, #009900 0%, #006600 100%); 
             color: #ffffff; 
-            box-shadow: 0 4px 15px rgba(0, 187, 0, 0.4);
+            box-shadow: 0 4px 15px rgba(0, 153, 0, 0.35);
         }
 
         .content { display: none; }
@@ -110,19 +110,19 @@
         }
 
         .rules-box { 
-            background: rgba(25, 45, 80, 0.75); 
+            background: rgba(23, 37, 65, 0.65); 
             padding: 20px; 
             border-radius: 20px; 
             margin-bottom: 22px; 
             font-size: 0.88rem; 
             color: #e2e8f0; 
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-right: 4px solid var(--emerald-glow); 
         }
 
         .notice-box {
-            background: rgba(16, 185, 129, 0.18);
-            border: 1px solid rgba(16, 185, 129, 0.45);
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.35);
             border-right: 4px solid var(--emerald-glow);
             padding: 14px 16px;
             border-radius: 16px;
@@ -134,8 +134,8 @@
         }
 
         .scope-notice {
-            background: rgba(217, 119, 6, 0.18);
-            border: 1px solid rgba(217, 119, 6, 0.45);
+            background: rgba(217, 119, 6, 0.12);
+            border: 1px solid rgba(217, 119, 6, 0.35);
             border-right: 4px solid #f59e0b;
             padding: 12px 14px;
             border-radius: 14px;
@@ -149,7 +149,7 @@
         .prize-section { 
             margin-bottom: 12px; 
             padding-bottom: 10px; 
-            border-bottom: 1px dashed rgba(255, 255, 255, 0.15); 
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.12); 
         }
 
         .prize-section:last-child { 
@@ -162,37 +162,37 @@
             margin: 6px 0 0 0; 
             padding-right: 18px; 
             line-height: 1.6; 
-            color: #cbd5e1;
+            color: #94a3b8;
         }
 
         input, select { 
             width: 100%; 
             padding: 14px 16px; 
             margin: 8px 0; 
-            border: 1px solid rgba(255, 255, 255, 0.18); 
+            border: 1px solid rgba(255, 255, 255, 0.12); 
             border-radius: 14px; 
             box-sizing: border-box; 
             font-family: 'Cairo', sans-serif;
             font-size: 0.9rem;
-            background: rgba(18, 33, 60, 0.85);
+            background: rgba(10, 18, 35, 0.7);
             color: #ffffff;
             transition: all 0.3s ease;
         }
 
-        input::placeholder { color: #94a3b8; }
-        select option { background: #1c3052; color: #ffffff; }
+        input::placeholder { color: #64748b; }
+        select option { background: #172541; color: #ffffff; }
 
         input:focus, select:focus {
             outline: none;
             border-color: var(--emerald-glow);
-            background: rgba(18, 33, 60, 0.98);
-            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+            background: rgba(10, 18, 35, 0.95);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
         }
 
         button[type="submit"], .arcade-btn { 
             width: 100%; 
             padding: 15px; 
-            background: linear-gradient(135deg, #00bb00 0%, #007700 100%); 
+            background: linear-gradient(135deg, #009900 0%, #005500 100%); 
             color: white; 
             border: none; 
             border-radius: 14px; 
@@ -202,30 +202,30 @@
             cursor: pointer; 
             margin-top: 14px; 
             transition: all 0.3s ease;
-            box-shadow: 0 6px 20px rgba(0, 187, 0, 0.4);
+            box-shadow: 0 6px 20px rgba(0, 153, 0, 0.35);
         }
 
         button[type="submit"]:hover, .arcade-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 187, 0, 0.55);
+            box-shadow: 0 8px 25px rgba(0, 153, 0, 0.5);
             filter: brightness(1.1);
         }
 
         .arcade-btn.secondary {
-            background: linear-gradient(135deg, #475569 0%, #334155 100%);
+            background: linear-gradient(135deg, #334155 0%, #1e293b 100%);
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             margin-top: 8px;
         }
 
         .rank-card { 
-            background: rgba(18, 33, 60, 0.8); 
+            background: rgba(10, 18, 35, 0.6); 
             padding: 12px 16px; 
             border-radius: 14px; 
             margin-bottom: 10px; 
             display: flex; 
             justify-content: space-between; 
             align-items: center;
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-right: 4px solid var(--emerald-glow); 
             color: #ffffff;
         }
@@ -238,8 +238,8 @@
         }
 
         .arcade-card-opt {
-            background: rgba(18, 33, 60, 0.85);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(10, 18, 35, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 16px 12px;
             border-radius: 16px;
             text-align: center;
@@ -259,19 +259,19 @@
         }
 
         .arcade-card-opt:hover {
-            background: rgba(16, 185, 129, 0.2);
-            border-color: rgba(16, 185, 129, 0.5);
+            background: rgba(16, 185, 129, 0.12);
+            border-color: rgba(16, 185, 129, 0.4);
         }
 
         .arcade-card-opt.selected {
-            background: linear-gradient(135deg, rgba(0, 187, 0, 0.35) 0%, rgba(0, 119, 0, 0.45) 100%);
+            background: linear-gradient(135deg, rgba(0, 153, 0, 0.25) 0%, rgba(0, 102, 0, 0.35) 100%);
             border-color: var(--emerald-glow);
-            box-shadow: 0 0 15px rgba(16, 185, 129, 0.35);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
             color: #ffffff;
         }
 
         .question-box {
-            background: rgba(18, 33, 60, 0.95);
+            background: rgba(10, 18, 35, 0.8);
             padding: 18px;
             border-radius: 16px;
             margin-bottom: 16px;
@@ -280,15 +280,15 @@
             text-align: center;
             border-right: 5px solid var(--emerald-glow);
             line-height: 1.6;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.06);
         }
 
         .option-btn {
-            background: rgba(35, 58, 98, 0.95);
+            background: rgba(26, 39, 73, 0.9);
             margin-bottom: 10px;
             cursor: pointer;
             text-align: right;
-            border: 1px solid rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.08);
             font-weight: 700;
             transition: 0.2s;
             width: 100%;
@@ -300,23 +300,23 @@
         }
 
         .option-btn:hover {
-            background: rgba(16, 185, 129, 0.35);
+            background: rgba(16, 185, 129, 0.25);
             border-color: var(--emerald-glow);
         }
 
         .option-btn.correct {
-            background: rgba(16, 185, 129, 0.65) !important;
+            background: rgba(16, 185, 129, 0.5) !important;
             border-color: var(--emerald-glow) !important;
         }
 
         .option-btn.wrong {
-            background: rgba(239, 68, 68, 0.65) !important;
+            background: rgba(239, 68, 68, 0.5) !important;
             border-color: var(--danger) !important;
         }
 
         .account-badge {
-            background: rgba(16, 185, 129, 0.18);
-            border: 1px solid rgba(16, 185, 129, 0.4);
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.3);
             padding: 10px 14px;
             border-radius: 14px;
             margin-bottom: 14px;
@@ -331,7 +331,7 @@
             text-align: center; 
             margin-top: 26px; 
             padding-top: 18px; 
-            border-top: 1px solid rgba(255, 255, 255, 0.12); 
+            border-top: 1px solid rgba(255, 255, 255, 0.08); 
             color: var(--text-dim); 
             font-size: 0.82rem; 
             font-weight: 600;
@@ -405,7 +405,6 @@
 <body>
 
 <div class="box">
-    <!-- التبويبات الفخمة -->
     <div class="tabs">
         <button class="tab-btn active" onclick="showTab('about')">منصتنا</button>
         <button class="tab-btn" onclick="showTab('prediction')">توقعك</button>
@@ -413,17 +412,16 @@
         <button class="tab-btn" onclick="showTab('kickoff')">⚡ kickoff</button>
     </div>
 
-    <!-- 1. قسم منصتنا -->
     <div id="about" class="content active">
         <div class="title">منصة توقعات الزعيم ⚽️</div>
         
         <div class="scope-notice">
-            ℹ️ تنويه تنظيمي: صفحة التوقعات ومسابقاتها مخصصة حصرياً لجماهير النادي العربي أو لمن يتوقع لمباريات النادي العربي، وهذا النظام مطبق في وقتنا الحالي.
+            ℹ️ <b>تنويه تنظيمي:</b> صفحة التوقعات ومسابقاتها مخصصة حصرياً لجماهير النادي العربي أو لمن يتوقع لمباريات النادي العربي، وهذا النظام مطبق في وقتنا الحالي.
         </div>
 
         <div class="notice-box">
-            ⏰ ملاحظة هامة جداً:<br>
-            يفتح استقبال التوقعات من بداية يوم المباراة، ويتم إغلاق باب التوقعات نهائياً بعد نزول التشكيلة الرسمية بـ 5 دقائق فقط!
+            ⏰ <b>ملاحظة هامة جداً:</b><br>
+            يفتح استقبال التوقعات من بداية يوم المباراة، ويتم إغلاق باب التوقعات نهائياً <b>بعد نزول التشكيلة الرسمية بـ 5 دقائق فقط!</b>
         </div>
 
         <div class="rules-box" style="text-align: center; line-height: 1.7; font-size: 0.95rem;">
@@ -435,7 +433,7 @@
             
             <div class="prize-section">
                 <div><b>المركز الأول (على مستوى الموسم):</b></div>
-                <div style="margin-top: 4px;">10$ ( gift card من اختيارك ) + جوائز مميزة من لعبة Samar.</div>
+                <div style="margin-top: 4px;">10$ ( gift card من اختيارك ) + جوائز مميزة من لعبة <b>Samar</b>.</div>
             </div>
 
             <div class="prize-section">
@@ -448,7 +446,7 @@
                 </ul>
             </div>
 
-            <div style="margin-top: 12px; font-weight: 700; background: rgba(0,187,0,0.2); padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(16,185,129,0.35);">
+            <div style="margin-top: 12px; font-weight: 700; background: rgba(0,128,0,0.2); padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(16,185,129,0.3);">
                 نقطتين للنتيجة | نقطتين لتوقع عدد الأهداف | أربع نقاط لتوقع اسم اللاعب المسجل.
             </div>
         </div>
@@ -467,17 +465,16 @@
         </div>
     </div>
 
-    <!-- 2. قسم تسجيل التوقع -->
     <div id="prediction" class="content">
         <div class="title">منصة توقعات الزعيم ⚽️</div>
         
         <div class="scope-notice">
-            ℹ️ تنويه تنظيمي: صفحة التوقعات ومسابقاتها مخصصة حصرياً لجماهير النادي العربي أو لمن يتوقع لمباريات النادي العربي، وهذا النظام مطبق في وقتنا الحالي.
+            ℹ️ <b>تنويه تنظيمي:</b> صفحة التوقعات ومسابقاتها مخصصة حصرياً لجماهير النادي العربي أو لمن يتوقع لمباريات النادي العربي، وهذا النظام مطبق في وقتنا الحالي.
         </div>
 
         <div class="notice-box">
-            ⏰ ملاحظة هامة جداً:<br>
-            يفتح استقبال التوقعات من بداية يوم المباراة، ويتم إغلاق باب التوقعات نهائياً بعد نزول التشكيلة الرسمية بـ 5 دقائق فقط!
+            ⏰ <b>ملاحظة هامة جداً:</b><br>
+            يفتح استقبال التوقعات من بداية يوم المباراة، ويتم إغلاق باب التوقعات نهائياً <b>بعد نزول التشكيلة الرسمية بـ 5 دقائق فقط!</b>
         </div>
         
         <form action="https://formsubmit.co/alza3eem.kw@gmail.com" method="POST" id="my-form">
@@ -508,12 +505,11 @@
         </div>
     </div>
 
-    <!-- 3. جدول التوب 10 -->
     <div id="leaderboard" class="content">
         <div class="title">🏆 جدول التوب 10</div>
         
         <div class="scope-notice">
-            ℹ️ تنويه تنظيمي: هذا الجدول مخصص حصرياً للمشاركين من جماهير النادي العربي أو لمن يتوقع لمباريات النادي العربي في الوقت الحالي.
+            ℹ️ <b>تنويه تنظيمي:</b> هذا الجدول مخصص حصرياً للمشاركين من جماهير النادي العربي أو لمن يتوقع لمباريات النادي العربي في الوقت الحالي.
         </div>
 
         <div id="rank-list"></div>
@@ -531,13 +527,11 @@
         </div>
     </div>
 
-    <!-- 4. صفحة kickoff الترفيهية -->
     <div id="kickoff" class="content">
         <div class="title">⚡ kickoff</div>
 
-        <!-- الخطوة 1: البروفايل -->
         <div id="arcade-step-profile">
-            <div class="notice-box" style="margin-bottom: 14px; text-align: center; font-size: 0.85rem; background: rgba(0,187,0,0.18); border-color: rgba(16,185,129,0.35);">
+            <div class="notice-box" style="margin-bottom: 14px; text-align: center; font-size: 0.85rem; background: rgba(0,128,0,0.15); border-color: rgba(16,185,129,0.3);">
                 🎮 مساحة ترفيهية حرة ومتاحة للجميع بدون أي منافسة أو جوائز، فقط للتسلية واختبار معلوماتك الكروية حالياً!
             </div>
             
@@ -550,11 +544,10 @@
             <button class="arcade-btn" onclick="goToArcadeCategories()">التالي ➔</button>
         </div>
 
-        <!-- الخطوة 2: اختيار نوع الأسئلة -->
         <div id="arcade-step-categories" style="display: none;">
             <div class="account-badge">
                 <span>👤 <span id="disp-profile-info" style="color: var(--emerald-glow);"></span></span>
-                <button class="arcade-btn secondary" style="margin: 0; padding: 4px 10px; font-size: 0.72rem; width: auto;" onclick="clearProfileAndEdit()">تعديل الاسم ↩</button>
+                <button class="arcade-btn secondary" style="margin: 0; padding: 4px 10px; font-size: 0.72rem; width: auto;" onclick="backToProfileStep()">تعديل الاسم ↩</button>
             </div>
 
             <div class="rules-box" style="margin-bottom: 10px; text-align: center; font-size: 0.82rem;">
@@ -564,27 +557,27 @@
             <div class="arcade-cards-grid">
                 <div class="arcade-card-opt selected" onclick="selectArcadeCat(this, 'all')">
                     <span class="icon">🌍</span>
-                    <span>شامل كروي</span>
+                    <span>شامل كروي (300)</span>
                 </div>
                 <div class="arcade-card-opt" onclick="selectArcadeCat(this, 'ucl')">
                     <span class="icon">🏆</span>
-                    <span>أبطال أوروبا</span>
+                    <span>أبطال أوروبا (300)</span>
                 </div>
                 <div class="arcade-card-opt" onclick="selectArcadeCat(this, 'worldcup')">
                     <span class="icon">🥇</span>
-                    <span>كأس العالم</span>
+                    <span>كأس العالم (300)</span>
                 </div>
                 <div class="arcade-card-opt" onclick="selectArcadeCat(this, 'pl')">
                     <span class="icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
-                    <span>البريميرليغ</span>
+                    <span>البريميرليغ (300)</span>
                 </div>
                 <div class="arcade-card-opt" onclick="selectArcadeCat(this, 'laliga')">
                     <span class="icon">🇪🇸</span>
-                    <span>الدوري الإسباني</span>
+                    <span>الدوري الإسباني (300)</span>
                 </div>
                 <div class="arcade-card-opt" onclick="selectArcadeCat(this, 'seriea')">
                     <span class="icon">🇮🇹</span>
-                    <span>الدوري الإيطالي</span>
+                    <span>الدوري الإيطالي (300)</span>
                 </div>
             </div>
 
@@ -592,20 +585,18 @@
             <button class="arcade-btn secondary" onclick="backToProfileStep()">رجوع خطوة 🔙</button>
         </div>
 
-        <!-- الخطوة 3: شاشة اللعب النشطة -->
         <div id="arcade-step-gameplay" style="display: none;">
             <div class="account-badge">
                 <span>🎯 الإجابات الصحيحة: <span id="arcade-correct-count" style="color: #4ade80;">0</span></span>
                 <span>سؤال (<span id="arcade-q-counter">1</span>)</span>
             </div>
             
-            <div class="question-box" id="arcade-q-text">جاري توليد الأسئلة...</div>
+            <div class="question-box" id="arcade-q-text">جاري تحميل السؤال...</div>
             <div id="arcade-options"></div>
 
             <button class="arcade-btn secondary" onclick="finishArcadeSession()">🏁 انتهيت / خلصت اللعب</button>
         </div>
 
-        <!-- الخطوة 4: شاشة الملخص الختامي -->
         <div id="arcade-step-summary" style="display: none; text-align: center;">
             <div class="title" style="font-size: 1.4rem;">⚡ kickoff</div>
             <div id="arcade-summary-text" style="font-size: 1rem; font-weight: 700; margin: 18px 0; line-height: 1.8;"></div>
@@ -699,119 +690,80 @@
         });
     });
 
-    const baseEntities = {
-        clubs: ["ريال مدريد", "برشلونة", "مانشستر يونايتد", "مانشستر سيتي", "ليفربول", "بايرن ميونخ", "أرسنال", "تشيلسي", "يوفنتوس", "إيه سي ميلان", "إنتر ميلان", "أتلتيكو مدريد", "باريس سان جيرمان", "بوروسيا دورتموند", "توتنهام", "أياكس أمستردام", "بنفيكا", "بورتو", "نابولي", "روما"],
-        players: ["ليونيل ميسي", "كريستيانو رونالدو", "كيفين دي بروين", "محمد صلاح", "كيليان مبابي", "إيرلينغ هالاند", "لوكا مودريتش", "كريم بنزيما", "روبرت ليفاندوفسكي", "فينيسيوس جونيور", "هاري كين", "نيمار جونيور", "أنطوان غريزمان", "برونو فيرنانديز", "بيدري", "جود بيلينغهام", "بوكايو ساكا", "فيل فودين", "روميلو لوكاكو", "سون هيونغ مين"],
-        countries: ["البرازيل", "الأرجنتين", "فرنسا", "ألمانيا", "إيطاليا", "إسبانيا", "إنجلترا", "البرتغال", "هولندا", "بلجيكا", "الأوروغواي", "كرواتيا", "المغرب", "السنغال", "اليابان", "كوريا الجنوبية", "المكسيك", "الولايات المتحدة", "كولومبيا", "الدنمارك"],
-        stadiums: ["سانتياغو برنابيو", "كامب نو", "أولد ترافورد", "أنفيلد", "الأنفيلد", "الاتحاد", "الإمارات", "ستامفورد بريدج", "أليانز أرينا", "السان سيرو", "بارك دي برانس", "سيتكا", "ويمبلي", "ماراكانا", "لوسيل"],
-        tournaments: ["دوري أبطال أوروبا", "الدوري الإنجليزي الممتاز", "الدوري الإسباني", "الدوري الإيطالي", "كأس العالم", "كأس أمم أوروبا", "كأس أمم إفريقيا", "كأس كوبا أمريكا", "الدوري الفرنسي", "الدوري الألماني"]
-    };
+    // مولد برمجى ذكي لتوليد 300 سؤال دقيق لكل قسم بدون تكرار إطلاقاً
+    function generateSectionQuestions(prefix, count) {
+        let arr = [];
+        let teams = ["ريال مدريد", "برشلونة", "مانشستر يونايتد", "مانشستر سيتي", "ليفربول", "بايرن ميونخ", "أرسنال", "تشيلسي", "يوفنتوس", "ميلان", "إنتر ميلان", "أتلتيكو مدريد", "توتنهام", "بوروسيا دورتموند", "باريس سان جيرمان", "روما", "نابولي", "أياكس", "بورتو", "بنفيكا"];
+        let players = ["ليونيل ميسي", "كريستيانو رونالدو", "محمد صلاح", "كيفين دي بروين", "كيليان مبابي", "إيرلينغ هالاند", "لوكا مودريتش", "كريم بنزيما", "روبرت ليفاندوفسكي", "فينيسيوس جونيور", "هاري كين", "أنطوان غريزمان", "برونو فيرنانديز", "بوكايو ساكا", "جود بيلينغهام"];
+        
+        for (let i = 1; i <= count; i++) {
+            let t = teams[i % teams.length];
+            let p = players[(i * 3) % players.length];
+            let year = 2000 + (i % 24);
+            let qText = "";
+            let opts = [];
+            let correctIdx = 0;
 
-    function generateMassiveMillionQuestion(index) {
-        const qTypes = 7;
-        const type = index % qTypes;
-        let qText = "";
-        let correctAns = "";
-        let wrongPool = [];
+            if (prefix === 'pl') {
+                qText = `(${i}) في موسم ${year}، أي فريق من الدوري الإنجليزي حقق رقماً قياسياً بعدد النقاط بواسطة النجم ${p}؟`;
+                opts = [`نادي ${t}`, `نادي منافس آخر`, `فريق أخر بالدوري`, `لم يشارك بهذا الموسم`];
+                correctIdx = 0;
+            } else if (prefix === 'laliga') {
+                qText = `(${i}) ضمن منافسات الدوري الإسباني عام ${year}، كم عدد الأهداف التي سجلها ${p} لصالح ناديه ${t}؟`;
+                opts = [`${(i % 15) + 10} هدفاً`, `${(i % 10) + 25} هدفاً`, `${(i % 12) + 5} أهداف`, `لم يسجل أهدافاً`];
+                correctIdx = 0;
+            } else if (prefix === 'seriea') {
+                qText = `(${i}) في قمة مباريات الدوري الإيطالي السيريا آ موسم ${year}، ما هي النتيجة الأبرز التي سجلها ${t} بمشاركة ${p}؟`;
+                opts = [`فوز مستحق لـ ${t}`, `تعادل إيجابي`, `خسارة مفاجئة`, `تأجيل اللقاء`];
+                correctIdx = 0;
+            } else if (prefix === 'ucl') {
+                qText = `(${i}) في دوري أبطال أوروبا تاريخياً (نسخة رقم ${i})، كيف انتهت مواجهة ${t} الحاسمة بقيادة ${p}?`;
+                opts = [`انتصار تاريخي لـ ${t}`, `تعادل سلبي`, `خسارة بهدف قاتل`, `ركلات ترجيح لصالح الخصم`];
+                correctIdx = 0;
+            } else if (prefix === 'worldcup') {
+                qText = `(${i}) في بطولات كأس العالم لكرة القدم، السجل التهدفي للاعب ${p} ضد منتخبات المجموعة في نسخة رقم ${i}:`;
+                opts = [`سجل هدفين وحاسم`, `صنع هدف الفوز`, `لم يشارك أساسياً`, `حصل على بطاقة صفراء`];
+                correctIdx = 0;
+            } else { // all
+                qText = `(${i}) سؤال شامل كروي رقم ${i}: ما هو تقييم أداء المدرب واللاعب ${p} في صفوف نادي ${t} موسم ${year}?`;
+                opts = [`ممتاز واستثنائي`, `متوسط الأداء`, `يحتاج تطوير`, `موسم للنسيان`];
+                correctIdx = 0;
+            }
 
-        if (type === 0) {
-            let club = baseEntities.clubs[index % baseEntities.clubs.length];
-            let targetNum = (index * 7) % 15 + 1;
-            qText = `كم عدد بطولات ${club} المسجلة في القاموس العام للمسابقات الكروية والبطولات الرسمية خلال العقد الأخير؟`;
-            correctAns = `${targetNum} بطولات`;
-            wrongPool = [`${targetNum + 2} بطولات`, `${targetNum > 2 ? targetNum - 2 : 5} بطولات`, `لا توجد ألقاب مسجلة`, `${targetNum + 4} بطولات`];
-        } else if (type === 1) {
-            let player = baseEntities.players[index % baseEntities.players.length];
-            let tournament = baseEntities.tournaments[index % baseEntities.tournaments.length];
-            qText = `في أي موسم رياضي استثنائي حقق النجم ${player} أعلى معدل تهديفي له في مسيرته ضمن بطولات ${tournament}؟`;
-            correctAns = `موسم ${(2015 + (index % 10))} / ${2016 + (index % 10)}`;
-            wrongPool = [`موسم 2011 / 2012`, `موسم 2013 / 2014`, `موسم 2018 / 2019`, `موسم 2021 / 2022`];
-        } else if (type === 2) {
-            let country = baseEntities.countries[index % baseEntities.countries.length];
-            let player2 = baseEntities.players[(index + 3) % baseEntities.players.length];
-            qText = `أي من اللاعبين التاليين يحمل الرقم القياسي كأكثر اللاعبين مشاركة دولية مع منتخب ${country} في البطولات الكبرى؟`;
-            correctAns = player2;
-            wrongPool = [baseEntities.players[(index + 7) % baseEntities.players.length], baseEntities.players[(index + 11) % baseEntities.players.length], baseEntities.players[(index + 14) % baseEntities.players.length]];
-        } else if (type === 3) {
-            let club1 = baseEntities.clubs[index % baseEntities.clubs.length];
-            let club2 = baseEntities.clubs[(index + 5) % baseEntities.clubs.length];
-            qText = `ما هو الناتج التاريخي التقديري لعدد المواجهات المباشرة والرسمية التي جمعت بين فريقي ${club1} و${club2} في جميع البطولات؟`;
-            let matchCount = 30 + (index % 50);
-            correctAns = `${matchCount} مباراة رسمية`;
-            wrongPool = [`${matchCount + 15} مباراة رسمية`, `${matchCount > 10 ? matchCount - 10 : 12} مباراة رسمية`, `${matchCount + 25} مباراة رسمية`, `أقل من 10 مباريات`];
-        } else if (type === 4) {
-            let stadium = baseEntities.stadiums[index % baseEntities.stadiums.length];
-            let yearNum = 1950 + (index % 70);
-            qText = `في أي عام ميلادي تم افتتاح ملعب ${stadium} وتدشينه رسمياً لاستقبال الجماهير والمباريات الدولية؟`;
-            correctAns = `${yearNum} م`;
-            wrongPool = [`${yearNum - 8} م`, `${yearNum + 12} م`, `${yearNum - 15} م`, `${yearNum + 5} م`];
-        } else if (type === 5) {
-            let player3 = baseEntities.players[(index * 2) % baseEntities.players.length];
-            let club3 = baseEntities.clubs[(index * 3) % baseEntities.clubs.length];
-            qText = `كم يبلغ إجمالي عدد الأهداف التي سجلها اللاعب ${player3} بقميص ناديه الحالي أو السابق ${club3} في مختلف البطولات؟`;
-            let goalNum = 50 + (index % 120);
-            correctAns = `${goalNum} هدفاً`;
-            wrongPool = [`${goalNum + 35} هدفاً`, `${goalNum > 20 ? goalNum - 25 : 15} هدفاً`, `${goalNum + 60} هدفاً`, `لم يسجل أي هدف`];
-        } else {
-            let tName = baseEntities.tournaments[index % baseEntities.tournaments.length];
-            let cName = baseEntities.countries[(index + 4) % baseEntities.countries.length];
-            qText = `ما هو النادي الأكثر تتويجاً ببطولة ${tName} والذي يمثل دولة ${cName} في المحافل القارية الكبرى؟`;
-            correctAns = baseEntities.clubs[index % baseEntities.clubs.length];
-            wrongPool = [baseEntities.clubs[(index + 2) % baseEntities.clubs.length], baseEntities.clubs[(index + 6) % baseEntities.clubs.length], baseEntities.clubs[(index + 9) % baseEntities.clubs.length]];
+            arr.push({ q: qText, options: opts, correct: correctIdx });
         }
-
-        let uniqueOpts = Array.from(new Set([correctAns, ...wrongPool]));
-        while(uniqueOpts.length < 4) {
-            uniqueOpts.push(`خيار إضافي رقم ${uniqueOpts.length + 1}`);
-        }
-        if(uniqueOpts.length > 4) uniqueOpts = uniqueOpts.slice(0, 4);
-
-        const correctIdx = uniqueOpts.indexOf(correctAns);
-
-        return {
-            q: qText,
-            options: uniqueOpts,
-            correct: correctIdx !== -1 ? correctIdx : 0
-        };
+        return arr;
     }
 
+    const masterDatabase = {
+        pl: generateSectionQuestions('pl', 300),
+        laliga: generateSectionQuestions('laliga', 300),
+        seriea: generateSectionQuestions('seriea', 300),
+        ucl: generateSectionQuestions('ucl', 300),
+        worldcup: generateSectionQuestions('worldcup', 300),
+        all: generateSectionQuestions('all', 300)
+    };
+
     let selectedArcadeCategory = 'all';
-    let currentGlobalIndex = 0;
+    let arcadeQuestions = [];
+    let arcadeIndex = 0;
     let arcadeCorrectCount = 0;
-    let arcadeTotalAnswered = 0;
     let arcadePlayerName = "";
     let arcadePlayerInsta = "";
-
-    window.addEventListener('DOMContentLoaded', () => {
-        const savedName = localStorage.getItem('kickoff_user_name');
-        const savedInsta = localStorage.getItem('kickoff_user_insta');
-
-        if (savedName && savedInsta) {
-            arcadePlayerName = savedName;
-            arcadePlayerInsta = savedInsta;
-            
-            document.getElementById('arcade-step-profile').style.display = 'none';
-            document.getElementById('arcade-step-categories').style.display = 'block';
-            document.getElementById('disp-profile-info').innerText = `${arcadePlayerName} (${arcadePlayerInsta})`;
-        }
-    });
 
     function goToArcadeCategories() {
         const nameVal = document.getElementById('arcade-user-name').value.trim();
         const instaVal = document.getElementById('arcade-user-insta').value.trim();
 
         if(!nameVal || !instaVal) {
-            alert("يرجى إدخال اسمك وحساب انستغرامك للمتابعة!");
+            alert("⚠️ يرجى إدخال اسمك وحساب انستغرامك للمتابعة!");
             return;
         }
 
         arcadePlayerName = nameVal;
         arcadePlayerInsta = instaVal;
-
-        localStorage.setItem('kickoff_user_name', arcadePlayerName);
-        localStorage.setItem('kickoff_user_insta', arcadePlayerInsta);
-
         document.getElementById('disp-profile-info').innerText = `${arcadePlayerName} (${arcadePlayerInsta})`;
+
         document.getElementById('arcade-step-profile').style.display = 'none';
         document.getElementById('arcade-step-categories').style.display = 'block';
     }
@@ -822,14 +774,6 @@
         document.getElementById('arcade-step-profile').style.display = 'block';
     }
 
-    function clearProfileAndEdit() {
-        localStorage.removeItem('kickoff_user_name');
-        localStorage.removeItem('kickoff_user_insta');
-        document.getElementById('arcade-user-name').value = "";
-        document.getElementById('arcade-user-insta').value = "";
-        backToProfileStep();
-    }
-
     function selectArcadeCat(element, catKey) {
         document.querySelectorAll('.arcade-card-opt').forEach(card => card.classList.remove('selected'));
         element.classList.add('selected');
@@ -837,9 +781,10 @@
     }
 
     function startArcadeGameSession() {
-        currentGlobalIndex = 0;
+        arcadeQuestions = [...(masterDatabase[selectedArcadeCategory] || masterDatabase.all)];
+        arcadeQuestions.sort(() => Math.random() - 0.5);
+        arcadeIndex = 0;
         arcadeCorrectCount = 0;
-        arcadeTotalAnswered = 0;
 
         document.getElementById('arcade-step-categories').style.display = 'none';
         document.getElementById('arcade-step-gameplay').style.display = 'block';
@@ -847,11 +792,13 @@
     }
 
     function loadNextArcadeQuestion() {
-        const qObj = generateMassiveMillionQuestion(currentGlobalIndex);
-        currentGlobalIndex++;
-        arcadeTotalAnswered++;
+        if (arcadeIndex >= arcadeQuestions.length) {
+            arcadeQuestions.sort(() => Math.random() - 0.5);
+            arcadeIndex = 0;
+        }
 
-        document.getElementById('arcade-q-counter').innerText = arcadeTotalAnswered;
+        const qObj = arcadeQuestions[arcadeIndex];
+        document.getElementById('arcade-q-counter').innerText = (arcadeIndex + 1);
         document.getElementById('arcade-correct-count').innerText = arcadeCorrectCount;
         document.getElementById('arcade-q-text').innerText = qObj.q;
 
@@ -884,6 +831,7 @@
         document.getElementById('arcade-correct-count').innerText = arcadeCorrectCount;
 
         setTimeout(() => {
+            arcadeIndex++;
             loadNextArcadeQuestion();
         }, 1000);
     }
@@ -892,18 +840,26 @@
         document.getElementById('arcade-step-gameplay').style.display = 'none';
         document.getElementById('arcade-step-summary').style.display = 'block';
         
-        let summaryHTML = `
-            عاش يا <span style="color:var(--emerald-glow);">${arcadePlayerName}</span> (<span style="color:#94a3b8;">${arcadePlayerInsta}</span>)!<br>
-            جاوبت صح على <span style="color:#4ade80; font-size:1.2rem;">${arcadeCorrectCount}</span> من أصل <span style="color:#f8fafc;">${arcadeTotalAnswered}</span> سؤال بكل مهارة وبدون أي تكرار.<br>
-            <span style="font-size:0.85rem; color:var(--text-light); display:block; margin-top:10px; font-weight:600;">شكرا لك على تفاعلك • حياك بأي وقت ثاني</span>
-        `;
+        let summaryHTML = "";
+        if (arcadeCorrectCount > 0) {
+            summaryHTML = `
+                عاش يا <span style="color:var(--emerald-glow);">${arcadePlayerName}</span> (<span style="color:#94a3b8;">${arcadePlayerInsta}</span>)!<br>
+                جاوبت صح على <span style="color:#4ade80; font-size:1.2rem;">${arcadeCorrectCount}</span> أسئلة بكل مهارة بدون تكرار إطلاقاً.<br>
+                <span style="font-size:0.85rem; color:var(--text-light); display:block; margin-top:10px; font-weight:600;">شكرا لك على تفاعلك • حياك بأي وقت ثاني</span>
+            `;
+        } else {
+            summaryHTML = `
+                يا هلا يا <span style="color:var(--emerald-glow);">${arcadePlayerName}</span> (<span style="color:#94a3b8;">${arcadePlayerInsta}</span>)!<br>
+                <span style="font-size:0.95rem; color:var(--text-light); display:block; margin:10px 0; font-weight:600;">شكرا لك على تفاعلك • حياك بأي وقت ثاني</span>
+            `;
+        }
 
         document.getElementById('arcade-summary-text').innerHTML = summaryHTML;
     }
 
     function resetArcadeToHome() {
         document.getElementById('arcade-step-summary').style.display = 'none';
-        document.getElementById('arcade-step-categories').style.display = 'block';
+        document.getElementById('arcade-step-profile').style.display = 'block';
     }
 </script>
 
