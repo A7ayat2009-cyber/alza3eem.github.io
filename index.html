@@ -418,12 +418,12 @@
         <div class="title">منصة توقعات الزعيم ⚽️</div>
         
         <div class="scope-notice">
-            ℹ️ <b>تنويه تنظيمي:</b> صفحة التوقعات ومسابقاتها مخصصة حصرياً لجماهير النادي العربي أو لمن يتوقع لمباريات النادي العربي، وهذا النظام مطبق في وقتنا الحالي.
+            ℹ️ تنويه تنظيمي: صفحة التوقعات ومسابقاتها مخصصة حصرياً لجماهير النادي العربي أو لمن يتوقع لمباريات النادي العربي، وهذا النظام مطبق في وقتنا الحالي.
         </div>
 
         <div class="notice-box">
-            ⏰ <b>ملاحظة هامة جداً:</b><br>
-            يفتح استقبال التوقعات من بداية يوم المباراة، ويتم إغلاق باب التوقعات نهائياً <b>بعد نزول التشكيلة الرسمية بـ 5 دقائق فقط!</b>
+            ⏰ ملاحظة هامة جداً:<br>
+            يفتح استقبال التوقعات من بداية يوم المباراة، ويتم إغلاق باب التوقعات نهائياً بعد نزول التشكيلة الرسمية بـ 5 دقائق فقط!
         </div>
 
         <div class="rules-box" style="text-align: center; line-height: 1.7; font-size: 0.95rem;">
@@ -435,7 +435,7 @@
             
             <div class="prize-section">
                 <div><b>المركز الأول (على مستوى الموسم):</b></div>
-                <div style="margin-top: 4px;">10$ ( gift card من اختيارك ) + جوائز مميزة من لعبة <b>Samar</b>.</div>
+                <div style="margin-top: 4px;">10$ ( gift card من اختيارك ) + جوائز مميزة من لعبة Samar.</div>
             </div>
 
             <div class="prize-section">
@@ -472,12 +472,12 @@
         <div class="title">منصة توقعات الزعيم ⚽️</div>
         
         <div class="scope-notice">
-            ℹ️ <b>تنويه تنظيمي:</b> صفحة التوقعات ومسابقاتها مخصصة حصرياً لجماهير النادي العربي أو لمن يتوقع لمباريات النادي العربي، وهذا النظام مطبق في وقتنا الحالي.
+            ℹ️ تنويه تنظيمي: صفحة التوقعات ومسابقاتها مخصصة حصرياً لجماهير النادي العربي أو لمن يتوقع لمباريات النادي العربي، وهذا النظام مطبق في وقتنا الحالي.
         </div>
 
         <div class="notice-box">
-            ⏰ <b>ملاحظة هامة جداً:</b><br>
-            يفتح استقبال التوقعات من بداية يوم المباراة، ويتم إغلاق باب التوقعات نهائياً <b>بعد نزول التشكيلة الرسمية بـ 5 دقائق فقط!</b>
+            ⏰ ملاحظة هامة جداً:<br>
+            يفتح استقبال التوقعات من بداية يوم المباراة، ويتم إغلاق باب التوقعات نهائياً بعد نزول التشكيلة الرسمية بـ 5 دقائق فقط!
         </div>
         
         <form action="https://formsubmit.co/alza3eem.kw@gmail.com" method="POST" id="my-form">
@@ -513,7 +513,7 @@
         <div class="title">🏆 جدول التوب 10</div>
         
         <div class="scope-notice">
-            ℹ️ <b>تنويه تنظيمي:</b> هذا الجدول مخصص حصرياً للمشاركين من جماهير النادي العربي أو لمن يتوقع لمباريات النادي العربي في الوقت الحالي.
+            ℹ️ تنويه تنظيمي: هذا الجدول مخصص حصرياً للمشاركين من جماهير النادي العربي أو لمن يتوقع لمباريات النادي العربي في الوقت الحالي.
         </div>
 
         <div id="rank-list"></div>
@@ -699,7 +699,6 @@
         });
     });
 
-    // قاعدة بيانات ضخمة ومقسمة ومنظومة لضمان عدم التكرار مطلقاً حتى انتهاء القائمة
     const massiveDatabase = {
         pl: [
             { q: "من هو الهداف التاريخي للدوري الإنجليزي الممتاز (البريميرليغ)؟", options: ["آلان شيرر", "هاري كين", "واين روني", "سرجيو أغويرو"], correct: 0 },
@@ -770,7 +769,7 @@
     };
 
     let selectedArcadeCategory = 'all';
-    let availableQuestionsPool = []; // قائمة الأسئلة المتاحة المتبقية لجلسة اللعب الحالية (تمنع التكرار نهائياً)
+    let availableQuestionsPool = [];
     let arcadeCorrectCount = 0;
     let arcadeTotalAnswered = 0;
     let arcadePlayerName = "";
@@ -795,7 +794,7 @@
         const instaVal = document.getElementById('arcade-user-insta').value.trim();
 
         if(!nameVal || !instaVal) {
-            alert("⚠️ يرجى إدخال اسمك وحساب انستغرامك للمتابعة!");
+            alert("يرجى إدخال اسمك وحساب انستغرامك للمتابعة!");
             return;
         }
 
@@ -844,7 +843,6 @@
             rawList = [...(massiveDatabase[selectedArcadeCategory] || massiveDatabase.pl)];
         }
 
-        // نسخ الأسئلة وخلطها لتبدأ جلسة فريدة بدون تكرار
         availableQuestionsPool = [...rawList].sort(() => Math.random() - 0.5);
         arcadeCorrectCount = 0;
         arcadeTotalAnswered = 0;
@@ -855,7 +853,6 @@
     }
 
     function loadNextArcadeQuestion() {
-        // إذا نفدت الأسئلة بالكامل في الجلسة الحالية، نعيد تعبئة البنك بخلط جديد لمنع توقف اللعبة
         if (availableQuestionsPool.length === 0) {
             let rawList = [];
             if(selectedArcadeCategory === 'all') {
@@ -872,7 +869,6 @@
             availableQuestionsPool = [...rawList].sort(() => Math.random() - 0.5);
         }
 
-        // سحب واختيار أول سؤال وإزالته نهائياً من مصفوفة المتاحة لهذه الجلسة حتى لا يتكرر أبداً
         const qObj = availableQuestionsPool.shift();
         arcadeTotalAnswered++;
 
