@@ -217,7 +217,7 @@
             margin-top: 8px;
         }
 
-        /* تنسيق بطاقات الترتيب بتدرجات الـ 20s الفاخرة والمستويات */
+        /* تنسيق بطاقات الترتيب الفاخرة مع نطاق العشرين بدقة ومستويات التوب */
         .rank-card { 
             background: rgba(10, 18, 35, 0.75); 
             padding: 14px 18px; 
@@ -523,9 +523,19 @@
 
             <input type="text" name="الاسم" id="name-input" placeholder="الاسم الكريم" required>
             <input type="text" name="حساب_الانستقرام" id="insta-input" placeholder="@حساب الإنستغرام" required>
-            <select name="التوقع" id="prediction-select"><option value="" disabled selected>اختر توقع النتيجة</option><option>فوز العربي</option><option>تعادل</option><option>خسارة</option></select>
+            <select name="التوقع" id="prediction-select">
+                <option value="" disabled selected>اختر توقع النتيجة</option>
+                <option>فوز العربي</option>
+                <option>تعادل</option>
+                <option>خسارة</option>
+            </select>
             <input type="text" name="اسم_اللاعب" id="player-input" placeholder="توقع اسم لاعب سيسجل للنادي العربي" required>
-            <select name="عدد_الاهداف" id="goals-select"><option value="" disabled selected>توقع عدد أهداف العربي</option><option>صفر</option><option>أقل من 3</option><option>أكثر من 3</option></select>
+            <select name="عدد_الاهداف" id="goals-select">
+                <option value="" disabled selected>توقع عدد أهداف العربي</option>
+                <option>صفر</option>
+                <option>أقل من 3</option>
+                <option>أكثر من 3</option>
+            </select>
             <button type="submit">إرسال التوقع</button>
         </form>
         <p id="my-form-status"></p>
@@ -669,7 +679,7 @@
         btnElement.classList.add('active');
     }
 
-    // بيانات الترتيب مع نقاط في نطاق العشرين ومستويات متنوعة (أسطورة، خبير، محترف)
+    // بيانات الترتيب الجاهزة والمضبوطة تماماً (أبرز الهدافين في نطاق العشرين بدقة ومستويات)
     const leaderboardData = [
         { rank: "01", name: "علي بدر", insta: "@Ali💚💚💚💚💚", points: 26, tier: "أسطورة المنصة 👑", tierClass: "tier-legend" },
         { rank: "02", name: "حسن احمد", insta: "@h_1j_e", points: 24, tier: "أسطورة المنصة 👑", tierClass: "tier-legend" },
