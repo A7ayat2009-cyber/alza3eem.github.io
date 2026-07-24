@@ -9,9 +9,9 @@
         :root {
             --primary: #008000;
             --emerald-glow: #10b981;
-            --bg-base: #10213d;
-            --glass-bg: rgba(28, 48, 82, 0.85);
-            --glass-border: rgba(255, 255, 255, 0.18);
+            --bg-base: #132544;
+            --glass-bg: rgba(32, 54, 90, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.2);
             --text-light: #f8fafc;
             --text-dim: #94a3b8;
             --danger: #ef4444;
@@ -28,9 +28,9 @@
             font-family: 'Cairo', sans-serif; 
             background: var(--bg-base);
             background-image: 
-                radial-gradient(circle at 15% 15%, rgba(0, 160, 0, 0.22) 0%, transparent 45%),
-                radial-gradient(circle at 85% 85%, rgba(16, 185, 129, 0.16) 0%, transparent 45%),
-                linear-gradient(135deg, #0e1d35 0%, #1f355c 100%);
+                radial-gradient(circle at 15% 15%, rgba(0, 180, 0, 0.25) 0%, transparent 45%),
+                radial-gradient(circle at 85% 85%, rgba(16, 185, 129, 0.18) 0%, transparent 45%),
+                linear-gradient(135deg, #132440 0%, #243c68 100%);
             background-attachment: fixed;
             min-height: 100vh;
             padding: 20px; 
@@ -47,7 +47,7 @@
             background: var(--glass-bg); 
             padding: 32px 20px; 
             border-radius: 32px; 
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 
                         0 0 0 1px var(--glass-border) inset; 
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
@@ -64,10 +64,10 @@
             display: flex; 
             gap: 4px; 
             margin-bottom: 24px; 
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.1);
             padding: 4px;
             border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.12);
         }
 
         .tab-btn { 
@@ -85,9 +85,9 @@
         }
 
         .tab-btn.active { 
-            background: linear-gradient(135deg, #00aa00 0%, #007700 100%); 
+            background: linear-gradient(135deg, #00bb00 0%, #008800 100%); 
             color: #ffffff; 
-            box-shadow: 0 4px 15px rgba(0, 170, 0, 0.4);
+            box-shadow: 0 4px 15px rgba(0, 187, 0, 0.4);
         }
 
         .content { display: none; }
@@ -110,7 +110,7 @@
         }
 
         .rules-box { 
-            background: rgba(22, 40, 72, 0.75); 
+            background: rgba(25, 45, 80, 0.75); 
             padding: 20px; 
             border-radius: 20px; 
             margin-bottom: 22px; 
@@ -121,8 +121,8 @@
         }
 
         .notice-box {
-            background: rgba(16, 185, 129, 0.15);
-            border: 1px solid rgba(16, 185, 129, 0.4);
+            background: rgba(16, 185, 129, 0.18);
+            border: 1px solid rgba(16, 185, 129, 0.45);
             border-right: 4px solid var(--emerald-glow);
             padding: 14px 16px;
             border-radius: 16px;
@@ -134,8 +134,8 @@
         }
 
         .scope-notice {
-            background: rgba(217, 119, 6, 0.15);
-            border: 1px solid rgba(217, 119, 6, 0.4);
+            background: rgba(217, 119, 6, 0.18);
+            border: 1px solid rgba(217, 119, 6, 0.45);
             border-right: 4px solid #f59e0b;
             padding: 12px 14px;
             border-radius: 14px;
@@ -162,37 +162,37 @@
             margin: 6px 0 0 0; 
             padding-right: 18px; 
             line-height: 1.6; 
-            color: #94a3b8;
+            color: #cbd5e1;
         }
 
         input, select { 
             width: 100%; 
             padding: 14px 16px; 
             margin: 8px 0; 
-            border: 1px solid rgba(255, 255, 255, 0.15); 
+            border: 1px solid rgba(255, 255, 255, 0.18); 
             border-radius: 14px; 
             box-sizing: border-box; 
             font-family: 'Cairo', sans-serif;
             font-size: 0.9rem;
-            background: rgba(15, 28, 52, 0.8);
+            background: rgba(18, 33, 60, 0.85);
             color: #ffffff;
             transition: all 0.3s ease;
         }
 
-        input::placeholder { color: #64748b; }
+        input::placeholder { color: #94a3b8; }
         select option { background: #1c3052; color: #ffffff; }
 
         input:focus, select:focus {
             outline: none;
             border-color: var(--emerald-glow);
-            background: rgba(15, 28, 52, 0.98);
+            background: rgba(18, 33, 60, 0.98);
             box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
         }
 
         button[type="submit"], .arcade-btn { 
             width: 100%; 
             padding: 15px; 
-            background: linear-gradient(135deg, #00aa00 0%, #006600 100%); 
+            background: linear-gradient(135deg, #00bb00 0%, #007700 100%); 
             color: white; 
             border: none; 
             border-radius: 14px; 
@@ -202,12 +202,12 @@
             cursor: pointer; 
             margin-top: 14px; 
             transition: all 0.3s ease;
-            box-shadow: 0 6px 20px rgba(0, 170, 0, 0.4);
+            box-shadow: 0 6px 20px rgba(0, 187, 0, 0.4);
         }
 
         button[type="submit"]:hover, .arcade-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 170, 0, 0.55);
+            box-shadow: 0 8px 25px rgba(0, 187, 0, 0.55);
             filter: brightness(1.1);
         }
 
@@ -218,14 +218,14 @@
         }
 
         .rank-card { 
-            background: rgba(15, 28, 52, 0.7); 
+            background: rgba(18, 33, 60, 0.8); 
             padding: 12px 16px; 
             border-radius: 14px; 
             margin-bottom: 10px; 
             display: flex; 
             justify-content: space-between; 
             align-items: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             border-right: 4px solid var(--emerald-glow); 
             color: #ffffff;
         }
@@ -238,8 +238,8 @@
         }
 
         .arcade-card-opt {
-            background: rgba(15, 28, 52, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(18, 33, 60, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             padding: 16px 12px;
             border-radius: 16px;
             text-align: center;
@@ -259,19 +259,19 @@
         }
 
         .arcade-card-opt:hover {
-            background: rgba(16, 185, 129, 0.15);
-            border-color: rgba(16, 185, 129, 0.45);
+            background: rgba(16, 185, 129, 0.2);
+            border-color: rgba(16, 185, 129, 0.5);
         }
 
         .arcade-card-opt.selected {
-            background: linear-gradient(135deg, rgba(0, 170, 0, 0.3) 0%, rgba(0, 102, 0, 0.4) 100%);
+            background: linear-gradient(135deg, rgba(0, 187, 0, 0.35) 0%, rgba(0, 119, 0, 0.45) 100%);
             border-color: var(--emerald-glow);
             box-shadow: 0 0 15px rgba(16, 185, 129, 0.35);
             color: #ffffff;
         }
 
         .question-box {
-            background: rgba(15, 28, 52, 0.9);
+            background: rgba(18, 33, 60, 0.95);
             padding: 18px;
             border-radius: 16px;
             margin-bottom: 16px;
@@ -280,15 +280,15 @@
             text-align: center;
             border-right: 5px solid var(--emerald-glow);
             line-height: 1.6;
-            border: 1px solid rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
         .option-btn {
-            background: rgba(30, 48, 86, 0.95);
+            background: rgba(35, 58, 98, 0.95);
             margin-bottom: 10px;
             cursor: pointer;
             text-align: right;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.12);
             font-weight: 700;
             transition: 0.2s;
             width: 100%;
@@ -300,23 +300,23 @@
         }
 
         .option-btn:hover {
-            background: rgba(16, 185, 129, 0.3);
+            background: rgba(16, 185, 129, 0.35);
             border-color: var(--emerald-glow);
         }
 
         .option-btn.correct {
-            background: rgba(16, 185, 129, 0.6) !important;
+            background: rgba(16, 185, 129, 0.65) !important;
             border-color: var(--emerald-glow) !important;
         }
 
         .option-btn.wrong {
-            background: rgba(239, 68, 68, 0.6) !important;
+            background: rgba(239, 68, 68, 0.65) !important;
             border-color: var(--danger) !important;
         }
 
         .account-badge {
-            background: rgba(16, 185, 129, 0.15);
-            border: 1px solid rgba(16, 185, 129, 0.35);
+            background: rgba(16, 185, 129, 0.18);
+            border: 1px solid rgba(16, 185, 129, 0.4);
             padding: 10px 14px;
             border-radius: 14px;
             margin-bottom: 14px;
@@ -331,7 +331,7 @@
             text-align: center; 
             margin-top: 26px; 
             padding-top: 18px; 
-            border-top: 1px solid rgba(255, 255, 255, 0.1); 
+            border-top: 1px solid rgba(255, 255, 255, 0.12); 
             color: var(--text-dim); 
             font-size: 0.82rem; 
             font-weight: 600;
@@ -448,7 +448,7 @@
                 </ul>
             </div>
 
-            <div style="margin-top: 12px; font-weight: 700; background: rgba(0,170,0,0.2); padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(16,185,129,0.35);">
+            <div style="margin-top: 12px; font-weight: 700; background: rgba(0,187,0,0.2); padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(16,185,129,0.35);">
                 نقطتين للنتيجة | نقطتين لتوقع عدد الأهداف | أربع نقاط لتوقع اسم اللاعب المسجل.
             </div>
         </div>
@@ -537,7 +537,7 @@
 
         <!-- الخطوة 1: البروفايل -->
         <div id="arcade-step-profile">
-            <div class="notice-box" style="margin-bottom: 14px; text-align: center; font-size: 0.85rem; background: rgba(0,170,0,0.18); border-color: rgba(16,185,129,0.35);">
+            <div class="notice-box" style="margin-bottom: 14px; text-align: center; font-size: 0.85rem; background: rgba(0,187,0,0.18); border-color: rgba(16,185,129,0.35);">
                 🎮 مساحة ترفيهية حرة ومتاحة للجميع بدون أي منافسة أو جوائز، فقط للتسلية واختبار معلوماتك الكروية حالياً!
             </div>
             
@@ -769,7 +769,8 @@
     };
 
     let selectedArcadeCategory = 'all';
-    let availableQuestionsPool = [];
+    let masterQueue = [];       // القائمة النشطة التي يتم سحب الأسئلة منها وحذفها فوراً
+    let backupPoolStore = [];   // النسخة الاحتياطية لتعبئة القائمة مجدداً عند انتهائها تماماً بدون تكرار
     let arcadeCorrectCount = 0;
     let arcadeTotalAnswered = 0;
     let arcadePlayerName = "";
@@ -829,7 +830,7 @@
         selectedArcadeCategory = catKey;
     }
 
-    function getSourcePool() {
+    function buildSourcePool() {
         if(selectedArcadeCategory === 'all') {
             return [
                 ...massiveDatabase.pl, 
@@ -844,7 +845,10 @@
     }
 
     function startArcadeGameSession() {
-        availableQuestionsPool = [...getSourcePool()].sort(() => Math.random() - 0.5);
+        // إنشاء بنك الأسئلة الاحتياطي والقائمة النشطة بخلط عشوائي دقيق
+        backupPoolStore = buildSourcePool();
+        masterQueue = [...backupPoolStore].sort(() => Math.random() - 0.5);
+        
         arcadeCorrectCount = 0;
         arcadeTotalAnswered = 0;
 
@@ -854,12 +858,13 @@
     }
 
     function loadNextArcadeQuestion() {
-        if (availableQuestionsPool.length === 0) {
-            // إعادة تعبئة القائمة بالكامل وبشكل عشوائي مانع للتكرار نهائياً حتى لو أجاب على المئات
-            availableQuestionsPool = [...getSourcePool()].sort(() => Math.random() - 0.5);
+        // حماية تامة ضد النفاذ: لو خلصت الأسئلة تماماً، يعيد تعبئة القائمة بخلط جديد بالكامل لمنع أي تكرار مبكر
+        if (masterQueue.length === 0) {
+            masterQueue = [...backupPoolStore].sort(() => Math.random() - 0.5);
         }
 
-        const qObj = availableQuestionsPool.shift();
+        // سحب السؤال الأول من القائمة وحذفه نهائياً منها (Shift) لمنع تكراره حتى تنتهي الدورة تماماً
+        const qObj = masterQueue.shift();
         arcadeTotalAnswered++;
 
         document.getElementById('arcade-q-counter').innerText = arcadeTotalAnswered;
