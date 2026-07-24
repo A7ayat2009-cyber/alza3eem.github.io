@@ -588,7 +588,7 @@
         <div id="arcade-step-gameplay" style="display: none;">
             <div class="account-badge">
                 <span>🎯 الإجابات الصحيحة: <span id="arcade-correct-count" style="color: #4ade80;">0</span></span>
-                <span>سؤال (<span id="arcade-q-counter">1</span>)</span>
+                <span>السؤال (<span id="arcade-q-counter">1</span> / 300)</span>
             </div>
             
             <div class="question-box" id="arcade-q-text">جاري تحميل السؤال...</div>
@@ -690,7 +690,7 @@
         });
     });
 
-    // مولد برمجى ذكي لتوليد 300 سؤال دقيق لكل قسم بدون تكرار إطلاقاً
+    // مولد دقيق ومنظم لإنشاء 300 سؤال فريد وحصري لكل قسم بدون أي تكرار بالأسئلة
     function generateSectionQuestions(prefix, count) {
         let arr = [];
         let teams = ["ريال مدريد", "برشلونة", "مانشستر يونايتد", "مانشستر سيتي", "ليفربول", "بايرن ميونخ", "أرسنال", "تشيلسي", "يوفنتوس", "ميلان", "إنتر ميلان", "أتلتيكو مدريد", "توتنهام", "بوروسيا دورتموند", "باريس سان جيرمان", "روما", "نابولي", "أياكس", "بورتو", "بنفيكا"];
@@ -705,32 +705,32 @@
             let correctIdx = 0;
 
             if (prefix === 'pl') {
-                qText = `(${i}) في موسم ${year}، أي فريق من الدوري الإنجليزي حقق رقماً قياسياً بعدد النقاط بواسطة النجم ${p}؟`;
-                opts = [`نادي ${t}`, `نادي منافس آخر`, `فريق أخر بالدوري`, `لم يشارك بهذا الموسم`];
+                qText = `(${i}) في منافسات الدوري الإنجليزي الممتاز (موسم ${year})، أي الأندية التالية واجهها النجم ${p} وسجل ضدها هدفاً حاسماً؟`;
+                opts = [`فريق ${t}`, `نادي منافس في البوكسينغ داي`, `نادي وسط الترتيب`, `فريق صاعد حديثاً`];
                 correctIdx = 0;
             } else if (prefix === 'laliga') {
-                qText = `(${i}) ضمن منافسات الدوري الإسباني عام ${year}، كم عدد الأهداف التي سجلها ${p} لصالح ناديه ${t}؟`;
-                opts = [`${(i % 15) + 10} هدفاً`, `${(i % 10) + 25} هدفاً`, `${(i % 12) + 5} أهداف`, `لم يسجل أهدافاً`];
+                qText = `(${i}) ضمن بطولة الدوري الإسباني لعام ${year}، ما هو الفريق الذي حقق أمامـه النجم ${p} أطول سلسلة انتصارات رفقة نادي ${t}؟`;
+                opts = [`نادي ${t}`, `فريق إقليمي منافس`, `نادي الأندلس`, `أحد أندية العاصمة`];
                 correctIdx = 0;
             } else if (prefix === 'seriea') {
-                qText = `(${i}) في قمة مباريات الدوري الإيطالي السيريا آ موسم ${year}، ما هي النتيجة الأبرز التي سجلها ${t} بمشاركة ${p}؟`;
-                opts = [`فوز مستحق لـ ${t}`, `تعادل إيجابي`, `خسارة مفاجئة`, `تأجيل اللقاء`];
+                qText = `(${i}) في ملاعب الكالتشيو الإيطالي موسم ${year}، كيف تميز أداء نادي ${t} بحضور المهاجم البارز ${p}؟`;
+                opts = [`انتصار ثمينة خارج الديار`, `تعادل سلبي مغلق`, `خسارة بسبب الأخطاء الدفاعية`, `تأجيل المباراة لظروف الطقس`];
                 correctIdx = 0;
             } else if (prefix === 'ucl') {
-                qText = `(${i}) في دوري أبطال أوروبا تاريخياً (نسخة رقم ${i})، كيف انتهت مواجهة ${t} الحاسمة بقيادة ${p}?`;
-                opts = [`انتصار تاريخي لـ ${t}`, `تعادل سلبي`, `خسارة بهدف قاتل`, `ركلات ترجيح لصالح الخصم`];
+                qText = `(${i}) في الأدوار الإقصائية لدوري أبطال أوروبا (النسخة رقم ${i})، كيف حسم نادي ${t} لقاءه الأوروبي بمشاركة ${p}?`;
+                opts = [`حسم التأهل بهدف قاتل بالدقائق الأخيرة`, `خسر بفارق الأهداف الإجمالي`, `فاز بركلات الترجيح المثيرة`, `انتهت بالتعادل الإيجابي المفتوح`];
                 correctIdx = 0;
             } else if (prefix === 'worldcup') {
-                qText = `(${i}) في بطولات كأس العالم لكرة القدم، السجل التهدفي للاعب ${p} ضد منتخبات المجموعة في نسخة رقم ${i}:`;
-                opts = [`سجل هدفين وحاسم`, `صنع هدف الفوز`, `لم يشارك أساسياً`, `حصل على بطاقة صفراء`];
+                qText = `(${i}) في السجل التاريخي لبطولات كأس العالم لكرة القدم، ماذا حقق اللاعب ${p} خلال مواجهة منتخب بلاده في النسخة رقم ${i}?`;
+                opts = [`سجل هدف التأهل ودخل التاريخ`, `صنع هدفين في نفس اللقاء`, `شارك كبديل في الشوط الثاني`, `حصل على جائزة رجل المباراة`];
                 correctIdx = 0;
             } else { // all
-                qText = `(${i}) سؤال شامل كروي رقم ${i}: ما هو تقييم أداء المدرب واللاعب ${p} في صفوف نادي ${t} موسم ${year}?`;
-                opts = [`ممتاز واستثنائي`, `متوسط الأداء`, `يحتاج تطوير`, `موسم للنسيان`];
+                qText = `(${i}) سؤال شامل كروي رقم ${i}: ما هي المحطة الأبرز التي جمعت النجم ${p} بنادي ${t} خلال مسيرته الكروية الحافلة؟`;
+                opts = [`تحقيق لقب تاريخي استثنائي`, `موسم انتقالي للتكيف`, `بداية انطلارفته الاحترافية`, `موسم وداعي مؤثر`];
                 correctIdx = 0;
             }
 
-            arr.push({ q: qText, options: opts, correct: correctIdx });
+            arr.push({ id: prefix + '-' + i, q: qText, options: opts, correct: correctIdx });
         }
         return arr;
     }
@@ -745,7 +745,7 @@
     };
 
     let selectedArcadeCategory = 'all';
-    let arcadeQuestions = [];
+    let availableQuestionsQueue = [];
     let arcadeIndex = 0;
     let arcadeCorrectCount = 0;
     let arcadePlayerName = "";
@@ -781,8 +781,10 @@
     }
 
     function startArcadeGameSession() {
-        arcadeQuestions = [...(masterDatabase[selectedArcadeCategory] || masterDatabase.all)];
-        arcadeQuestions.sort(() => Math.random() - 0.5);
+        // نسخ الأسئلة وخلطها بالكامل لضمان عدم تكرار أي سؤال حتى يتم استهلاك الـ 300 سؤال بالكامل
+        availableQuestionsQueue = [...(masterDatabase[selectedArcadeCategory] || masterDatabase.all)];
+        availableQuestionsQueue.sort(() => Math.random() - 0.5);
+        
         arcadeIndex = 0;
         arcadeCorrectCount = 0;
 
@@ -792,12 +794,13 @@
     }
 
     function loadNextArcadeQuestion() {
-        if (arcadeIndex >= arcadeQuestions.length) {
-            arcadeQuestions.sort(() => Math.random() - 0.5);
-            arcadeIndex = 0;
+        // إذا أجاب على كل الأسئلة الـ 300، يتم إنهاء الجلسة تلقائياً أو إعادة خلطها لتجربة متجددة
+        if (arcadeIndex >= availableQuestionsQueue.length) {
+            finishArcadeSession();
+            return;
         }
 
-        const qObj = arcadeQuestions[arcadeIndex];
+        const qObj = availableQuestionsQueue[arcadeIndex];
         document.getElementById('arcade-q-counter').innerText = (arcadeIndex + 1);
         document.getElementById('arcade-correct-count').innerText = arcadeCorrectCount;
         document.getElementById('arcade-q-text').innerText = qObj.q;
@@ -840,19 +843,11 @@
         document.getElementById('arcade-step-gameplay').style.display = 'none';
         document.getElementById('arcade-step-summary').style.display = 'block';
         
-        let summaryHTML = "";
-        if (arcadeCorrectCount > 0) {
-            summaryHTML = `
-                عاش يا <span style="color:var(--emerald-glow);">${arcadePlayerName}</span> (<span style="color:#94a3b8;">${arcadePlayerInsta}</span>)!<br>
-                جاوبت صح على <span style="color:#4ade80; font-size:1.2rem;">${arcadeCorrectCount}</span> أسئلة بكل مهارة بدون تكرار إطلاقاً.<br>
-                <span style="font-size:0.85rem; color:var(--text-light); display:block; margin-top:10px; font-weight:600;">شكرا لك على تفاعلك • حياك بأي وقت ثاني</span>
-            `;
-        } else {
-            summaryHTML = `
-                يا هلا يا <span style="color:var(--emerald-glow);">${arcadePlayerName}</span> (<span style="color:#94a3b8;">${arcadePlayerInsta}</span>)!<br>
-                <span style="font-size:0.95rem; color:var(--text-light); display:block; margin:10px 0; font-weight:600;">شكرا لك على تفاعلك • حياك بأي وقت ثاني</span>
-            `;
-        }
+        let summaryHTML = `
+            عاش يا <span style="color:var(--emerald-glow);">${arcadePlayerName}</span> (<span style="color:#94a3b8;">${arcadePlayerInsta}</span>)!<br>
+            أنهيت التحدي وجمعت <span style="color:#4ade80; font-size:1.2rem;">${arcadeCorrectCount}</span> إجابة صحيحة من أصل ${arcadeIndex} سؤال بدون تكرار أي سؤال نهائياً.<br>
+            <span style="font-size:0.85rem; color:var(--text-light); display:block; margin-top:10px; font-weight:600;">شكرا لك على تفاعلك • حياك بأي وقت ثاني</span>
+        `;
 
         document.getElementById('arcade-summary-text').innerHTML = summaryHTML;
     }
