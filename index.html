@@ -699,7 +699,6 @@
         });
     });
 
-    // 🚀 محرك ضخم لتوليد ملايين الأسئلة برمجياً بلحظتها وبدون أي تكرار نهائياً (مصفوفات عملاقة وخوارزمية دمج لا نهائية)
     const baseEntities = {
         clubs: ["ريال مدريد", "برشلونة", "مانشستر يونايتد", "مانشستر سيتي", "ليفربول", "بايرن ميونخ", "أرسنال", "تشيلسي", "يوفنتوس", "إيه سي ميلان", "إنتر ميلان", "أتلتيكو مدريد", "باريس سان جيرمان", "بوروسيا دورتموند", "توتنهام", "أياكس أمستردام", "بنفيكا", "بورتو", "نابولي", "روما"],
         players: ["ليونيل ميسي", "كريستيانو رونالدو", "كيفين دي بروين", "محمد صلاح", "كيليان مبابي", "إيرلينغ هالاند", "لوكا مودريتش", "كريم بنزيما", "روبرت ليفاندوفسكي", "فينيسيوس جونيور", "هاري كين", "نيمار جونيور", "أنطوان غريزمان", "برونو فيرنانديز", "بيدري", "جود بيلينغهام", "بوكايو ساكا", "فيل فودين", "روميلو لوكاكو", "سون هيونغ مين"],
@@ -736,7 +735,7 @@
         } else if (type === 3) {
             let club1 = baseEntities.clubs[index % baseEntities.clubs.length];
             let club2 = baseEntities.clubs[(index + 5) % baseEntities.clubs.length];
-            qText = `ما هو الناتج التاريخي التقديري لعدد المواجهات المباشرة والرسسية التي جمعت بين فريقي ${club1} و${club2} في جميع البطولات؟`;
+            qText = `ما هو الناتج التاريخي التقديري لعدد المواجهات المباشرة والرسمية التي جمعت بين فريقي ${club1} و${club2} في جميع البطولات؟`;
             let matchCount = 30 + (index % 50);
             correctAns = `${matchCount} مباراة رسمية`;
             wrongPool = [`${matchCount + 15} مباراة رسمية`, `${matchCount > 10 ? matchCount - 10 : 12} مباراة رسمية`, `${matchCount + 25} مباراة رسمية`, `أقل من 10 مباريات`];
@@ -751,7 +750,7 @@
             let club3 = baseEntities.clubs[(index * 3) % baseEntities.clubs.length];
             qText = `كم يبلغ إجمالي عدد الأهداف التي سجلها اللاعب ${player3} بقميص ناديه الحالي أو السابق ${club3} في مختلف البطولات؟`;
             let goalNum = 50 + (index % 120);
-            correctAns = `${goalNum هدفاً`;
+            correctAns = `${goalNum} هدفاً`;
             wrongPool = [`${goalNum + 35} هدفاً`, `${goalNum > 20 ? goalNum - 25 : 15} هدفاً`, `${goalNum + 60} هدفاً`, `لم يسجل أي هدف`];
         } else {
             let tName = baseEntities.tournaments[index % baseEntities.tournaments.length];
@@ -761,7 +760,6 @@
             wrongPool = [baseEntities.clubs[(index + 2) % baseEntities.clubs.length], baseEntities.clubs[(index + 6) % baseEntities.clubs.length], baseEntities.clubs[(index + 9) % baseEntities.clubs.length]];
         }
 
-        // إزالة أي خيارات مكررة صدفة وضمان تطابق فريد تماماً
         let uniqueOpts = Array.from(new Set([correctAns, ...wrongPool]));
         while(uniqueOpts.length < 4) {
             uniqueOpts.push(`خيار إضافي رقم ${uniqueOpts.length + 1}`);
@@ -778,7 +776,7 @@
     }
 
     let selectedArcadeCategory = 'all';
-    let currentGlobalIndex = 0; // مؤشر تتبع عالمي يمتد لآلاف الأسئلة المتسلسلة بدون تكرار
+    let currentGlobalIndex = 0;
     let arcadeCorrectCount = 0;
     let arcadeTotalAnswered = 0;
     let arcadePlayerName = "";
@@ -839,7 +837,7 @@
     }
 
     function startArcadeGameSession() {
-        currentGlobalIndex = 0; // يبدأ من الصفر في كل جلسة جديدة لضمان التتابع السليم بدون أي تكرار
+        currentGlobalIndex = 0;
         arcadeCorrectCount = 0;
         arcadeTotalAnswered = 0;
 
@@ -849,7 +847,6 @@
     }
 
     function loadNextArcadeQuestion() {
-        // توليد سؤال فريد جديد كلياً بناءً على العداد الحالي (يدعم حتى آلاف وملايين الأسئلة المتسلسلة بدون تكرار)
         const qObj = generateMassiveMillionQuestion(currentGlobalIndex);
         currentGlobalIndex++;
         arcadeTotalAnswered++;
