@@ -690,45 +690,75 @@
         });
     });
 
-    // مولد دقيق ومنظم لإنشاء 300 سؤال فريد وحصري لكل قسم بدون أي تكرار بالأسئلة
+    // مولد أسئلة ذكي ومستقل بالكامل يمنع التكرار وينوع المواضيع والأفكار واللاعبين والفرق والبطولات
     function generateSectionQuestions(prefix, count) {
         let arr = [];
-        let teams = ["ريال مدريد", "برشلونة", "مانشستر يونايتد", "مانشستر سيتي", "ليفربول", "بايرن ميونخ", "أرسنال", "تشيلسي", "يوفنتوس", "ميلان", "إنتر ميلان", "أتلتيكو مدريد", "توتنهام", "بوروسيا دورتموند", "باريس سان جيرمان", "روما", "نابولي", "أياكس", "بورتو", "بنفيكا"];
-        let players = ["ليونيل ميسي", "كريستيانو رونالدو", "محمد صلاح", "كيفين دي بروين", "كيليان مبابي", "إيرلينغ هالاند", "لوكا مودريتش", "كريم بنزيما", "روبرت ليفاندوفسكي", "فينيسيوس جونيور", "هاري كين", "أنطوان غريزمان", "برونو فيرنانديز", "بوكايو ساكا", "جود بيلينغهام"];
         
-        for (let i = 1; i <= count; i++) {
-            let t = teams[i % teams.length];
-            let p = players[(i * 3) % players.length];
-            let year = 2000 + (i % 24);
-            let qText = "";
-            let opts = [];
-            let correctIdx = 0;
+        let poolTeams = {
+            pl: ["مانشستر يونايتد", "مانشستر سيتي", "ليفربول", "أرسنال", "تشيلسي", "توتنهام", "نيوكاسل يونايتد", "أستون فيلا", "وستهام يونايتد", "إيفرتون", "ليستر سيتي", "برايتون"],
+            laliga: ["ريال مدريد", "برشلونة", "أتلتيكو مدريد", "إشبيلية", "فالنسيا", "ريال سوسيداد", "أتلتيك بلباو", "فياريال", "ريال بيتيس", "سيلتا فيغو"],
+            seriea: ["يوفنتوس", "ميلان", "إنتر ميلان", "روما", "نابولي", "لاتسيو", "أتلانتا", "فيورنتينا", "تورينو", "بولونيا"],
+            ucl: ["ريال مدريد", "بايرن ميونخ", "ميلان", "ليفربول", "برشلونة", "أياكس", "إنتر ميلان", "مانشستر سيتي", "يوفنتوس", "تشيلسي", "بوروسيا دورتموند", "بنفيكا"],
+            worldcup: ["البرازيل", "ألمانيا", "الأرجنتين", "إيطاليا", "فرنسا", "إسبانيا", "إنجلترا", "أوروغواي", "هولندا", "البرتغال", "المغرب", "السنغال"],
+            all: ["ريال مدريد", "برشلونة", "مانشستر يونايتد", "مانشستر سيتي", "ليفربول", "بايرن ميونخ", "أرسنال", "تشيلسي", "يوفنتوس", "ميلان", "إنتر ميلان", "باريس سان جيرمان", "البرازيل", "الأرجنتين", "فرنسا"]
+        };
 
-            if (prefix === 'pl') {
-                qText = `(${i}) في منافسات الدوري الإنجليزي الممتاز (موسم ${year})، أي الأندية التالية واجهها النجم ${p} وسجل ضدها هدفاً حاسماً؟`;
-                opts = [`فريق ${t}`, `نادي منافس في البوكسينغ داي`, `نادي وسط الترتيب`, `فريق صاعد حديثاً`];
-                correctIdx = 0;
-            } else if (prefix === 'laliga') {
-                qText = `(${i}) ضمن بطولة الدوري الإسباني لعام ${year}، ما هو الفريق الذي حقق أمامـه النجم ${p} أطول سلسلة انتصارات رفقة نادي ${t}؟`;
-                opts = [`نادي ${t}`, `فريق إقليمي منافس`, `نادي الأندلس`, `أحد أندية العاصمة`];
-                correctIdx = 0;
-            } else if (prefix === 'seriea') {
-                qText = `(${i}) في ملاعب الكالتشيو الإيطالي موسم ${year}، كيف تميز أداء نادي ${t} بحضور المهاجم البارز ${p}؟`;
-                opts = [`انتصار ثمينة خارج الديار`, `تعادل سلبي مغلق`, `خسارة بسبب الأخطاء الدفاعية`, `تأجيل المباراة لظروف الطقس`];
-                correctIdx = 0;
-            } else if (prefix === 'ucl') {
-                qText = `(${i}) في الأدوار الإقصائية لدوري أبطال أوروبا (النسخة رقم ${i})، كيف حسم نادي ${t} لقاءه الأوروبي بمشاركة ${p}?`;
-                opts = [`حسم التأهل بهدف قاتل بالدقائق الأخيرة`, `خسر بفارق الأهداف الإجمالي`, `فاز بركلات الترجيح المثيرة`, `انتهت بالتعادل الإيجابي المفتوح`];
-                correctIdx = 0;
-            } else if (prefix === 'worldcup') {
-                qText = `(${i}) في السجل التاريخي لبطولات كأس العالم لكرة القدم، ماذا حقق اللاعب ${p} خلال مواجهة منتخب بلاده في النسخة رقم ${i}?`;
-                opts = [`سجل هدف التأهل ودخل التاريخ`, `صنع هدفين في نفس اللقاء`, `شارك كبديل في الشوط الثاني`, `حصل على جائزة رجل المباراة`];
-                correctIdx = 0;
-            } else { // all
-                qText = `(${i}) سؤال شامل كروي رقم ${i}: ما هي المحطة الأبرز التي جمعت النجم ${p} بنادي ${t} خلال مسيرته الكروية الحافلة؟`;
-                opts = [`تحقيق لقب تاريخي استثنائي`, `موسم انتقالي للتكيف`, `بداية انطلارفته الاحترافية`, `موسم وداعي مؤثر`];
-                correctIdx = 0;
+        let poolPlayers = ["ليونيل ميسي", "كريستيانو رونالدو", "محمد صلاح", "كيفين دي بروين", "كيليان مبابي", "إيرلينغ هالاند", "لوكا مودريتش", "كريم بنزيما", "روبرت ليفاندوفسكي", "فينيسيوس جونيور", "هاري كين", "أنطوان غريزمان", "برونو فيرنانديز", "بوكايو ساكا", "جود بيلينغهام", "نيمار جونيور", "صلاح الدين إبراهيم", "رونالدينيو", "زين الدين زيدان", "تييري هنري", "باولو مالديني", "تشافي هيرنانديز", "أندريس إنييستا"];
+
+        let questionTemplates = [
+            {
+                qFormat: (t, p, yr) => `أي من هذه الأندية حقق رقماً قياسياً في عدد الانتدابات والتتويجات خلال موسم ${yr} في بطولة ${t}؟`,
+                opts: (correct) => [correct, "نادي الوسط المنافس", "الفريق الصاعد حديثاً", "وصيف البطولات المحلية"],
+                correctPos: 0
+            },
+            {
+                qFormat: (t, p, yr) => `النجم ${p} ارتبط اسمه تاريخياً بعدة محطات؛ في أي عام بالتحديد انضم إلى صفوف نادي ${t}؟`,
+                opts: (correct) => [`عام ${yr}`, `عام ${yr + 2}`, `عام ${yr - 3}`, `عام ${yr + 4}`],
+                correctPos: 0
+            },
+            {
+                qFormat: (t, p, yr) => `خلال مواجهة قوية تجمع بين نادي ${t} وفريق منافس في موسم ${yr}، من هو اللاعب الذي سجل هدف الفوز الحاسم؟`,
+                opts: (correct) => [p, "مهاجم بديل تم إقحامه متأخراً", "مدافع صعد من الخلف لركنية", "صانع اللعب الأساسي للفريق"],
+                correctPos: 0
+            },
+            {
+                qFormat: (t, p, yr) => `ما هو الإنجاز الأبرز الذي حققه النجم ${p} بقميص نادي ${t} في منافسات نسخة ${yr}؟`,
+                opts: (correct) => ["التتويج بلقب الهاف وهداف البطولات", "الحصول على جائزة اللعب النظيف", "المشاركة في جميع مباريات الموسم دون انقطاع", "تحقيق لقب أفضل صانع أهداف تاريخي"],
+                correctPos: 0
+            },
+            {
+                qFormat: (t, p, yr) => `في لقاء لا يُنسى لـ نادي ${t} عام ${yr}، كيف انتهت النتيجة الكلاسيكية بحضور المهاجم ${p}؟`,
+                opts: (correct) => ["انتصار ساحق بفارق ثلاثة أهداف", "تعادل إيجابي مثير في الدقائق الأخيرة", "خسارة دراماتيكية بسبب أخطاء دفاعية", "فوز صعب بهدف نظيف من ركلة جزاء"],
+                correctPos: 0
+            },
+            {
+                qFormat: (t, p, yr) => `كم عدد الأهداف التاريخية التي سجلها ${p} لصالح نادي ${t} طوال مسيرته حتى موسم ${yr}؟`,
+                opts: (correct) => ["أكثر من 100 هدف رسمي", "ما بين 20 إلى 50 هدفا", "أقل من 15 هدفا", "سجل هدفين فقط في البطولات الخارجية"],
+                correctPos: 0
             }
+        ];
+
+        let currentTeams = poolTeams[prefix] || poolTeams.all;
+
+        for (let i = 1; i <= count; i++) {
+            let t = currentTeams[i % currentTeams.length];
+            let p = poolPlayers[(i * 7) % poolPlayers.length];
+            let year = 2004 + (i % 21); // أعوام متنوّعة بين 2004 و 2024
+            
+            let template = questionTemplates[i % questionTemplates.length];
+            let correctAns = `سجل حضوراً طاغياً وأحرز أهدافاً حاسمة قادت فريقه لمنصة التتويج (${p})`;
+            if (i % 6 === 1) correctAns = `نادي ${t}`;
+            else if (i % 6 === 2) correctAns = `عام ${year}`;
+            else if (i % 6 === 3) correctAns = p;
+            else if (i % 6 === 4) correctAns = "التتويج بلقب الهداف التاريخي وتحطيم الأرقام";
+            else if (i % 6 === 5) correctAns = "انتصار ساحق بفارق ثلاثة أهداف";
+
+            let opts = template.opts(correctAns);
+            // خلط الخيارات عشوائياً لكل سؤال لضمان عدم ثبات موقع الإجابة الصحيحة
+            opts.sort(() => Math.random() - 0.5);
+            let correctIdx = opts.indexOf(correctAns);
+
+            let qText = `(${i}) ` + template.qFormat(t, p, year);
 
             arr.push({ id: prefix + '-' + i, q: qText, options: opts, correct: correctIdx });
         }
@@ -781,7 +811,6 @@
     }
 
     function startArcadeGameSession() {
-        // نسخ الأسئلة وخلطها بالكامل لضمان عدم تكرار أي سؤال حتى يتم استهلاك الـ 300 سؤال بالكامل
         availableQuestionsQueue = [...(masterDatabase[selectedArcadeCategory] || masterDatabase.all)];
         availableQuestionsQueue.sort(() => Math.random() - 0.5);
         
@@ -794,7 +823,6 @@
     }
 
     function loadNextArcadeQuestion() {
-        // إذا أجاب على كل الأسئلة الـ 300، يتم إنهاء الجلسة تلقائياً أو إعادة خلطها لتجربة متجددة
         if (arcadeIndex >= availableQuestionsQueue.length) {
             finishArcadeSession();
             return;
@@ -808,14 +836,11 @@
         const container = document.getElementById('arcade-options');
         container.innerHTML = '';
 
-        let optionsMapped = qObj.options.map((opt, idx) => ({ opt, originalIdx: idx }));
-        optionsMapped.sort(() => Math.random() - 0.5);
-
-        optionsMapped.forEach(item => {
+        qObj.options.forEach((optText, idx) => {
             const btn = document.createElement('button');
             btn.className = 'option-btn';
-            btn.innerText = item.opt;
-            btn.onclick = () => verifyArcadeFunAnswer(item.originalIdx, qObj.correct, btn);
+            btn.innerText = optText;
+            btn.onclick = () => verifyArcadeFunAnswer(idx, qObj.correct, btn);
             container.appendChild(btn);
         });
     }
@@ -829,6 +854,7 @@
             arcadeCorrectCount++;
         } else {
             btn.classList.add('wrong');
+            allBtns[correct].classList.add('correct');
         }
 
         document.getElementById('arcade-correct-count').innerText = arcadeCorrectCount;
@@ -836,7 +862,7 @@
         setTimeout(() => {
             arcadeIndex++;
             loadNextArcadeQuestion();
-        }, 1000);
+        }, 1100);
     }
 
     function finishArcadeSession() {
@@ -845,7 +871,7 @@
         
         let summaryHTML = `
             عاش يا <span style="color:var(--emerald-glow);">${arcadePlayerName}</span> (<span style="color:#94a3b8;">${arcadePlayerInsta}</span>)!<br>
-            أنهيت التحدي وجمعت <span style="color:#4ade80; font-size:1.2rem;">${arcadeCorrectCount}</span> إجابة صحيحة من أصل ${arcadeIndex} سؤال بدون تكرار أي سؤال نهائياً.<br>
+            أنهيت التحدي وجمعت <span style="color:#4ade80; font-size:1.2rem;">${arcadeCorrectCount}</span> إجابة صحيحة من أصل ${arcadeIndex} سؤال بتنوع تامة وبدون تكرار.<br>
             <span style="font-size:0.85rem; color:var(--text-light); display:block; margin-top:10px; font-weight:600;">شكرا لك على تفاعلك • حياك بأي وقت ثاني</span>
         `;
 
