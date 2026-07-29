@@ -8,7 +8,8 @@
     <style>
         :root {
             --primary: #008000;
-            --emerald-glow: #10b981;
+            --card-accent: #10b981;
+            --card-glow: rgba(16, 185, 129, 0.25);
             --bg-base: #0c1629;
             --glass-bg: rgba(23, 37, 65, 0.82);
             --glass-border: rgba(255, 255, 255, 0.15);
@@ -25,7 +26,7 @@
             font-family: 'Cairo', sans-serif; 
             background: var(--bg-base);
             background-image: 
-                radial-gradient(circle at 15% 15%, rgba(0, 128, 0, 0.16) 0%, transparent 45%),
+                radial-gradient(circle at 15% 15%, var(--card-glow) 0%, transparent 45%),
                 radial-gradient(circle at 85% 85%, rgba(16, 185, 129, 0.12) 0%, transparent 45%),
                 linear-gradient(135deg, #09111e 0%, #172541 100%);
             background-attachment: fixed;
@@ -66,11 +67,13 @@
             padding: 5px;
             border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.08);
+            flex-wrap: wrap;
         }
 
         .tab-btn { 
             flex: 1; 
-            padding: 10px 6px; 
+            min-width: 70px;
+            padding: 10px 4px; 
             border: none; 
             background: transparent; 
             color: var(--text-dim);
@@ -78,15 +81,15 @@
             cursor: pointer; 
             font-weight: 700; 
             font-family: 'Cairo', sans-serif;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             transition: all 0.3s ease;
             position: relative;
         }
 
         .tab-btn.active { 
-            background: linear-gradient(135deg, #009900 0%, #006600 100%); 
+            background: linear-gradient(135deg, var(--primary) 0%, #004400 100%); 
             color: #ffffff; 
-            box-shadow: 0 4px 15px rgba(0, 153, 0, 0.35);
+            box-shadow: 0 4px 15px var(--card-glow);
         }
 
         .coming-soon-badge {
@@ -145,7 +148,7 @@
             margin-bottom: 22px; 
             font-size: 0.88rem; 
             color: #e2e8f0; 
-            border-right: 4px solid var(--emerald-glow); 
+            border-right: 4px solid var(--card-accent); 
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-right-width: 4px;
         }
@@ -153,7 +156,7 @@
         .notice-box {
             background: rgba(16, 185, 129, 0.12);
             border: 1px solid rgba(16, 185, 129, 0.35);
-            border-right: 4px solid var(--emerald-glow);
+            border-right: 4px solid var(--card-accent);
             padding: 14px 16px;
             border-radius: 16px;
             margin-bottom: 20px;
@@ -182,7 +185,7 @@
             color: #94a3b8;
         }
 
-        input, select { 
+        input, select, textarea { 
             width: 100%; 
             padding: 14px 16px; 
             margin: 8px 0; 
@@ -196,7 +199,7 @@
             transition: all 0.3s ease;
         }
 
-        input::placeholder {
+        input::placeholder, textarea::placeholder {
             color: #64748b;
         }
 
@@ -205,17 +208,17 @@
             color: #ffffff;
         }
 
-        input:focus, select:focus {
+        input:focus, select:focus, textarea:focus {
             outline: none;
-            border-color: var(--emerald-glow);
+            border-color: var(--card-accent);
             background: rgba(10, 18, 35, 0.95);
-            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 0 3px var(--card-glow);
         }
 
-        button[type="submit"] { 
+        button[type="submit"], .action-btn { 
             width: 100%; 
             padding: 15px; 
-            background: linear-gradient(135deg, #009900 0%, #005500 100%); 
+            background: linear-gradient(135deg, var(--primary) 0%, #004400 100%); 
             color: white; 
             border: none; 
             border-radius: 14px; 
@@ -225,12 +228,12 @@
             cursor: pointer; 
             margin-top: 14px; 
             transition: all 0.3s ease;
-            box-shadow: 0 6px 20px rgba(0, 153, 0, 0.35);
+            box-shadow: 0 6px 20px var(--card-glow);
         }
 
-        button[type="submit"]:hover {
+        button[type="submit"]:hover, .action-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 153, 0, 0.5);
+            box-shadow: 0 8px 25px var(--card-glow);
             filter: brightness(1.1);
         }
 
@@ -242,7 +245,7 @@
             display: flex; 
             justify-content: space-between; 
             align-items: center;
-            border-right: 4px solid var(--emerald-glow); 
+            border-right: 4px solid var(--card-accent); 
             color: #ffffff;
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-right-width: 4px;
@@ -310,21 +313,189 @@
             filter: drop-shadow(0 6px 15px rgba(0,0,0,0.6));
         }
 
-        .sponsors-row img:hover {
-            transform: scale(1.05);
+        /* تنسيقات الهوية الرياضية */
+        .identity-card-preview {
+            background: linear-gradient(145deg, rgba(23, 37, 65, 0.95) 0%, rgba(12, 22, 41, 0.98) 100%);
+            border-radius: 24px;
+            padding: 26px;
+            margin-top: 20px;
+            border: 2px solid var(--card-accent);
+            text-align: center;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px var(--card-glow);
+            backdrop-filter: blur(20px);
         }
 
-        #samar-logo:hover {
-            transform: scale(1.65);
+        .id-name {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 4px;
         }
 
-        #my-form-status {
+        .id-role-badge {
+            background: var(--card-glow);
+            color: var(--card-accent);
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 800;
+            display: inline-block;
+            margin-bottom: 14px;
+            border: 1px solid var(--card-accent);
+        }
+
+        .profile-link-box {
+            background: rgba(255, 255, 255, 0.04);
+            padding: 8px 12px;
+            border-radius: 12px;
+            font-size: 0.78rem;
+            color: #a7f3d0;
+            direction: ltr;
+            margin-bottom: 16px;
+            border: 1px dashed var(--card-accent);
+        }
+
+        .discord-cards-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 16px;
+            text-align: right;
+        }
+
+        .discord-info-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .discord-card-label {
+            font-size: 0.78rem;
+            color: var(--text-dim);
+            font-weight: 700;
+        }
+
+        .discord-card-value {
+            font-size: 0.88rem;
+            color: #ffffff;
+            font-weight: 800;
+        }
+
+        .id-bio {
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            margin-bottom: 16px;
+            line-height: 1.6;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 12px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .id-socials {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .id-social-icon {
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            transition: all 0.2s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .id-social-icon:hover {
+            background: var(--card-accent);
+            transform: scale(1.1);
+        }
+
+        .card-footer-identity {
+            margin-top: 15px;
+            padding-top: 12px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.1);
+            font-size: 0.76rem;
+            color: #e2e8f0;
+            font-weight: 700;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .collapsible-trigger {
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px dashed var(--card-accent);
+            color: var(--card-accent);
+            padding: 12px;
+            border-radius: 12px;
             text-align: center;
             font-weight: 700;
-            color: var(--emerald-glow);
-            margin-top: 12px;
-            font-size: 0.9rem;
-            min-height: 22px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            margin: 10px 0;
+            transition: all 0.3s;
+        }
+
+        .collapsible-trigger:hover {
+            background: rgba(16, 185, 129, 0.25);
+        }
+
+        .extra-fields-container {
+            display: none;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 12px;
+            border-radius: 12px;
+            margin: 8px 0;
+        }
+
+        .color-picker-wrapper {
+            margin: 12px 0;
+            background: rgba(0,0,0,0.25);
+            padding: 12px;
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .color-options {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+
+        .color-bubble {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid rgba(255,255,255,0.3);
+            transition: transform 0.2s;
+        }
+
+        .color-bubble:hover {
+            transform: scale(1.15);
+        }
+
+        .color-bubble.selected {
+            border-color: #fff;
+            transform: scale(1.15);
+            box-shadow: 0 0 10px currentColor;
         }
     </style>
 </head>
@@ -335,6 +506,7 @@
         <button class="tab-btn active" onclick="showTab('about')">منصتنا</button>
         <button class="tab-btn" onclick="showTab('prediction')">سجل توقعك</button>
         <button class="tab-btn" onclick="showTab('leaderboard')">الجدول</button>
+        <button class="tab-btn" onclick="showTab('identity')">الهوية الرياضية</button>
         <button class="tab-btn" onclick="showTab('kickoff')">
             Kick off
             <span class="coming-soon-badge">soon</span>
@@ -448,6 +620,116 @@
         </div>
     </div>
 
+    <!-- تبويب الهوية الرياضية المطور -->
+    <div id="identity" class="content">
+        <div class="title" style="font-size: 1.5rem;">⚡ الهوية الرياضية</div>
+        <div class="notice-box" style="font-size: 0.8rem; margin-bottom: 12px;">
+            أنشئ بطاقتك الرياضية بحرية تامة وخصص بياناتها بحسب نوع البطاقة المختارة!
+        </div>
+
+        <form id="identity-form" onsubmit="generateIdentityCard(event); return false;">
+            <input type="text" id="id-fullname" placeholder="الاسم الكامل أو اسم الحساب *" required>
+            
+            <select id="id-type" onchange="updateDynamicFields()" required>
+                <option value="" disabled selected>اختر نوع البطاقة الرياضية *</option>
+                <option value="fan">👤 بطاقة مشجع</option>
+                <option value="player">⚽ بطاقة لاعب</option>
+                <option value="athlete">🏃 بطاقة رياضي</option>
+                <option value="creator">🎥 بطاقة صانع محتوى</option>
+                <option value="academy">🏆 بطاقة فريق / أكاديمية</option>
+            </select>
+
+            <input type="text" id="id-username-link" placeholder="اسم المستخدم للرابط (مثال: ahmed) *" required>
+
+            <!-- اختيار اللون -->
+            <div class="color-picker-wrapper">
+                <label style="font-size: 0.8rem; font-weight: 700; color: #fff; display: block; margin-bottom: 6px;">🎨 اختر لون البطاقة:</label>
+                <div class="color-options">
+                    <div class="color-bubble selected" style="background: #10b981;" onclick="setCardColor('#10b981', '#008000', this)" title="أخضر"></div>
+                    <div class="color-bubble" style="background: #3b82f6;" onclick="setCardColor('#3b82f6', '#1d4ed8', this)" title="أزرق"></div>
+                    <div class="color-bubble" style="background: #ef4444;" onclick="setCardColor('#ef4444', '#b91c1c', this)" title="أحمر"></div>
+                    <div class="color-bubble" style="background: #f59e0b;" onclick="setCardColor('#f59e0b', '#b45309', this)" title="ذهبي"></div>
+                    <div class="color-bubble" style="background: #64748b;" onclick="setCardColor('#64748b', '#334155', this)" title="أسود"></div>
+                    <div class="color-bubble" style="background: #8b5cf6;" onclick="setCardColor('#8b5cf6', '#6d28d9', this)" title="بنفسجي"></div>
+                </div>
+                <div style="margin-top: 10px; display: flex; align-items: center; gap: 8px;">
+                    <span style="font-size: 0.75rem; color: var(--text-dim);">أو لون مخصص:</span>
+                    <input type="color" id="custom-color-picker" value="#10b981" onchange="setCustomColor(this.value)" style="width: 40px; height: 32px; padding: 0; border: none; cursor: pointer; background: transparent;">
+                </div>
+            </div>
+
+            <!-- الحقول الديناميكية الخاصة بكل كرت -->
+            <div id="dynamic-fields-container" style="margin: 12px 0;"></div>
+
+            <!-- نبذة بسيطة -->
+            <textarea id="id-bio" placeholder="نبذة بسيطة عنك (اختياري)..." rows="2" style="resize: none; margin: 4px 0; font-size: 0.8rem; padding: 10px;"></textarea>
+
+            <!-- زر إضافة معلومات عامة إضافية -->
+            <div class="collapsible-trigger" onclick="toggleExtraFields()">
+                ➕ معلومات شخصية عامة إضافية (اختياري)
+            </div>
+
+            <div id="extra-fields" class="extra-fields-container">
+                <input type="text" id="id-country" placeholder="الدولة (اختياري)" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+                <input type="text" id="id-city" placeholder="المدينة (اختياري)" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+                <div style="display: flex; gap: 6px;">
+                    <input type="number" id="id-age" placeholder="العمر (اختياري)" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+                    <input type="text" id="id-height" placeholder="الطول سم (اختياري)" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+                </div>
+                <div style="display: flex; gap: 6px;">
+                    <input type="text" id="id-weight" placeholder="الوزن كغ (اختياري)" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+                </div>
+            </div>
+
+            <!-- وسائل التواصل -->
+            <div id="socials-input-box" style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 12px; margin: 8px 0;">
+                <label style="font-size: 0.8rem; font-weight: 700; display: block; margin-bottom: 6px;">معرفات وسائل التواصل (اختياري):</label>
+                <input type="text" id="social-insta" placeholder="Instagram (@username)" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+                <input type="text" id="social-snap" placeholder="Snapchat" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+                <input type="text" id="social-x" placeholder="X (Twitter)" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+                <input type="text" id="social-tiktok" placeholder="TikTok" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+                <input type="text" id="social-whatsapp" placeholder="WhatsApp (رقم الهاتف)" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+            </div>
+
+            <button type="submit" class="action-btn" id="create-card-btn">إنشاء البطاقة الرياضية</button>
+        </form>
+
+        <div id="identity-result" style="display: none;">
+            <!-- معاينة البطاقة -->
+            <div class="identity-card-preview" id="card-preview-box">
+                <div class="id-name" id="prev-name">اسم المستخدم</div>
+                <div class="id-role-badge" id="prev-role">بطاقة مشجع</div>
+                <div class="profile-link-box" id="prev-link">platform.com/ahmed</div>
+                
+                <div class="discord-cards-container" id="prev-discord-cards"></div>
+                
+                <div class="id-bio" id="prev-bio" style="display: none;"></div>
+                
+                <div class="id-socials" id="prev-socials"></div>
+
+                <div class="card-footer-identity">
+                    هذا حساب انستا: @alza3eem__kw<br>
+                    وهذا تويتر: @alza3eem__kw<br>
+                    (تابع لمنصة توقعات الزعيم الرياضية)
+                </div>
+            </div>
+            
+            <button type="button" class="action-btn" onclick="resetIdentityForm()" style="background: rgba(255,255,255,0.1); margin-top: 10px;">إنشاء بطاقة جديدة</button>
+        </div>
+
+        <div class="footer">
+            <p>إدارة المنصة: @alza3eem__kw</p>
+            <div class="sponsor-container">
+                <p style="font-size: 0.75rem; font-weight: 700; margin: 0; color: var(--text-dim);">الرعاة الرسميون:</p>
+                <div class="sponsors-row">
+                    <img src="https://i.ibb.co/v6WXzMpR/IMG-5197.png" alt="حلها" id="halha-logo">
+                    <img src="https://i.ibb.co/RTXLRggY/IMG-5213.png" alt="Samar" id="samar-logo">
+                    <img src="https://i.ibb.co/1JZ77zpt/IMG-5227.png" alt="اضمنها" class="sponsor-logo-uniform">
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- تبويب Kick off -->
     <div id="kickoff" class="content">
         <div class="coming-soon-container">
@@ -462,7 +744,7 @@
 
             <div class="rules-box" style="text-align: center; margin-top: 20px;">
                 تابعونا عبر إنستغرام:<br>
-                <b style="color: var(--emerald-glow); font-size: 1rem; display: block; margin-top: 8px;">@alza3eem__kw</b>
+                <b style="color: var(--card-accent); font-size: 1rem; display: block; margin-top: 8px;">@alza3eem__kw</b>
             </div>
         </div>
 
@@ -506,7 +788,7 @@
         rankList.innerHTML += `
             <div class="rank-card">
                 <div>
-                    <span style="color: var(--emerald-glow); font-weight: 800; margin-left: 6px;">${item.rank}.</span>
+                    <span style="color: var(--card-accent); font-weight: 800; margin-left: 6px;">${item.rank}.</span>
                     <span style="font-weight: 700;">${item.name}</span>
                     <span style="color: #94a3b8; font-size: 0.8rem; margin-right: 6px;">| ${item.insta}</span>
                 </div>
@@ -551,7 +833,255 @@
             status.innerHTML = "❌ حدث خطأ في الاتصال بالشبكة.";
         });
     });
+
+    let currentAccent = '#10b981';
+    let currentPrimary = '#008000';
+
+    function setCardColor(accent, primary, element) {
+        currentAccent = accent;
+        currentPrimary = primary;
+        document.querySelectorAll('.color-bubble').forEach(b => b.classList.remove('selected'));
+        if(element) element.classList.add('selected');
+        document.getElementById('custom-color-picker').value = accent;
+        updateRootColors(accent, primary);
+    }
+
+    function setCustomColor(color) {
+        currentAccent = color;
+        currentPrimary = color;
+        document.querySelectorAll('.color-bubble').forEach(b => b.classList.remove('selected'));
+        updateRootColors(color, color);
+    }
+
+    function updateRootColors(accent, primary) {
+        document.documentElement.style.setProperty('--card-accent', accent);
+        document.documentElement.style.setProperty('--primary', primary);
+        document.documentElement.style.setProperty('--card-glow', hexToRgba(accent, 0.3));
+    }
+
+    function hexToRgba(hex, alpha) {
+        let c = hex.replace('#','');
+        if(c.length===3) c = c.split('').map(x => x+x).join('');
+        let num = parseInt(c,16);
+        return `rgba(${num>>16},${(num>>8)&255},${num&255},${alpha})`;
+    }
+
+    function toggleExtraFields() {
+        const extra = document.getElementById('extra-fields');
+        extra.style.display = (extra.style.display === 'block') ? 'none' : 'block';
+    }
+
+    // تحديث الحقول الديناميكية بناءً على اختيار نوع البطاقة مع استرجاع القيم المحفوظة مسبقاً إن وجدت
+    function updateDynamicFields(savedValues = {}) {
+        const cardType = document.getElementById('id-type').value;
+        const container = document.getElementById('dynamic-fields-container');
+        let html = '';
+
+        if (cardType === 'fan') {
+            html = `
+                <div style="font-size: 0.8rem; font-weight: 700; color: #fff; margin-bottom: 6px;">⚽ بيانات بطاقة المشجع:</div>
+                <input type="text" id="dyn-club" placeholder="النادي المفضّل (مثال: النادي العربي)" value="${savedValues.dyn1 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+                <input type="text" id="dyn-national" placeholder="المنتخب المفضّل" value="${savedValues.dyn2 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+                <input type="text" id="dyn-favplayer" placeholder="اللاعب المفضّل" value="${savedValues.dyn3 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+            `;
+        } else if (cardType === 'player') {
+            html = `
+                <div style="font-size: 0.8rem; font-weight: 700; color: #fff; margin-bottom: 6px;">⚽ بيانات بطاقة اللاعب:</div>
+                <input type="text" id="dyn-club" placeholder="النادي الحالي / الفريق" value="${savedValues.dyn1 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+                <input type="text" id="dyn-position" placeholder="المركز (مثال: مهاجم، وسط، دفاع)" value="${savedValues.dyn2 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+                <input type="text" id="dyn-number" placeholder="رقم القميص" value="${savedValues.dyn3 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+            `;
+        } else if (cardType === 'athlete') {
+            html = `
+                <div style="font-size: 0.8rem; font-weight: 700; color: #fff; margin-bottom: 6px;">🏃 بيانات بطاقة الرياضي:</div>
+                <input type="text" id="dyn-sport" placeholder="الرياضة الممارسة (مثال: كرة قدم، جري، لياقة)" value="${savedValues.dyn1 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+                <input type="text" id="dyn-ach" placeholder="أبرز إنجاز رياضي" value="${savedValues.dyn2 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+                <input type="text" id="dyn-goal" placeholder="الهدف الرياضي الحالي" value="${savedValues.dyn3 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+            `;
+        } else if (cardType === 'creator') {
+            html = `
+                <div style="font-size: 0.8rem; font-weight: 700; color: #fff; margin-bottom: 6px;">🎥 بيانات صانع المحتوى:</div>
+                <input type="text" id="dyn-content-type" placeholder="نوع المحتوى (مثال: تحليل كروي، تصميم، جمنج)" value="${savedValues.dyn1 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+                <input type="text" id="dyn-platform" placeholder="المنصة الأساسية (انستغرام، يوتيوب، تيك توك)" value="${savedValues.dyn2 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+                <input type="text" id="dyn-slogan" placeholder="شعارك أو رسالتك بالمحتوى" value="${savedValues.dyn3 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+            `;
+        } else if (cardType === 'academy') {
+            html = `
+                <div style="font-size: 0.8rem; font-weight: 700; color: #fff; margin-bottom: 6px;">🏆 بيانات الفريق / الأكاديمية:</div>
+                <input type="text" id="dyn-team-name" placeholder="اسم الفريق أو الأكاديمية" value="${savedValues.dyn1 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+                <input type="text" id="dyn-founded" placeholder="سنة التأسيس" value="${savedValues.dyn2 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+                <input type="text" id="dyn-trophies" placeholder="أبرز البطولات أو الألقاب" value="${savedValues.dyn3 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+            `;
+        }
+        container.innerHTML = html;
+    }
+
+    // استرجاع البيانات المحفوظة للأبد في جهاز المستخدم (LocalStorage) وتعبئتها في الفورم للمراجعة والتعديل
+    window.addEventListener('DOMContentLoaded', () => {
+        const savedCard = localStorage.getItem('alza3eem_identity_card');
+        if (savedCard) {
+            const data = JSON.parse(savedCard);
+            
+            // تعبئة حقول الفورم بالبيانات المحفوظة لكي يتمكن المستخدم من تعديلها بحرية
+            document.getElementById('id-fullname').value = data.fullName || '';
+            document.getElementById('id-type').value = data.type || '';
+            document.getElementById('id-username-link').value = data.usernameLink || '';
+            document.getElementById('id-bio').value = data.bio || '';
+            
+            if(data.country) document.getElementById('id-country').value = data.country;
+            if(data.city) document.getElementById('id-city').value = data.city;
+            if(data.age) document.getElementById('id-age').value = data.age;
+            if(data.height) document.getElementById('id-height').value = data.height;
+            if(data.weight) document.getElementById('id-weight').value = data.weight;
+            
+            if(data.insta) document.getElementById('social-insta').value = data.insta;
+            if(data.snap) document.getElementById('social-snap').value = data.snap;
+            if(data.x) document.getElementById('social-x').value = data.x;
+            if(data.tiktok) document.getElementById('social-tiktok').value = data.tiktok;
+            if(data.whatsapp) document.getElementById('social-whatsapp').value = data.whatsapp;
+
+            if(data.accentColor) {
+                setCardColor(data.accentColor, data.primaryColor || data.accentColor, null);
+            }
+
+            // تحديث الحقول الديناميكية بالبيانات المحفوظة
+            updateDynamicFields(data);
+        }
+    });
+
+    function generateIdentityCard(event) {
+        if(event) event.preventDefault();
+        
+        const fullNameEl = document.getElementById('id-fullname');
+        const typeEl = document.getElementById('id-type');
+        const usernameLinkEl = document.getElementById('id-username-link');
+
+        if (!fullNameEl.value.trim() || !typeEl.value || !usernameLinkEl.value.trim()) {
+            alert('الرجاء تعبئة الحقول الأساسية المطلوبة (*)');
+            return;
+        }
+
+        const cardData = {
+            fullName: fullNameEl.value.trim(),
+            type: typeEl.value,
+            usernameLink: usernameLinkEl.value.trim(),
+            bio: document.getElementById('id-bio').value.trim(),
+            country: document.getElementById('id-country')?.value.trim(),
+            city: document.getElementById('id-city')?.value.trim(),
+            age: document.getElementById('id-age')?.value.trim(),
+            height: document.getElementById('id-height')?.value.trim(),
+            weight: document.getElementById('id-weight')?.value.trim(),
+            
+            // البيانات الديناميكية الخاصة بكل كرت
+            dyn1: document.getElementById('dyn-club')?.value.trim() || document.getElementById('dyn-sport')?.value.trim() || document.getElementById('dyn-content-type')?.value.trim() || document.getElementById('dyn-team-name')?.value.trim(),
+            dyn2: document.getElementById('dyn-national')?.value.trim() || document.getElementById('dyn-position')?.value.trim() || document.getElementById('dyn-ach')?.value.trim() || document.getElementById('dyn-platform')?.value.trim() || document.getElementById('dyn-founded')?.value.trim(),
+            dyn3: document.getElementById('dyn-favplayer')?.value.trim() || document.getElementById('dyn-number')?.value.trim() || document.getElementById('dyn-goal')?.value.trim() || document.getElementById('dyn-slogan')?.value.trim() || document.getElementById('dyn-trophies')?.value.trim(),
+
+            insta: document.getElementById('social-insta').value.trim(),
+            snap: document.getElementById('social-snap').value.trim(),
+            x: document.getElementById('social-x').value.trim(),
+            tiktok: document.getElementById('social-tiktok').value.trim(),
+            whatsapp: document.getElementById('social-whatsapp').value.trim(),
+            accentColor: currentAccent,
+            primaryColor: currentPrimary
+        };
+
+        // حفظ البيانات للأبد في التخزين المحلي
+        localStorage.setItem('alza3eem_identity_card', JSON.stringify(cardData));
+
+        renderCardData(cardData);
+        document.getElementById('identity-form').style.display = 'none';
+        document.getElementById('identity-result').style.display = 'block';
+    }
+
+    function renderCardData(data) {
+        if(data.accentColor) {
+            setCardColor(data.accentColor, data.primaryColor || data.accentColor, null);
+        }
+
+        const roleNames = {
+            'fan': '👤 بطاقة مشجع',
+            'player': '⚽ بطاقة لاعب',
+            'athlete': '🏃 بطاقة رياضي',
+            'creator': '🎥 بطاقة صانع محتوى',
+            'academy': '🏆 بطاقة فريق / أكاديمية'
+        };
+
+        document.getElementById('prev-name').innerText = data.fullName;
+        document.getElementById('prev-role').innerText = roleNames[data.type] || 'هوية رياضية';
+        document.getElementById('prev-link').innerText = `platform.com/${data.usernameLink}`;
+
+        const bioBox = document.getElementById('prev-bio');
+        if(data.bio) {
+            bioBox.innerText = `"${data.bio}"`;
+            bioBox.style.display = 'block';
+        } else {
+            bioBox.style.display = 'none';
+        }
+
+        let cardsHtml = '';
+        
+        // تسميات الحقول الديناميكية بناءً على نوع البطاقة للعرض بشكل مرتب
+        if (data.type === 'fan') {
+            if(data.dyn1) cardsHtml += createDiscordCard('⚽ النادي المفضّل', data.dyn1);
+            if(data.dyn2) cardsHtml += createDiscordCard('🌍 المنتخب المفضّل', data.dyn2);
+            if(data.dyn3) cardsHtml += createDiscordCard('⭐ اللاعب المفضّل', data.dyn3);
+        } else if (data.type === 'player') {
+            if(data.dyn1) cardsHtml += createDiscordCard('⚽ النادي / الفريق', data.dyn1);
+            if(data.dyn2) cardsHtml += createDiscordCard('📍 المركز', data.dyn2);
+            if(data.dyn3) cardsHtml += createDiscordCard('👕 رقم القميص', data.dyn3);
+        } else if (data.type === 'athlete') {
+            if(data.dyn1) cardsHtml += createDiscordCard('🏃 الرياضة الممارسة', data.dyn1);
+            if(data.dyn2) cardsHtml += createDiscordCard('🏆 أبرز إنجاز', data.dyn2);
+            if(data.dyn3) cardsHtml += createDiscordCard('🎯 الهدف الرياضي', data.dyn3);
+        } else if (data.type === 'creator') {
+            if(data.dyn1) cardsHtml += createDiscordCard('🎥 نوع المحتوى', data.dyn1);
+            if(data.dyn2) cardsHtml += createDiscordCard('📱 المنصة الأساسية', data.dyn2);
+            if(data.dyn3) cardsHtml += createDiscordCard('💬 شعار المحتوى', data.dyn3);
+        } else if (data.type === 'academy') {
+            if(data.dyn1) cardsHtml += createDiscordCard('🏆 اسم الفريق/الأكاديمية', data.dyn1);
+            if(data.dyn2) cardsHtml += createDiscordCard('📅 سنة التأسيس', data.dyn2);
+            if(data.dyn3) cardsHtml += createDiscordCard('⭐ البطولات والألقاب', data.dyn3);
+        }
+
+        // الحقول العامة الإضافية
+        if(data.country || data.city) cardsHtml += createDiscordCard('📍 الموقع', `${data.country || ''} ${data.city ? '- ' + data.city : ''}`);
+        if(data.age) cardsHtml += createDiscordCard('🎂 العمر', `${data.age} سنة`);
+        if(data.height) cardsHtml += createDiscordCard('📏 الطول', `${data.height} سم`);
+        if(data.weight) cardsHtml += createDiscordCard('⚖️ الوزن', `${data.weight} كغ`);
+
+        document.getElementById('prev-discord-cards').innerHTML = cardsHtml;
+
+        let socialsHtml = '';
+        if(data.insta) socialsHtml += `<a href="https://instagram.com/${data.insta.replace('@','')}" target="_blank" class="id-social-icon" title="Instagram">IG</a>`;
+        if(data.snap) socialsHtml += `<a href="https://snapchat.com/add/${data.snap}" target="_blank" class="id-social-icon" title="Snapchat">SC</a>`;
+        if(data.x) socialsHtml += `<a href="https://x.com/${data.x.replace('@','')}" target="_blank" class="id-social-icon" title="X">X</a>`;
+        if(data.tiktok) socialsHtml += `<a href="https://tiktok.com/@${data.tiktok.replace('@','')}" target="_blank" class="id-social-icon" title="TikTok">TT</a>`;
+        if(data.whatsapp) socialsHtml += `<a href="https://wa.me/${data.whatsapp}" target="_blank" class="id-social-icon" title="WhatsApp">WA</a>`;
+        
+        document.getElementById('prev-socials').innerHTML = socialsHtml;
+    }
+
+    function createDiscordCard(label, value) {
+        return `
+            <div class="discord-info-card">
+                <span class="discord-card-label">${label}</span>
+                <span class="discord-card-value">${value}</span>
+            </div>
+        `;
+    }
+
+    function resetIdentityForm() {
+        localStorage.removeItem('alza3eem_identity_card');
+        document.getElementById('identity-form').reset();
+        document.getElementById('dynamic-fields-container').innerHTML = '';
+        document.getElementById('extra-fields').style.display = 'none';
+        document.getElementById('identity-form').style.display = 'block';
+        document.getElementById('identity-result').style.display = 'none';
+    }
 </script>
 
 </body>
 </html>
+
+هذا تمام
