@@ -347,13 +347,14 @@
 
         .profile-link-box {
             background: rgba(255, 255, 255, 0.04);
-            padding: 8px 12px;
+            padding: 10px 14px;
             border-radius: 12px;
-            font-size: 0.78rem;
+            font-size: 0.82rem;
             color: #a7f3d0;
             direction: ltr;
             margin-bottom: 16px;
             border: 1px dashed var(--card-accent);
+            word-break: break-all;
         }
 
         .discord-cards-container {
@@ -497,6 +498,18 @@
             transform: scale(1.15);
             box-shadow: 0 0 10px currentColor;
         }
+
+        .share-box-instruction {
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid var(--card-accent);
+            padding: 12px;
+            border-radius: 14px;
+            margin-bottom: 14px;
+            text-align: center;
+            font-size: 0.82rem;
+            color: #fff;
+            font-weight: 700;
+        }
     </style>
 </head>
 <body>
@@ -580,7 +593,7 @@
         <form action="https://formsubmit.co/alza3eem.kw@gmail.com" method="POST" id="my-form">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_subject" value="توقع جديد في منصة الزعيم ⚽️">
-            <input type="hidden" name="_next" value="https://tinyurl.com/alza3eem-prediction">
+            <input type="hidden" name="_next" value="">
 
             <input type="text" name="الاسم" id="name-input" placeholder="الاسم الكريم" required>
             <input type="text" name="حساب_الانستقرام" id="insta-input" placeholder="@حساب الإنستغرام" required>
@@ -695,11 +708,24 @@
         </form>
 
         <div id="identity-result" style="display: none;">
+            <!-- توضيح ونشر الرابط -->
+            <div class="share-box-instruction">
+                ✨ تم إنشاء بطاقتك بنجاح! انسخ الرابط أدناه وانشره في منصات التواصل الاجتماعي لمشاركتها مع أصدقائك:
+            </div>
+
             <!-- معاينة البطاقة -->
             <div class="identity-card-preview" id="card-preview-box">
                 <div class="id-name" id="prev-name">اسم المستخدم</div>
                 <div class="id-role-badge" id="prev-role">بطاقة مشجع</div>
-                <div class="profile-link-box" id="prev-link">platform.com/ahmed</div>
+                
+                <div class="profile-link-box" id="prev-link" title="انقر لنسخ الرابط" style="cursor: pointer;" onclick="copyCardLink()">
+                    platform.com/ahmed
+                </div>
+                
+                <button type="button" class="action-btn" onclick="copyCardLink()" style="margin: 0 0 16px 0; padding: 10px; font-size: 0.85rem; background: var(--card-accent); color: #000;">
+                    📋 اضغط هنا لنسخ رابط بطاقتك ونشره
+                </button>
+                <p id="copy-status" style="font-size: 0.75rem; color: #4ade80; margin: -10px 0 10px 0; text-align: center; display: none;"></p>
                 
                 <div class="discord-cards-container" id="prev-discord-cards"></div>
                 
@@ -871,7 +897,6 @@
         extra.style.display = (extra.style.display === 'block') ? 'none' : 'block';
     }
 
-    // تحديث الحقول الديناميكية بناءً على اختيار نوع البطاقة مع استرجاع القيم المحفوظة مسبقاً إن وجدت
     function updateDynamicFields(savedValues = {}) {
         const cardType = document.getElementById('id-type').value;
         const container = document.getElementById('dynamic-fields-container');
@@ -916,13 +941,11 @@
         container.innerHTML = html;
     }
 
-    // استرجاع البيانات المحفوظة للأبد في جهاز المستخدم (LocalStorage) وتعبئتها في الفورم للمراجعة والتعديل
     window.addEventListener('DOMContentLoaded', () => {
         const savedCard = localStorage.getItem('alza3eem_identity_card');
         if (savedCard) {
             const data = JSON.parse(savedCard);
             
-            // تعبئة حقول الفورم بالبيانات المحفوظة لكي يتمكن المستخدم من تعديلها بحرية
             document.getElementById('id-fullname').value = data.fullName || '';
             document.getElementById('id-type').value = data.type || '';
             document.getElementById('id-username-link').value = data.usernameLink || '';
@@ -944,7 +967,6 @@
                 setCardColor(data.accentColor, data.primaryColor || data.accentColor, null);
             }
 
-            // تحديث الحقول الديناميكية بالبيانات المحفوظة
             updateDynamicFields(data);
         }
     });
@@ -972,7 +994,6 @@
             height: document.getElementById('id-height')?.value.trim(),
             weight: document.getElementById('id-weight')?.value.trim(),
             
-            // البيانات الديناميكية الخاصة بكل كرت
             dyn1: document.getElementById('dyn-club')?.value.trim() || document.getElementById('dyn-sport')?.value.trim() || document.getElementById('dyn-content-type')?.value.trim() || document.getElementById('dyn-team-name')?.value.trim(),
             dyn2: document.getElementById('dyn-national')?.value.trim() || document.getElementById('dyn-position')?.value.trim() || document.getElementById('dyn-ach')?.value.trim() || document.getElementById('dyn-platform')?.value.trim() || document.getElementById('dyn-founded')?.value.trim(),
             dyn3: document.getElementById('dyn-favplayer')?.value.trim() || document.getElementById('dyn-number')?.value.trim() || document.getElementById('dyn-goal')?.value.trim() || document.getElementById('dyn-slogan')?.value.trim() || document.getElementById('dyn-trophies')?.value.trim(),
@@ -986,7 +1007,6 @@
             primaryColor: currentPrimary
         };
 
-        // حفظ البيانات للأبد في التخزين المحلي
         localStorage.setItem('alza3eem_identity_card', JSON.stringify(cardData));
 
         renderCardData(cardData);
@@ -1009,7 +1029,9 @@
 
         document.getElementById('prev-name').innerText = data.fullName;
         document.getElementById('prev-role').innerText = roleNames[data.type] || 'هوية رياضية';
-        document.getElementById('prev-link').innerText = `platform.com/${data.usernameLink}`;
+        
+        const fullShareUrl = window.location.origin + window.location.pathname + '#' + encodeURIComponent(data.usernameLink);
+        document.getElementById('prev-link').innerText = fullShareUrl;
 
         const bioBox = document.getElementById('prev-bio');
         if(data.bio) {
@@ -1021,7 +1043,6 @@
 
         let cardsHtml = '';
         
-        // تسميات الحقول الديناميكية بناءً على نوع البطاقة للعرض بشكل مرتب
         if (data.type === 'fan') {
             if(data.dyn1) cardsHtml += createDiscordCard('⚽ النادي المفضّل', data.dyn1);
             if(data.dyn2) cardsHtml += createDiscordCard('🌍 المنتخب المفضّل', data.dyn2);
@@ -1044,7 +1065,6 @@
             if(data.dyn3) cardsHtml += createDiscordCard('⭐ البطولات والألقاب', data.dyn3);
         }
 
-        // الحقول العامة الإضافية
         if(data.country || data.city) cardsHtml += createDiscordCard('📍 الموقع', `${data.country || ''} ${data.city ? '- ' + data.city : ''}`);
         if(data.age) cardsHtml += createDiscordCard('🎂 العمر', `${data.age} سنة`);
         if(data.height) cardsHtml += createDiscordCard('📏 الطول', `${data.height} سم`);
@@ -1060,6 +1080,16 @@
         if(data.whatsapp) socialsHtml += `<a href="https://wa.me/${data.whatsapp}" target="_blank" class="id-social-icon" title="WhatsApp">WA</a>`;
         
         document.getElementById('prev-socials').innerHTML = socialsHtml;
+    }
+
+    function copyCardLink() {
+        const fullShareUrl = window.location.origin + window.location.pathname + '#' + encodeURIComponent(document.getElementById('id-username-link').value.trim());
+        navigator.clipboard.writeText(fullShareUrl).then(() => {
+            const statusEl = document.getElementById('copy-status');
+            statusEl.innerText = "✅ تم نسخ رابط بطاقتك بنجاح! يمكنك لصقه ونشره الآن.";
+            statusEl.style.display = 'block';
+            setTimeout(() => { statusEl.style.display = 'none'; }, 4000);
+        });
     }
 
     function createDiscordCard(label, value) {
@@ -1083,4 +1113,3 @@
 
 </body>
 </html>
-
