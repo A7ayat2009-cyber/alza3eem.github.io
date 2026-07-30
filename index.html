@@ -313,7 +313,6 @@
             filter: drop-shadow(0 6px 15px rgba(0,0,0,0.6));
         }
 
-        /* تنسيقات الهوية الرياضية */
         .identity-card-preview {
             background: linear-gradient(145deg, rgba(23, 37, 65, 0.95) 0%, rgba(12, 22, 41, 0.98) 100%);
             border-radius: 24px;
@@ -633,7 +632,6 @@
         </div>
     </div>
 
-    <!-- تبويب الهوية الرياضية المطور -->
     <div id="identity" class="content">
         <div class="title" style="font-size: 1.5rem;">⚡ الهوية الرياضية</div>
         <div class="notice-box" style="font-size: 0.8rem; margin-bottom: 12px;">
@@ -654,7 +652,6 @@
 
             <input type="text" id="id-username-link" placeholder="اسم المستخدم للرابط (مثال: ahmed) *" required>
 
-            <!-- اختيار اللون -->
             <div class="color-picker-wrapper">
                 <label style="font-size: 0.8rem; font-weight: 700; color: #fff; display: block; margin-bottom: 6px;">🎨 اختر لون البطاقة:</label>
                 <div class="color-options">
@@ -671,13 +668,10 @@
                 </div>
             </div>
 
-            <!-- الحقول الديناميكية الخاصة بكل كرت -->
             <div id="dynamic-fields-container" style="margin: 12px 0;"></div>
 
-            <!-- نبذة بسيطة -->
             <textarea id="id-bio" placeholder="نبذة بسيطة عنك (اختياري)..." rows="2" style="resize: none; margin: 4px 0; font-size: 0.8rem; padding: 10px;"></textarea>
 
-            <!-- زر إضافة معلومات عامة إضافية -->
             <div class="collapsible-trigger" onclick="toggleExtraFields()">
                 ➕ معلومات شخصية عامة إضافية (اختياري)
             </div>
@@ -694,7 +688,6 @@
                 </div>
             </div>
 
-            <!-- وسائل التواصل -->
             <div id="socials-input-box" style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 12px; margin: 8px 0;">
                 <label style="font-size: 0.8rem; font-weight: 700; display: block; margin-bottom: 6px;">معرفات وسائل التواصل (اختياري):</label>
                 <input type="text" id="social-insta" placeholder="Instagram (@username)" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
@@ -708,12 +701,10 @@
         </form>
 
         <div id="identity-result" style="display: none;">
-            <!-- توضيح ونشر الرابط -->
             <div class="share-box-instruction">
                 ✨ تم إنشاء بطاقتك بنجاح! انسخ الرابط أدناه وانشره في منصات التواصل الاجتماعي لمشاركتها مع أصدقائك:
             </div>
 
-            <!-- معاينة البطاقة -->
             <div class="identity-card-preview" id="card-preview-box">
                 <div class="id-name" id="prev-name">اسم المستخدم</div>
                 <div class="id-role-badge" id="prev-role">بطاقة مشجع</div>
@@ -760,7 +751,6 @@
         </div>
     </div>
 
-    <!-- تبويب Kick off -->
     <div id="kickoff" class="content">
         <div class="coming-soon-container">
             <div class="pulse-icon">⏳</div>
@@ -792,7 +782,6 @@
     </div>
 </div>
 
-<!-- استيراد Firebase SDKs -->
 <script type="module">
     import { db } from './firebase-config.js';
     import { doc, setDoc, getDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
@@ -801,7 +790,9 @@
         document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         document.getElementById(tabId).classList.add('active');
-        event.currentTarget.classList.add('active');
+        if (event && event.currentTarget) {
+            event.currentTarget.classList.add('active');
+        }
     };
 
     const leaderboardData = [
@@ -1019,11 +1010,11 @@
             renderCardData(cardData);
             document.getElementById('identity-form').style.display = 'none';
             document.getElementById('identity-result').style.display = 'block';
-            {
-catch (e) {
-    console.log(e);
-    alert(e.message);
-}
+        } catch (e) {
+            console.log(e);
+            alert(e.message);
+        }
+    };
 
     function renderCardData(data) {
         if(data.accentColor) {
