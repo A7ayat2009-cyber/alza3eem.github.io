@@ -635,6 +635,19 @@
     <div id="identity" class="content">
         <div class="title" style="font-size: 1.5rem;">⚡ الهوية الرياضية</div>
         <div class="notice-box" style="font-size: 0.8rem; margin-bottom: 12px;">
+            <div id="login-box" style="margin-bottom:15px;">
+    <button
+        type="button"
+        class="action-btn"
+        onclick="googleLogin()"
+        style="margin-top:0;">
+        🔐 تسجيل الدخول بواسطة Google
+    </button>
+
+    <p id="login-status"
+       style="text-align:center;font-size:.8rem;margin-top:8px;color:#4ade80;">
+    </p>
+</div>
             أنشئ بطاقتك الرياضية بحرية تامة وخصص بياناتها بحسب نوع البطاقة المختارة!
         </div>
 
@@ -783,9 +796,43 @@
 </div>
 
 <script type="module">
-    import { db } from './firebase-config.js';
-    import { doc, setDoc, getDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+    import { db, auth } from './firebase-config.js';
 
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+import {
+  doc,
+  setDoc,
+  getDoc,
+  deleteDoc
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+const provider = new GoogleAuthProvider();
+
+let currentUser = null;
+
+onAuthStateChanged(auth, (user) => {
+    currentUser = user;
+
+    if (user) {
+
+    currentUser = user;
+
+    document.getElementById("login-status").innerHTML =
+        "✅ " + user.displayName;
+
+    document.getElementById("login-box").style.display = "none";
+
+} else {
+
+    currentUser = null;
+
+}
+});
     window.showTab = function(tabId) {
         document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -1150,7 +1197,26 @@
         document.getElementById('extra-fields').style.display = 'none';
         document.getElementById('identity-form').style.display = 'block';
         document.getElementById('identity-result').style.display = 'none';
+
     };
+window.googleLogin = async function () {
+
+    try {
+
+        await signInWithPopup(auth, provider);
+
+        document.getElementById("login-status").innerHTML =
+            "✅ تم تسجيل الدخول بنجاح";
+
+        document.getElementById("login-box").style.display = "none";
+
+    } catch (e) {
+
+        alert(e.message);
+
+    }
+
+};
 </script>
 
 </body>
