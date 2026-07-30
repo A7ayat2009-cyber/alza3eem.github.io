@@ -1015,7 +1015,10 @@ onAuthStateChanged(auth, (user) => {
 
     window.generateIdentityCard = async function(event) {
         if(event) event.preventDefault();
-        
+        if (!currentUser) {
+    alert("يجب تسجيل الدخول أولاً.");
+    return;
+}
         const fullNameEl = document.getElementById('id-fullname');
         const typeEl = document.getElementById('id-type');
         const usernameLinkEl = document.getElementById('id-username-link');
@@ -1028,6 +1031,7 @@ onAuthStateChanged(auth, (user) => {
         const usernameKey = usernameLinkEl.value.trim();
 
         const cardData = {
+            ownerUid: currentUser.uid,
             fullName: fullNameEl.value.trim(),
             type: typeEl.value,
             usernameLink: usernameKey,
