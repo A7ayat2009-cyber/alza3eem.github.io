@@ -513,35 +513,29 @@
 </head>
 <body>
 <div id="instagram-warning" style="display:none;position:fixed;inset:0;background:#0c1629;z-index:99999;padding:30px;color:white;font-family:Cairo,sans-serif;justify-content:center;align-items:center;text-align:center;">
-
-<div style="max-width:420px;background:#172541;padding:25px;border-radius:22px;border:2px solid #10b981;">
-
-<h2>🔐فتح المنصة</h2>
-
-<p style="line-height:1.8">
-لضمان عمل جميع خدمات المنصة بالشكل الصحيح، يرجى فتح الموقع باستخدام المتصفح الخارجي بدلاً من متصفح إنستغرام.
-</p>
-
-<div style="background:#10b98122;padding:15px;border-radius:15px;margin:20px 0;">
-اضغط على <b>•••</b><br><br>
-ثم اختر<br><br>
-<b>Open in external browser</b>
+    <div style="max-width:420px;background:#172541;padding:25px;border-radius:22px;border:2px solid #10b981;">
+        <h2>🔐 فتح المنصة</h2>
+        <p style="line-height:1.8">
+            لضمان عمل جميع خدمات المنصة بالشكل الصحيح، يرجى فتح الموقع باستخدام المتصفح الخارجي بدلاً من متصفح إنستغرام.
+        </p>
+        <div style="background:#10b98122;padding:15px;border-radius:15px;margin:20px 0;">
+            اضغط على <b>•••</b><br><br>
+            ثم اختر<br><br>
+            <b>Open in external browser</b>
+        </div>
+        <p style="color:#94a3b8;font-size:13px">
+            لأفضل تجربة استخدام، افتح المنصة في المتصفح الخارجي. عندها ستتوفر جميع المزايا والوظائف بكامل كفاءتها
+        </p>
+    </div>
 </div>
 
-<p style="color:#94a3b8;font-size:13px">
-لأفضل تجربة استخدام، افتح المنصة في المتصفح الخارجي. عندها ستتوفر جميع المزايا والوظائف بكامل كفاءتها
-</p>
-
-</div>
-
-</div>
 <div class="box">
     <div class="tabs">
-        <button class="tab-btn active" onclick="showTab('about')">منصتنا</button>
-        <button class="tab-btn" onclick="showTab('prediction')">سجل توقعك</button>
-        <button class="tab-btn" onclick="showTab('leaderboard')">الجدول</button>
-        <button class="tab-btn" onclick="showTab('identity')">الهوية الرياضية</button>
-        <button class="tab-btn" onclick="showTab('kickoff')">
+        <button class="tab-btn active" onclick="showTab('about', event)">منصتنا</button>
+        <button class="tab-btn" onclick="showTab('prediction', event)">سجل توقعك</button>
+        <button class="tab-btn" onclick="showTab('leaderboard', event)">الجدول</button>
+        <button class="tab-btn" onclick="showTab('identity', event)">الهوية الرياضية</button>
+        <button class="tab-btn" onclick="showTab('kickoff', event)">
             Kick off
             <span class="coming-soon-badge">soon</span>
         </button>
@@ -618,9 +612,19 @@
 
             <input type="text" name="الاسم" id="name-input" placeholder="الاسم الكريم" required>
             <input type="text" name="حساب_الانستقرام" id="insta-input" placeholder="@حساب الإنستغرام" required>
-            <select name="التوقع" id="prediction-select"><option value="" disabled selected>اختر توقع النتيجة</option><option>فوز العربي</option><option>تعادل</option><option>خسارة</option></select>
+            <select name="التوقع" id="prediction-select">
+                <option value="" disabled selected>اختر توقع النتيجة</option>
+                <option>فوز العربي</option>
+                <option>تعادل</option>
+                <option>خسارة</option>
+            </select>
             <input type="text" name="اسم_اللاعب" id="player-input" placeholder="توقع اسم لاعب سيسجل للنادي العربي" required>
-            <select name="عدد_الاهداف" id="goals-select"><option value="" disabled selected>توقع عدد أهداف العربي</option><option>صفر</option><option>أقل من 3</option><option>أكثر من 3</option></select>
+            <select name="عدد_الاهداف" id="goals-select">
+                <option value="" disabled selected>توقع عدد أهداف العربي</option>
+                <option>صفر</option>
+                <option>أقل من 3</option>
+                <option>أكثر من 3</option>
+            </select>
             <button type="submit">إرسال التوقع</button>
         </form>
         <p id="my-form-status"></p>
@@ -658,18 +662,11 @@
         <div class="title" style="font-size: 1.5rem;">⚡ الهوية الرياضية</div>
         <div class="notice-box" style="font-size: 0.8rem; margin-bottom: 12px;">
             <div id="login-box" style="margin-bottom:15px;">
-    <button
-        type="button"
-        class="action-btn"
-        onclick="googleLogin()"
-        style="margin-top:0;">
-        🔐 تسجيل الدخول بواسطة Google
-    </button>
-
-    <p id="login-status"
-       style="text-align:center;font-size:.8rem;margin-top:8px;color:#4ade80;">
-    </p>
-</div>
+                <button type="button" class="action-btn" onclick="googleLogin()" style="margin-top:0;">
+                    🔐 تسجيل الدخول بواسطة Google
+                </button>
+                <p id="login-status" style="text-align:center;font-size:.8rem;margin-top:8px;color:#4ade80;"></p>
+            </div>
             أنشئ بطاقتك الرياضية بحرية تامة وخصص بياناتها بحسب نوع البطاقة المختارة!
         </div>
 
@@ -767,24 +764,13 @@
             </div>
             
             <div style="display: flex; gap: 10px; margin-top: 10px;">
-    <button
-        id="edit-btn"
-        type="button"
-        class="action-btn"
-        onclick="editCurrentCard()"
-        style="background: var(--card-accent); color: #000; margin-top: 0;">
-        تعديل البطاقة
-    </button>
-
-    <button
-        id="delete-btn"
-        type="button"
-        class="action-btn"
-        onclick="deleteCurrentCard()"
-        style="background: #ef4444; margin-top: 0;">
-        حذف البطاقة
-    </button>
-</div>
+                <button id="edit-btn" type="button" class="action-btn" onclick="editCurrentCard()" style="background: var(--card-accent); color: #000; margin-top: 0; display: none;">
+                    تعديل البطاقة
+                </button>
+                <button id="delete-btn" type="button" class="action-btn" onclick="deleteCurrentCard()" style="background: #ef4444; margin-top: 0; display: none;">
+                    حذف البطاقة
+                </button>
+            </div>
             <button type="button" class="action-btn" onclick="resetIdentityForm()" style="background: rgba(255,255,255,0.1); margin-top: 10px;">إنشاء بطاقة جديدة</button>
         </div>
 
@@ -835,62 +821,102 @@
 <script type="module">
     import { db, auth } from './firebase-config.js';
 
-import {
-  GoogleAuthProvider,
-  signInWithPopup,
-  onAuthStateChanged,
-  signOut
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    import {
+      GoogleAuthProvider,
+      signInWithPopup,
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-import {
-  doc,
-  setDoc,
-  getDoc,
-  deleteDoc
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-const provider = new GoogleAuthProvider();
+    import {
+      doc,
+      setDoc,
+      getDoc,
+      deleteDoc,
+      query,
+      where,
+      collection,
+      getDocs,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-let currentUser = null;
-let viewingCard = null;
+    const provider = new GoogleAuthProvider();
 
-onAuthStateChanged(auth, (user) => {
-    currentUser = user;
-if (viewingCard) {
+    let currentUser = null;
+    let viewingCard = null;
+    let myCardId = null;
+    let myCardData = null;
+    let currentAccent = '#10b981';
+    let currentPrimary = '#008000';
 
-    const isOwner =
-        user &&
-        user.uid === viewingCard.ownerUid;
+    async function checkUserCard(user) {
+        if (!user) return;
+        try {
+            const docRef = doc(db, "identityCards", user.uid);
+            const docSnap = await getDoc(docRef);
+            if (docSnap.exists()) {
+                const data = docSnap.data();
+                myCardId = docSnap.id;
+                myCardData = data;
+                if (!window.location.hash) {
+                    renderCardData(data);
+                    document.getElementById("identity-form").style.display = "none";
+                    document.getElementById("identity-result").style.display = "block";
+                }
+            }
+        } catch (e) {
+            console.error("Error checking user card:", e);
+        }
+    }
 
-    document.getElementById("edit-btn").style.display =
-        isOwner ? "block" : "none";
+    onAuthStateChanged(auth, async (user) => {
+        currentUser = user;
+        if (user) {
+            const loginStatus = document.getElementById("login-status");
+            const loginBox = document.getElementById("login-box");
+            if (loginStatus) loginStatus.innerHTML = `✅ ${user.displayName || user.email || "مستخدم مسجل"}`;
+            if (loginBox) loginBox.style.display = "none";
+            await checkUserCard(user);
+        } else {
+            const loginBox = document.getElementById("login-box");
+            const loginStatus = document.getElementById("login-status");
+            if (loginBox) loginBox.style.display = "block";
+            if (loginStatus) loginStatus.innerHTML = "";
+            myCardId = null;
+            myCardData = null;
+        }
+        updateOwnershipUI();
+    });
 
-    document.getElementById("delete-btn").style.display =
-        isOwner ? "block" : "none";
-}
-    if (user) {
+    function updateOwnershipUI() {
+        const editBtn = document.getElementById("edit-btn");
+        const deleteBtn = document.getElementById("delete-btn");
+        if (!editBtn || !deleteBtn) return;
+        
+        if (viewingCard) {
+            const isOwner = currentUser && currentUser.uid === viewingCard.ownerUid;
+            editBtn.style.display = isOwner ? "block" : "none";
+            deleteBtn.style.display = isOwner ? "block" : "none";
+        } else {
+            editBtn.style.display = "none";
+            deleteBtn.style.display = "none";
+        }
+    }
 
-    currentUser = user;
-
-    document.getElementById("login-status").innerHTML =
-        "✅ " + user.displayName;
-
-    document.getElementById("login-box").style.display = "none";
-
-} else {
-
-    currentUser = null;
-
-    document.getElementById("login-box").style.display = "block";
-    document.getElementById("login-status").innerHTML = "";
-
-}
-});
-    window.showTab = function(tabId) {
+    window.showTab = function(tabId, event) {
         document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.getElementById(tabId).classList.add('active');
+        const targetTab = document.getElementById(tabId);
+        if (targetTab) targetTab.classList.add('active');
         if (event && event.currentTarget) {
             event.currentTarget.classList.add('active');
+        } else {
+            const btns = document.querySelectorAll('.tab-btn');
+            btns.forEach(b => {
+                const onclickAttr = b.getAttribute('onclick');
+                if (onclickAttr && onclickAttr.includes(tabId)) {
+                    b.classList.add('active');
+                }
+            });
         }
     };
 
@@ -923,26 +949,28 @@ if (viewingCard) {
         });
     }
 
-    var form = document.getElementById("my-form");
+    const form = document.getElementById("my-form");
     if (form) {
         form.addEventListener("submit", function(event) {
             event.preventDefault();
-            var status = document.getElementById("my-form-status");
+            const status = document.getElementById("my-form-status");
             
-            var nameVal = document.getElementById("name-input").value.trim();
-            var instaVal = document.getElementById("insta-input").value.trim();
-            var predVal = document.getElementById("prediction-select").value;
-            var playerVal = document.getElementById("player-input").value.trim();
-            var goalsVal = document.getElementById("goals-select").value;
+            const nameVal = document.getElementById("name-input").value.trim();
+            const instaVal = document.getElementById("insta-input").value.trim();
+            const predVal = document.getElementById("prediction-select").value;
+            const playerVal = document.getElementById("player-input").value.trim();
+            const goalsVal = document.getElementById("goals-select").value;
 
             if (!nameVal || !instaVal || !predVal || !playerVal || !goalsVal) {
-                status.innerHTML = "❌ الرجاء تعبئة كل البيانات قبل الارسال";
-                setTimeout(() => { status.innerHTML = ""; }, 4000);
+                if (status) {
+                    status.innerHTML = "❌ الرجاء تعبئة كل البيانات قبل الارسال";
+                    setTimeout(() => { status.innerHTML = ""; }, 4000);
+                }
                 return;
             }
 
-            var data = new FormData(form);
-            status.innerHTML = "⏳ جاري إرسال توقعك...";
+            const data = new FormData(form);
+            if (status) status.innerHTML = "⏳ جاري إرسال توقعك...";
             
             fetch(form.action, {
                 method: form.method,
@@ -950,21 +978,19 @@ if (viewingCard) {
                 headers: { 'Accept': 'application/json' }
             }).then(response => {
                 if (response.ok) {
-                    status.innerHTML = "✅ تم استلام توقعك بنجاح!";
-                    form.reset();
-                    setTimeout(() => { status.innerHTML = ""; }, 5000);
+                    if (status) {
+                        status.innerHTML = "✅ تم استلام توقعك بنجاح!";
+                        form.reset();
+                        setTimeout(() => { status.innerHTML = ""; }, 5000);
+                    }
                 } else {
-                    status.innerHTML = "❌ حدث خطأ، يرجى المحاولة مرة أخرى.";
+                    if (status) status.innerHTML = "❌ حدث خطأ، يرجى المحاولة مرة أخرى.";
                 }
-            }).catch(error => {
-                status.innerHTML = "❌ حدث خطأ في الاتصال بالشبكة.";
+            }).catch(() => {
+                if (status) status.innerHTML = "❌ حدث خطأ في الاتصال بالشبكة.";
             });
         });
     }
-    let myCardId = null;
-    let myCardData = null;
-    let currentAccent = '#10b981';
-    let currentPrimary = '#008000';
 
     window.setCardColor = function(accent, primary, element) {
         currentAccent = accent;
@@ -991,43 +1017,24 @@ if (viewingCard) {
 
     function hexToRgba(hex, alpha) {
         let c = hex.replace('#','');
-        if(c.length===3) c = c.split('').map(x => x+x).join('');
-        let num = parseInt(c,16);
-        return `rgba(${num>>16},${(num>>8)&255},${num&255},${alpha})`;
+        if(c.length === 3) c = c.split('').map(x => x + x).join('');
+        let num = parseInt(c, 16);
+        return `rgba(${num >> 16}, ${(num >> 8) & 255}, ${num & 255}, ${alpha})`;
     }
 
     window.toggleExtraFields = function() {
         const extra = document.getElementById('extra-fields');
-        extra.style.display = (extra.style.display === 'block') ? 'none' : 'block';
+        if (extra) {
+            extra.style.display = (extra.style.display === 'block') ? 'none' : 'block';
+        }
     };
 
-
-    if (!currentUser) return;
-
-    const q = query(
-        collection(db, "identityCards"),
-        where("ownerUid", "==", currentUser.uid)
-    );
-
-    const snap = await getDocs(q);
-
-    if (snap.empty) return;
-
-    const card = snap.docs[0];
-
-    myCardId = card.id;
-    myCardData = card.data();
-
-    renderCardData(myCardData);
-
-    document.getElementById("identity-form").style.display = "none";
-    document.getElementById("identity-result").style.display = "block";
-}
     window.updateDynamicFields = function(savedValues = {}) {
         const cardTypeEl = document.getElementById('id-type');
         if (!cardTypeEl) return;
         const cardType = cardTypeEl.value;
         const container = document.getElementById('dynamic-fields-container');
+        if (!container) return;
         let html = '';
 
         if (cardType === 'fan') {
@@ -1073,96 +1080,114 @@ if (viewingCard) {
         const hash = window.location.hash.replace('#', '').trim();
         if (hash) {
             try {
-                const docRef = doc(db, "identityCards", decodeURIComponent(hash));
-                const docSnap = await getDoc(docRef);
-                if (docSnap.exists()) {
+                const decodedHash = decodeURIComponent(hash);
+                const q = query(collection(db, "identityCards"), where("usernameLink", "==", decodedHash));
+                const querySnap = await getDocs(q);
+                if (!querySnap.empty) {
+                    const docSnap = querySnap.docs[0];
                     const data = docSnap.data();
+                    myCardId = docSnap.id;
+                    myCardData = data;
                     renderCardData(data);
                     showTab('identity');
-                    document.getElementById('identity-form').style.display = 'none';
-                    document.getElementById('identity-result').style.display = 'block';
+                    const formEl = document.getElementById('identity-form');
+                    const resEl = document.getElementById('identity-result');
+                    if (formEl) formEl.style.display = 'none';
+                    if (resEl) resEl.style.display = 'block';
                 }
             } catch (e) {
-                console.error("Error fetching card from Firestore:", e);
+                console.error("Error fetching card from Firestore via hash:", e);
             }
         }
     });
 
     window.generateIdentityCard = async function(event) {
-        if(event) event.preventDefault();
+        if (event) event.preventDefault();
         if (!currentUser) {
-    alert("يجب تسجيل الدخول أولاً.");
-    return;
-}
+            alert("يجب تسجيل الدخول أولاً.");
+            return;
+        }
         const fullNameEl = document.getElementById('id-fullname');
         const typeEl = document.getElementById('id-type');
         const usernameLinkEl = document.getElementById('id-username-link');
+
+        if (!fullNameEl || !typeEl || !usernameLinkEl) return;
 
         if (!fullNameEl.value.trim() || !typeEl.value || !usernameLinkEl.value.trim()) {
             alert('الرجاء تعبئة الحقول الأساسية المطلوبة (*)');
             return;
         }
-const editing = myCardId !== null;
+
         const usernameKey = usernameLinkEl.value.trim();
-const exists = await getDoc(doc(db, "identityCards", usernameKey));
-
-if (exists.exists()) {
-    alert("هذا الرابط مستخدم بالفعل، اختر رابطًا آخر.");
-    return;
-}
-        const cardData = {
-            ownerUid: currentUser.uid,
-            fullName: fullNameEl.value.trim(),
-            type: typeEl.value,
-            usernameLink: usernameKey,
-            bio: document.getElementById('id-bio').value.trim(),
-            country: document.getElementById('id-country')?.value.trim() || '',
-            city: document.getElementById('id-city')?.value.trim() || '',
-            age: document.getElementById('id-age')?.value.trim() || '',
-            height: document.getElementById('id-height')?.value.trim() || '',
-            weight: document.getElementById('id-weight')?.value.trim() || '',
-            
-            dyn1: document.getElementById('dyn-1')?.value.trim() || '',
-            dyn2: document.getElementById('dyn-2')?.value.trim() || '',
-            dyn3: document.getElementById('dyn-3')?.value.trim() || '',
-
-            insta: document.getElementById('social-insta').value.trim(),
-            snap: document.getElementById('social-snap').value.trim(),
-            x: document.getElementById('social-x').value.trim(),
-            tiktok: document.getElementById('social-tiktok').value.trim(),
-            whatsapp: document.getElementById('social-whatsapp').value.trim(),
-            accentColor: currentAccent,
-            primaryColor: currentPrimary
-        };
 
         try {
-            
-            await setDoc(doc(db, "identityCards", usernameKey), cardData);
-            myCardId = usernameKey;
-myCardData = cardData;
+            const q = query(collection(db, "identityCards"), where("usernameLink", "==", usernameKey));
+            const usernameSnap = await getDocs(q);
+            let taken = false;
+            usernameSnap.forEach((docItem) => {
+                if (docItem.id !== currentUser.uid) {
+                    taken = true;
+                }
+            });
+
+            if (taken) {
+                alert("هذا الرابط مستخدم بالفعل، اختر رابطًا آخر.");
+                return;
+            }
+
+            const docRef = doc(db, "identityCards", currentUser.uid);
+            const docSnap = await getDoc(docRef);
+            const isUpdate = docSnap.exists();
+
+            const cardData = {
+                ownerUid: currentUser.uid,
+                fullName: fullNameEl.value.trim(),
+                type: typeEl.value,
+                usernameLink: usernameKey,
+                bio: document.getElementById('id-bio').value.trim(),
+                country: document.getElementById('id-country')?.value.trim() || '',
+                city: document.getElementById('id-city')?.value.trim() || '',
+                age: document.getElementById('id-age')?.value.trim() || '',
+                height: document.getElementById('id-height')?.value.trim() || '',
+                weight: document.getElementById('id-weight')?.value.trim() || '',
+                
+                dyn1: document.getElementById('dyn-1')?.value.trim() || '',
+                dyn2: document.getElementById('dyn-2')?.value.trim() || '',
+                dyn3: document.getElementById('dyn-3')?.value.trim() || '',
+
+                insta: document.getElementById('social-insta').value.trim(),
+                snap: document.getElementById('social-snap').value.trim(),
+                x: document.getElementById('social-x').value.trim(),
+                tiktok: document.getElementById('social-tiktok').value.trim(),
+                whatsapp: document.getElementById('social-whatsapp').value.trim(),
+                accentColor: currentAccent,
+                primaryColor: currentPrimary,
+                createdAt: isUpdate ? (docSnap.data().createdAt || serverTimestamp()) : serverTimestamp(),
+                updatedAt: serverTimestamp()
+            };
+
+            await setDoc(docRef, cardData);
+            myCardId = currentUser.uid;
+            myCardData = cardData;
             window.location.hash = encodeURIComponent(usernameKey);
             renderCardData(cardData);
-            document.getElementById('identity-form').style.display = 'none';
-            document.getElementById('identity-result').style.display = 'block';
+            
+            const formEl = document.getElementById('identity-form');
+            const resEl = document.getElementById('identity-result');
+            if (formEl) formEl.style.display = 'none';
+            if (resEl) resEl.style.display = 'block';
         } catch (e) {
-            console.log(e);
-            alert("حدث خطأ أثناء حفظ البطاقة: " + e.message);
+            console.error("Error saving card:", e);
+            alert(`حدث خطأ أثناء حفظ البطاقة: ${e.message}`);
         }
     };
 
     function renderCardData(data) {
-      viewingCard = data;
+        if (!data) return;
+        viewingCard = data;
+        updateOwnershipUI();
 
-const isOwner =
-    currentUser &&
-    currentUser.uid === data.ownerUid;
-
-document.getElementById("edit-btn").style.display =
-    isOwner ? "block" : "none";
-
-document.getElementById("delete-btn").style.display =
-    isOwner ? "block" : "none";
-        if(data.accentColor) {
+        if (data.accentColor) {
             setCardColor(data.accentColor, data.primaryColor || data.accentColor, null);
         }
 
@@ -1174,94 +1199,110 @@ document.getElementById("delete-btn").style.display =
             'academy': '🏆 بطاقة فريق / أكاديمية'
         };
 
-        document.getElementById('id-fullname').value = data.fullName || '';
-        document.getElementById('id-type').value = data.type || '';
-        document.getElementById('id-username-link').value = data.usernameLink || '';
-        document.getElementById('id-bio').value = data.bio || '';
+        const fullNameEl = document.getElementById('id-fullname');
+        const typeEl = document.getElementById('id-type');
+        const usernameLinkEl = document.getElementById('id-username-link');
+        const bioEl = document.getElementById('id-bio');
+
+        if (fullNameEl) fullNameEl.value = data.fullName || '';
+        if (typeEl) typeEl.value = data.type || '';
+        if (usernameLinkEl) usernameLinkEl.value = data.usernameLink || '';
+        if (bioEl) bioEl.value = data.bio || '';
         
-        if(data.country) document.getElementById('id-country').value = data.country;
-        if(data.city) document.getElementById('id-city').value = data.city;
-        if(data.age) document.getElementById('id-age').value = data.age;
-        if(data.height) document.getElementById('id-height').value = data.height;
-        if(data.weight) document.getElementById('id-weight').value = data.weight;
+        if (data.country) { const el = document.getElementById('id-country'); if (el) el.value = data.country; }
+        if (data.city) { const el = document.getElementById('id-city'); if (el) el.value = data.city; }
+        if (data.age) { const el = document.getElementById('id-age'); if (el) el.value = data.age; }
+        if (data.height) { const el = document.getElementById('id-height'); if (el) el.value = data.height; }
+        if (data.weight) { const el = document.getElementById('id-weight'); if (el) el.value = data.weight; }
         
-        if(data.insta) document.getElementById('social-insta').value = data.insta;
-        if(data.snap) document.getElementById('social-snap').value = data.snap;
-        if(data.x) document.getElementById('social-x').value = data.x;
-        if(data.tiktok) document.getElementById('social-tiktok').value = data.tiktok;
-        if(data.whatsapp) document.getElementById('social-whatsapp').value = data.whatsapp;
+        if (data.insta) { const el = document.getElementById('social-insta'); if (el) el.value = data.insta; }
+        if (data.snap) { const el = document.getElementById('social-snap'); if (el) el.value = data.snap; }
+        if (data.x) { const el = document.getElementById('social-x'); if (el) el.value = data.x; }
+        if (data.tiktok) { const el = document.getElementById('social-tiktok'); if (el) el.value = data.tiktok; }
+        if (data.whatsapp) { const el = document.getElementById('social-whatsapp'); if (el) el.value = data.whatsapp; }
 
         updateDynamicFields(data);
 
-        document.getElementById('prev-name').innerText = data.fullName;
-        document.getElementById('prev-role').innerText = roleNames[data.type] || 'هوية رياضية';
+        const prevName = document.getElementById('prev-name');
+        const prevRole = document.getElementById('prev-role');
+        const prevLink = document.getElementById('prev-link');
+
+        if (prevName) prevName.innerText = data.fullName || '';
+        if (prevRole) prevRole.innerText = roleNames[data.type] || 'هوية رياضية';
         
-        const fullShareUrl = window.location.origin + window.location.pathname + '#' + encodeURIComponent(data.usernameLink);
-        document.getElementById('prev-link').innerText = fullShareUrl;
+        const fullShareUrl = `${window.location.origin}${window.location.pathname}#${encodeURIComponent(data.usernameLink || '')}`;
+        if (prevLink) prevLink.innerText = fullShareUrl;
 
         const bioBox = document.getElementById('prev-bio');
-        if(data.bio) {
-            bioBox.innerText = `"${data.bio}"`;
-            bioBox.style.display = 'block';
-        } else {
-            bioBox.style.display = 'none';
+        if (bioBox) {
+            if (data.bio) {
+                bioBox.innerText = `"${data.bio}"`;
+                bioBox.style.display = 'block';
+            } else {
+                bioBox.style.display = 'none';
+            }
         }
 
         let cardsHtml = '';
-        
         if (data.type === 'fan') {
-            if(data.dyn1) cardsHtml += createDiscordCard('⚽ النادي المفضّل', data.dyn1);
-            if(data.dyn2) cardsHtml += createDiscordCard('🌍 المنتخب المفضّل', data.dyn2);
-            if(data.dyn3) cardsHtml += createDiscordCard('⭐ اللاعب المفضّل', data.dyn3);
+            if (data.dyn1) cardsHtml += createDiscordCard('⚽ النادي المفضّل', data.dyn1);
+            if (data.dyn2) cardsHtml += createDiscordCard('🌍 المنتخب المفضّل', data.dyn2);
+            if (data.dyn3) cardsHtml += createDiscordCard('⭐ اللاعب المفضّل', data.dyn3);
         } else if (data.type === 'player') {
-            if(data.dyn1) cardsHtml += createDiscordCard('⚽ النادي / الفريق', data.dyn1);
-            if(data.dyn2) cardsHtml += createDiscordCard('📍 المركز', data.dyn2);
-            if(data.dyn3) cardsHtml += createDiscordCard('👕 رقم القميص', data.dyn3);
+            if (data.dyn1) cardsHtml += createDiscordCard('⚽ النادي / الفريق', data.dyn1);
+            if (data.dyn2) cardsHtml += createDiscordCard('📍 المركز', data.dyn2);
+            if (data.dyn3) cardsHtml += createDiscordCard('👕 رقم القميص', data.dyn3);
         } else if (data.type === 'athlete') {
-            if(data.dyn1) cardsHtml += createDiscordCard('🏃 الرياضة الممارسة', data.dyn1);
-            if(data.dyn2) cardsHtml += createDiscordCard('🏆 أبرز إنجاز', data.dyn2);
-            if(data.dyn3) cardsHtml += createDiscordCard('🎯 الهدف الرياضي', data.dyn3);
+            if (data.dyn1) cardsHtml += createDiscordCard('🏃 الرياضة الممارسة', data.dyn1);
+            if (data.dyn2) cardsHtml += createDiscordCard('🏆 أبرز إنجاز', data.dyn2);
+            if (data.dyn3) cardsHtml += createDiscordCard('🎯 الهدف الرياضي', data.dyn3);
         } else if (data.type === 'creator') {
-            if(data.dyn1) cardsHtml += createDiscordCard('🎥 نوع المحتوى', data.dyn1);
-            if(data.dyn2) cardsHtml += createDiscordCard('📱 المنصة الأساسية', data.dyn2);
-            if(data.dyn3) cardsHtml += createDiscordCard('💬 شعار المحتوى', data.dyn3);
+            if (data.dyn1) cardsHtml += createDiscordCard('🎥 نوع المحتوى', data.dyn1);
+            if (data.dyn2) cardsHtml += createDiscordCard('📱 المنصة الأساسية', data.dyn2);
+            if (data.dyn3) cardsHtml += createDiscordCard('💬 شعار المحتوى', data.dyn3);
         } else if (data.type === 'academy') {
-            if(data.dyn1) cardsHtml += createDiscordCard('🏆 اسم الفريق/الأكاديمية', data.dyn1);
-            if(data.dyn2) cardsHtml += createDiscordCard('📅 سنة التأسيس', data.dyn2);
-            if(data.dyn3) cardsHtml += createDiscordCard('⭐ البطولات والألقاب', data.dyn3);
+            if (data.dyn1) cardsHtml += createDiscordCard('🏆 اسم الفريق/الأكاديمية', data.dyn1);
+            if (data.dyn2) cardsHtml += createDiscordCard('📅 سنة التأسيس', data.dyn2);
+            if (data.dyn3) cardsHtml += createDiscordCard('⭐ البطولات والألقاب', data.dyn3);
         }
 
-        if(data.country || data.city) cardsHtml += createDiscordCard('📍 الموقع', `${data.country || ''} ${data.city ? '- ' + data.city : ''}`);
-        if(data.age) cardsHtml += createDiscordCard('🎂 العمر', `${data.age} سنة`);
-        if(data.height) cardsHtml += createDiscordCard('📏 الطول', `${data.height} سم`);
-        if(data.weight) cardsHtml += createDiscordCard('⚖️ الوزن', `${data.weight} كغ`);
+        if (data.country || data.city) cardsHtml += createDiscordCard('📍 الموقع', `${data.country || ''} ${data.city ? `- ${data.city}` : ''}`.trim());
+        if (data.age) cardsHtml += createDiscordCard('🎂 العمر', `${data.age} سنة`);
+        if (data.height) cardsHtml += createDiscordCard('📏 الطول', `${data.height} سم`);
+        if (data.weight) cardsHtml += createDiscordCard('⚖️ الوزن', `${data.weight} كغ`);
 
-        document.getElementById('prev-discord-cards').innerHTML = cardsHtml;
+        const discordCardsContainer = document.getElementById('prev-discord-cards');
+        if (discordCardsContainer) discordCardsContainer.innerHTML = cardsHtml;
 
         let socialsHtml = '';
-        if(data.insta) socialsHtml += `<a href="https://instagram.com/${data.insta.replace('@','')}" target="_blank" class="id-social-icon" title="Instagram">IG</a>`;
-        if(data.snap) socialsHtml += `<a href="https://snapchat.com/add/${data.snap}" target="_blank" class="id-social-icon" title="Snapchat">SC</a>`;
-        if(data.x) socialsHtml += `<a href="https://x.com/${data.x.replace('@','')}" target="_blank" class="id-social-icon" title="X">X</a>`;
-        if(data.tiktok) socialsHtml += `<a href="https://tiktok.com/@${data.tiktok.replace('@','')}" target="_blank" class="id-social-icon" title="TikTok">TT</a>`;
-        if(data.whatsapp) socialsHtml += `<a href="https://wa.me/${data.whatsapp}" target="_blank" class="id-social-icon" title="WhatsApp">WA</a>`;
+        if (data.insta) socialsHtml += `<a href="https://instagram.com/${data.insta.replace('@','')}" target="_blank" class="id-social-icon" title="Instagram">IG</a>`;
+        if (data.snap) socialsHtml += `<a href="https://snapchat.com/add/${data.snap}" target="_blank" class="id-social-icon" title="Snapchat">SC</a>`;
+        if (data.x) socialsHtml += `<a href="https://x.com/${data.x.replace('@','')}" target="_blank" class="id-social-icon" title="X">X</a>`;
+        if (data.tiktok) socialsHtml += `<a href="https://tiktok.com/@${data.tiktok.replace('@','')}" target="_blank" class="id-social-icon" title="TikTok">TT</a>`;
+        if (data.whatsapp) socialsHtml += `<a href="https://wa.me/${data.whatsapp}" target="_blank" class="id-social-icon" title="WhatsApp">WA</a>`;
         
-        document.getElementById('prev-socials').innerHTML = socialsHtml;
+        const prevSocials = document.getElementById('prev-socials');
+        if (prevSocials) prevSocials.innerHTML = socialsHtml;
     }
 
     window.copyCardLink = function() {
-        const usernameKey = document.getElementById('id-username-link').value.trim();
-        const fullShareUrl = window.location.origin + window.location.pathname + '#' + encodeURIComponent(usernameKey);
+        const usernameKeyEl = document.getElementById('id-username-link');
+        if (!usernameKeyEl) return;
+        const usernameKey = usernameKeyEl.value.trim();
+        const fullShareUrl = `${window.location.origin}${window.location.pathname}#${encodeURIComponent(usernameKey)}`;
         navigator.clipboard.writeText(fullShareUrl).then(() => {
             const statusEl = document.getElementById('copy-status');
-            statusEl.innerText = "✅ تم نسخ رابط بطاقتك بنجاح! يمكنك لصقه ونشره الآن.";
-            statusEl.style.display = 'block';
-            setTimeout(() => { statusEl.style.display = 'none'; }, 4000);
+            if (statusEl) {
+                statusEl.innerText = "✅ تم نسخ رابط بطاقتك بنجاح! يمكنك لصقه ونشره الآن.";
+                statusEl.style.display = 'block';
+                setTimeout(() => { statusEl.style.display = 'none'; }, 4000);
+            }
         });
     };
 
     function createDiscordCard(label, value) {
         return `
-            <div class="discord-info-call">
+            <div class="discord-info-card">
                 <span class="discord-card-label">${label}</span>
                 <span class="discord-card-value">${value}</span>
             </div>
@@ -1269,20 +1310,22 @@ document.getElementById("delete-btn").style.display =
     }
 
     window.editCurrentCard = function() {
-        document.getElementById('identity-form').style.display = 'block';
-        document.getElementById('identity-result').style.display = 'none';
+        const formEl = document.getElementById('identity-form');
+        const resEl = document.getElementById('identity-result');
+        if (formEl) formEl.style.display = 'block';
+        if (resEl) resEl.style.display = 'none';
     };
 
     window.deleteCurrentCard = async function() {
-        const usernameKey = document.getElementById('id-username-link').value.trim();
-        if (!usernameKey) return;
+        if (!currentUser) return;
         if (confirm("هل أنت متأكد من حذف هذه البطاقة؟")) {
             try {
-                await deleteDoc(doc(db, "identityCards", usernameKey));
+                await deleteDoc(doc(db, "identityCards", currentUser.uid));
                 window.location.hash = '';
                 myCardId = null;
-myCardData = null;
-                resetIdentityForm();
+                myCardData = null;
+                viewingCard = null;
+                window.resetIdentityForm();
             } catch (e) {
                 console.error("Error deleting card from Firestore:", e);
                 alert("حدث خطأ أثناء حذف البطاقة.");
@@ -1292,39 +1335,40 @@ myCardData = null;
 
     window.resetIdentityForm = function() {
         window.location.hash = '';
-        document.getElementById('identity-form').reset();
-        document.getElementById('dynamic-fields-container').innerHTML = '';
-        document.getElementById('extra-fields').style.display = 'none';
-        document.getElementById('identity-form').style.display = 'block';
-        document.getElementById('identity-result').style.display = 'none';
+        const formEl = document.getElementById('identity-form');
+        const dynContainer = document.getElementById('dynamic-fields-container');
+        const extraFields = document.getElementById('extra-fields');
+        const resEl = document.getElementById('identity-result');
 
+        if (formEl) formEl.reset();
+        if (dynContainer) dynContainer.innerHTML = '';
+        if (extraFields) extraFields.style.display = 'none';
+        if (formEl) formEl.style.display = 'block';
+        if (resEl) resEl.style.display = 'none';
+        viewingCard = null;
+        updateOwnershipUI();
     };
-window.googleLogin = async function () {
 
-    try {
+    window.googleLogin = async function () {
+        try {
+            await signInWithPopup(auth, provider);
+            const loginStatus = document.getElementById("login-status");
+            const loginBox = document.getElementById("login-box");
+            if (loginStatus) loginStatus.innerHTML = "✅ تم تسجيل الدخول بنجاح";
+            if (loginBox) loginBox.style.display = "none";
+        } catch (e) {
+            console.error(e);
+            alert(`${e.code}\n\n${e.message}`);
+        }
+    };
 
-        await signInWithPopup(auth, provider);
-
-        document.getElementById("login-status").innerHTML =
-            "✅ تم تسجيل الدخول بنجاح";
-
-        document.getElementById("login-box").style.display = "none";
-
-    } catch (e) {
-
-        console.error(e);
-
-        alert(e.code + "\n\n" + e.message);
-
+    const ua = navigator.userAgent;
+    if (ua.includes("Instagram")) {
+        const warningEl = document.getElementById("instagram-warning");
+        const boxEl = document.querySelector(".box");
+        if (warningEl) warningEl.style.display = "flex";
+        if (boxEl) boxEl.style.display = "none";
     }
-
-};
-const ua = navigator.userAgent;
-
-if (ua.includes("Instagram")) {
-    document.getElementById("instagram-warning").style.display = "flex";
-    document.querySelector(".box").style.display = "none";
-}
 </script>
 
 </body>
