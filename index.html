@@ -853,6 +853,9 @@ onAuthStateChanged(auth, (user) => {
 
     currentUser = null;
 
+    document.getElementById("login-box").style.display = "block";
+    document.getElementById("login-status").innerHTML = "";
+
 }
 });
     window.showTab = function(tabId) {
