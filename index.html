@@ -1019,11 +1019,10 @@
             renderCardData(cardData);
             document.getElementById('identity-form').style.display = 'none';
             document.getElementById('identity-result').style.display = 'block';
-        } catch (e) {
-            console.error("Error saving card to Firestore:", e);
-            alert("حدث خطأ أثناء حفظ البطاقة، يرجى المحاولة مرة أخرى.");
-        }
-    };
+catch (e) {
+    console.log(e);
+    alert(e.message);
+}
 
     function renderCardData(data) {
         if(data.accentColor) {
