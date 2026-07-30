@@ -148,8 +148,9 @@
             margin-bottom: 22px; 
             font-size: 0.88rem; 
             color: #e2e8f0; 
-            border: 1px solid rgba(255, 255, 255, 0.1);
             border-right: 4px solid var(--card-accent); 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-right-width: 4px;
         }
 
         .notice-box {
@@ -244,9 +245,10 @@
             display: flex; 
             justify-content: space-between; 
             align-items: center;
+            border-right: 4px solid var(--card-accent); 
             color: #ffffff;
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-right: 4px solid var(--card-accent); 
+            border-right-width: 4px;
         }
 
         .footer { 
@@ -513,11 +515,11 @@
 
 <div class="box">
     <div class="tabs">
-        <button class="tab-btn active" onclick="showTab('about', event)">منصتنا</button>
-        <button class="tab-btn" onclick="showTab('prediction', event)">سجل توقعك</button>
-        <button class="tab-btn" onclick="showTab('leaderboard', event)">الجدول</button>
-        <button class="tab-btn" onclick="showTab('identity', event)">الهوية الرياضية</button>
-        <button class="tab-btn" onclick="showTab('kickoff', event)">
+        <button class="tab-btn active" onclick="showTab('about')">منصتنا</button>
+        <button class="tab-btn" onclick="showTab('prediction')">سجل توقعك</button>
+        <button class="tab-btn" onclick="showTab('leaderboard')">الجدول</button>
+        <button class="tab-btn" onclick="showTab('identity')">الهوية الرياضية</button>
+        <button class="tab-btn" onclick="showTab('kickoff')">
             Kick off
             <span class="coming-soon-badge">soon</span>
         </button>
@@ -540,7 +542,7 @@
             
             <div class="prize-section">
                 <div><b>المركز الأول (على مستوى الموسم):</b></div>
-                <div style="margin-top: 4px;">10$ ( gift card من اختيارك ) + جوائز مميزة من <b>لعبة سمر</b>.</div>
+                <div style="margin-top: 4px;">10$ ( gift card من اختيارك ) + جوائز مميزة من لعبة <b>Samar</b>.</div>
             </div>
 
             <div class="prize-section">
@@ -784,13 +786,10 @@
     import { db } from './firebase-config.js';
     import { doc, setDoc, getDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-    window.showTab = function(tabId, event) {
+    window.showTab = function(tabId) {
         document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        
-        const targetContent = document.getElementById(tabId);
-        if (targetContent) targetContent.classList.add('active');
-        
+        document.getElementById(tabId).classList.add('active');
         if (event && event.currentTarget) {
             event.currentTarget.classList.add('active');
         }
@@ -825,17 +824,17 @@
         });
     }
 
-    const form = document.getElementById("my-form");
+    var form = document.getElementById("my-form");
     if (form) {
         form.addEventListener("submit", function(event) {
             event.preventDefault();
-            const status = document.getElementById("my-form-status");
+            var status = document.getElementById("my-form-status");
             
-            const nameVal = document.getElementById("name-input").value.trim();
-            const instaVal = document.getElementById("insta-input").value.trim();
-            const predVal = document.getElementById("prediction-select").value;
-            const playerVal = document.getElementById("player-input").value.trim();
-            const goalsVal = document.getElementById("goals-select").value;
+            var nameVal = document.getElementById("name-input").value.trim();
+            var instaVal = document.getElementById("insta-input").value.trim();
+            var predVal = document.getElementById("prediction-select").value;
+            var playerVal = document.getElementById("player-input").value.trim();
+            var goalsVal = document.getElementById("goals-select").value;
 
             if (!nameVal || !instaVal || !predVal || !playerVal || !goalsVal) {
                 status.innerHTML = "❌ الرجاء تعبئة كل البيانات قبل الارسال";
@@ -843,7 +842,7 @@
                 return;
             }
 
-            const data = new FormData(form);
+            var data = new FormData(form);
             status.innerHTML = "⏳ جاري إرسال توقعك...";
             
             fetch(form.action, {
@@ -912,37 +911,37 @@
         if (cardType === 'fan') {
             html = `
                 <div style="font-size: 0.8rem; font-weight: 700; color: #fff; margin-bottom: 6px;">⚽ بيانات بطاقة المشجع:</div>
-                <input type="text" id="dyn-club" placeholder="النادي المفضّل (مثال: النادي العربي)" value="${savedValues.dyn1 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
-                <input type="text" id="dyn-national" placeholder="المنتخب المفضّل" value="${savedValues.dyn2 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
-                <input type="text" id="dyn-favplayer" placeholder="اللاعب المفضّل" value="${savedValues.dyn3 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+                <input type="text" id="dyn-1" placeholder="النادي المفضّل (مثال: النادي العربي)" value="${savedValues.dyn1 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+                <input type="text" id="dyn-2" placeholder="المنتخب المفضّل" value="${savedValues.dyn2 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+                <input type="text" id="dyn-3" placeholder="اللاعب المفضّل" value="${savedValues.dyn3 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
             `;
         } else if (cardType === 'player') {
             html = `
                 <div style="font-size: 0.8rem; font-weight: 700; color: #fff; margin-bottom: 6px;">⚽ بيانات بطاقة اللاعب:</div>
-                <input type="text" id="dyn-club" placeholder="النادي الحالي / الفريق" value="${savedValues.dyn1 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
-                <input type="text" id="dyn-position" placeholder="المركز (مثال: مهاجم، وسط، دفاع)" value="${savedValues.dyn2 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
-                <input type="text" id="dyn-number" placeholder="رقم القميص" value="${savedValues.dyn3 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+                <input type="text" id="dyn-1" placeholder="النادي الحالي / الفريق" value="${savedValues.dyn1 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+                <input type="text" id="dyn-2" placeholder="المركز (مثال: مهاجم، وسط، دفاع)" value="${savedValues.dyn2 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+                <input type="text" id="dyn-3" placeholder="رقم القميص" value="${savedValues.dyn3 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
             `;
         } else if (cardType === 'athlete') {
             html = `
                 <div style="font-size: 0.8rem; font-weight: 700; color: #fff; margin-bottom: 6px;">🏃 بيانات بطاقة الرياضي:</div>
-                <input type="text" id="dyn-sport" placeholder="الرياضة الممارسة (مثال: كرة قدم، جري، لياقة)" value="${savedValues.dyn1 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
-                <input type="text" id="dyn-ach" placeholder="أبرز إنجاز رياضي" value="${savedValues.dyn2 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
-                <input type="text" id="dyn-goal" placeholder="الهدف الرياضي الحالي" value="${savedValues.dyn3 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+                <input type="text" id="dyn-1" placeholder="الرياضة الممارسة (مثال: كرة قدم، جري، لياقة)" value="${savedValues.dyn1 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+                <input type="text" id="dyn-2" placeholder="أبرز إنجاز رياضي" value="${savedValues.dyn2 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+                <input type="text" id="dyn-3" placeholder="الهدف الرياضي الحالي" value="${savedValues.dyn3 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
             `;
         } else if (cardType === 'creator') {
             html = `
                 <div style="font-size: 0.8rem; font-weight: 700; color: #fff; margin-bottom: 6px;">🎥 بيانات صانع المحتوى:</div>
-                <input type="text" id="dyn-content-type" placeholder="نوع المحتوى (مثال: تحليل كروي، تصميم، جمنج)" value="${savedValues.dyn1 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
-                <input type="text" id="dyn-platform" placeholder="المنصة الأساسية (انستغرام، يوتيوب، تيك توك)" value="${savedValues.dyn2 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
-                <input type="text" id="dyn-slogan" placeholder="شعارك أو رسالتك بالمحتوى" value="${savedValues.dyn3 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+                <input type="text" id="dyn-1" placeholder="نوع المحتوى (مثال: تحليل كروي، تصميم، جمنج)" value="${savedValues.dyn1 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+                <input type="text" id="dyn-2" placeholder="المنصة الأساسية (انستغرام، يوتيوب، تيك توك)" value="${savedValues.dyn2 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+                <input type="text" id="dyn-3" placeholder="شعارك أو رسالتك بالمحتوى" value="${savedValues.dyn3 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
             `;
         } else if (cardType === 'academy') {
             html = `
                 <div style="font-size: 0.8rem; font-weight: 700; color: #fff; margin-bottom: 6px;">🏆 بيانات الفريق / الأكاديمية:</div>
-                <input type="text" id="dyn-team-name" placeholder="اسم الفريق أو الأكاديمية" value="${savedValues.dyn1 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
-                <input type="text" id="dyn-founded" placeholder="سنة التأسيس" value="${savedValues.dyn2 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
-                <input type="text" id="dyn-trophies" placeholder="أبرز البطولات أو الألقاب" value="${savedValues.dyn3 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+                <input type="text" id="dyn-1" placeholder="اسم الفريق أو الأكاديمية" value="${savedValues.dyn1 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+                <input type="text" id="dyn-2" placeholder="سنة التأسيس" value="${savedValues.dyn2 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
+                <input type="text" id="dyn-3" placeholder="أبرز البطولات أو الألقاب" value="${savedValues.dyn3 || ''}" style="margin: 4px 0; font-size: 0.8rem; padding: 10px;">
             `;
         }
         container.innerHTML = html;
@@ -992,9 +991,9 @@
             height: document.getElementById('id-height')?.value.trim() || '',
             weight: document.getElementById('id-weight')?.value.trim() || '',
             
-            dyn1: document.getElementById('dyn-club')?.value.trim() || document.getElementById('dyn-sport')?.value.trim() || document.getElementById('dyn-content-type')?.value.trim() || document.getElementById('dyn-team-name')?.value.trim() || '',
-            dyn2: document.getElementById('dyn-national')?.value.trim() || document.getElementById('dyn-position')?.value.trim() || document.getElementById('dyn-ach')?.value.trim() || document.getElementById('dyn-platform')?.value.trim() || document.getElementById('dyn-founded')?.value.trim() || '',
-            dyn3: document.getElementById('dyn-favplayer')?.value.trim() || document.getElementById('dyn-number')?.value.trim() || document.getElementById('dyn-goal')?.value.trim() || document.getElementById('dyn-slogan')?.value.trim() || document.getElementById('dyn-trophies')?.value.trim() || '',
+            dyn1: document.getElementById('dyn-1')?.value.trim() || '',
+            dyn2: document.getElementById('dyn-2')?.value.trim() || '',
+            dyn3: document.getElementById('dyn-3')?.value.trim() || '',
 
             insta: document.getElementById('social-insta').value.trim(),
             snap: document.getElementById('social-snap').value.trim(),
@@ -1013,7 +1012,7 @@
             document.getElementById('identity-result').style.display = 'block';
         } catch (e) {
             console.log(e);
-            alert(e.message);
+            alert("حدث خطأ أثناء حفظ البطاقة: " + e.message);
         }
     };
 
@@ -1117,7 +1116,7 @@
 
     function createDiscordCard(label, value) {
         return `
-            <div class="discord-info-card">
+            <div class="discord-info-call">
                 <span class="discord-card-label">${label}</span>
                 <span class="discord-card-value">${value}</span>
             </div>
