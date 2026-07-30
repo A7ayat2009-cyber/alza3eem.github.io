@@ -317,23 +317,8 @@
     </style>
 </head>
 <body>
-<div id="instagram-warning" style="display:none;position:fixed;inset:0;background:#0c1629;z-index:99999;padding:30px;color:white;font-family:Cairo,sans-serif;justify-content:center;align-items:center;text-align:center;">
-    <div style="max-width:420px;background:#172541;padding:25px;border-radius:22px;border:2px solid #10b981;">
-        <h2>🔐 فتح المنصة</h2>
-        <p style="line-height:1.8">
-            لضمان عمل جميع خدمات المنصة بالشكل الصحيح، يرجى فتح الموقع باستخدام المتصفح الخارجي بدلاً من متصفح إنستغرام.
-        </p>
-        <div style="background:#10b98122;padding:15px;border-radius:15px;margin:20px 0;">
-            اضغط على <b>•••</b><br><br>
-            ثم اختر<br><br>
-            <b>Open in external browser</b>
-        </div>
-        <p style="color:#94a3b8;font-size:13px">
-            لأفضل تجربة استخدام، افتح المنصة في المتصفح الخارجي. عندها ستتوفر جميع المزايا والوظائف بكامل كفاءتها
-        </p>
-    </div>
-</div>
 
+    
 <div class="box">
     <div class="tabs">
         <button class="tab-btn active" onclick="showTab('about', event)">منصتنا</button>
@@ -577,13 +562,7 @@
         });
     }
 
-    const ua = navigator.userAgent;
-    if (ua.includes("Instagram")) {
-        const warningEl = document.getElementById("instagram-warning");
-        const boxEl = document.querySelector(".box");
-        if (warningEl) warningEl.style.display = "flex";
-        if (boxEl) boxEl.style.display = "none";
-    }
+    
 </script>
 
 </body>
