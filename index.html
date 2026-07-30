@@ -1102,10 +1102,7 @@ async function loadMyCard() {
             alert('الرجاء تعبئة الحقول الأساسية المطلوبة (*)');
             return;
         }
-if (myCardId) {
-    alert("لديك بطاقة رياضية بالفعل، يمكنك تعديلها بدلاً من إنشاء بطاقة جديدة.");
-    return;
-}
+const editing = myCardId !== null;
         const usernameKey = usernameLinkEl.value.trim();
 const exists = await getDoc(doc(db, "identityCards", usernameKey));
 
@@ -1139,7 +1136,10 @@ if (exists.exists()) {
         };
 
         try {
+            
             await setDoc(doc(db, "identityCards", usernameKey), cardData);
+            myCardId = usernameKey;
+myCardData = cardData;
             window.location.hash = encodeURIComponent(usernameKey);
             renderCardData(cardData);
             document.getElementById('identity-form').style.display = 'none';
@@ -1280,6 +1280,8 @@ document.getElementById("delete-btn").style.display =
             try {
                 await deleteDoc(doc(db, "identityCards", usernameKey));
                 window.location.hash = '';
+                myCardId = null;
+myCardData = null;
                 resetIdentityForm();
             } catch (e) {
                 console.error("Error deleting card from Firestore:", e);
