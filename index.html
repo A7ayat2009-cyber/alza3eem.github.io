@@ -870,7 +870,7 @@ if (viewingCard) {
     if (user) {
 
     currentUser = user;
-await loadMyCard();
+
     document.getElementById("login-status").innerHTML =
         "✅ " + user.displayName;
 
@@ -1000,7 +1000,7 @@ await loadMyCard();
         const extra = document.getElementById('extra-fields');
         extra.style.display = (extra.style.display === 'block') ? 'none' : 'block';
     };
-async function loadMyCard() {
+
 
     if (!currentUser) return;
 
