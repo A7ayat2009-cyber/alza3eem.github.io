@@ -1212,7 +1212,9 @@ window.googleLogin = async function () {
 
     } catch (e) {
 
-        alert(e.message);
+        console.error(e);
+
+        alert(e.code + "\n\n" + e.message);
 
     }
 
