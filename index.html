@@ -767,9 +767,24 @@
             </div>
             
             <div style="display: flex; gap: 10px; margin-top: 10px;">
-                <button type="button" class="action-btn" onclick="editCurrentCard()" style="background: var(--card-accent); color: #000; margin-top: 0;">تعديل البطاقة</button>
-                <button type="button" class="action-btn" onclick="deleteCurrentCard()" style="background: #ef4444; margin-top: 0;">حذف البطاقة</button>
-            </div>
+    <button
+        id="edit-btn"
+        type="button"
+        class="action-btn"
+        onclick="editCurrentCard()"
+        style="background: var(--card-accent); color: #000; margin-top: 0;">
+        تعديل البطاقة
+    </button>
+
+    <button
+        id="delete-btn"
+        type="button"
+        class="action-btn"
+        onclick="deleteCurrentCard()"
+        style="background: #ef4444; margin-top: 0;">
+        حذف البطاقة
+    </button>
+</div>
             <button type="button" class="action-btn" onclick="resetIdentityForm()" style="background: rgba(255,255,255,0.1); margin-top: 10px;">إنشاء بطاقة جديدة</button>
         </div>
 
@@ -836,10 +851,22 @@ import {
 const provider = new GoogleAuthProvider();
 
 let currentUser = null;
+let viewingCard = null;
 
 onAuthStateChanged(auth, (user) => {
     currentUser = user;
+if (viewingCard) {
 
+    const isOwner =
+        user &&
+        user.uid === viewingCard.ownerUid;
+
+    document.getElementById("edit-btn").style.display =
+        isOwner ? "block" : "none";
+
+    document.getElementById("delete-btn").style.display =
+        isOwner ? "block" : "none";
+}
     if (user) {
 
     currentUser = user;
@@ -1093,6 +1120,17 @@ onAuthStateChanged(auth, (user) => {
     };
 
     function renderCardData(data) {
+      viewingCard = data;
+
+const isOwner =
+    currentUser &&
+    currentUser.uid === data.ownerUid;
+
+document.getElementById("edit-btn").style.display =
+    isOwner ? "block" : "none";
+
+document.getElementById("delete-btn").style.display =
+    isOwner ? "block" : "none";
         if(data.accentColor) {
             setCardColor(data.accentColor, data.primaryColor || data.accentColor, null);
         }
