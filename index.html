@@ -8,10 +8,11 @@
     <style>
         :root {
             --primary: #008000;
+            --primary-dark: #005500;
             --card-accent: #10b981;
             --card-glow: rgba(16, 185, 129, 0.25);
             --bg-base: #0c1629;
-            --glass-bg: rgba(23, 37, 65, 0.82);
+            --glass-bg: rgba(23, 37, 65, 0.88);
             --glass-border: rgba(255, 255, 255, 0.15);
             --text-light: #f8fafc;
             --text-dim: #94a3b8;
@@ -26,138 +27,338 @@
             font-family: 'Cairo', sans-serif; 
             background: var(--bg-base);
             background-image: 
-                radial-gradient(circle at 15% 15%, var(--card-glow) 0%, transparent 45%),
-                radial-gradient(circle at 85% 85%, rgba(16, 185, 129, 0.12) 0%, transparent 45%),
-                linear-gradient(135deg, #09111e 0%, #172541 100%);
+                radial-gradient(circle at 10% 10%, rgba(0, 128, 0, 0.18) 0%, transparent 45%),
+                radial-gradient(circle at 90% 90%, rgba(16, 185, 129, 0.15) 0%, transparent 45%),
+                linear-gradient(135deg, #070d18 0%, #172541 100%);
             background-attachment: fixed;
             min-height: 100vh;
             margin: 0;
-            padding: 20px; 
-            display: flex; 
-            justify-content: center; 
+            padding: 0;
+            display: flex;
+            flex-direction: column;
             align-items: center;
             overflow-x: hidden;
             color: var(--text-light);
+        }
+
+        /* Modern Sticky Header with Glassmorphism & Micro-interactions */
+        .sticky-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 72px;
+            background: rgba(12, 22, 41, 0.85);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 28px;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-logo {
+            display: inline-flex;
+            align-items: center;
+            cursor: default;
+            text-decoration: none;
+        }
+
+        .header-logo img {
+            height: 45px;
+            width: auto;
+            display: block;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .header-logo:hover img {
+            transform: scale(1.05);
+        }
+
+        .hamburger-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            color: var(--text-light);
+            font-size: 1.3rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .hamburger-btn:hover {
+            background: rgba(16, 185, 129, 0.18);
+            border-color: var(--card-accent);
+            color: var(--card-accent);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px var(--card-glow);
+        }
+
+        .hamburger-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Side Drawer Overlay & Panel */
+        .drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 10, 20, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1100;
+        }
+
+        .drawer-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .side-drawer {
+            position: fixed;
+            top: 0;
+            right: -340px;
+            width: 320px;
+            height: 100%;
+            background: linear-gradient(180deg, #0e1930 0%, #0a1224 100%);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: -15px 0 40px rgba(0, 0, 0, 0.7);
+            z-index: 1200;
+            display: flex;
+            flex-direction: column;
+            transition: right 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 28px 22px;
+        }
+
+        .side-drawer.open {
+            right: 0;
+        }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .drawer-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.3px;
+        }
+
+        .close-drawer {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            color: var(--text-dim);
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.25s ease;
+        }
+
+        .close-drawer:hover {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border-color: rgba(239, 68, 68, 0.4);
+            transform: rotate(90deg);
+        }
+
+        .drawer-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .drawer-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 15px 18px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: var(--text-dim);
+            border-radius: 16px;
+            cursor: pointer;
+            font-weight: 700;
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .drawer-item span.icon {
+            font-size: 1.25rem;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+            transition: transform 0.3s ease;
+        }
+
+        .drawer-item:hover {
+            background: rgba(255, 255, 255, 0.07);
+            color: #ffffff;
+            transform: translateX(-6px);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .drawer-item:hover span.icon {
+            transform: scale(1.15);
+        }
+
+        .drawer-item.active {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: #ffffff;
+            box-shadow: 0 6px 20px var(--card-glow);
+            border-color: rgba(16, 185, 129, 0.4);
+        }
+
+        .drawer-item .coming-soon-badge-drawer {
+            margin-right: auto;
+            font-size: 0.65rem;
+            background: rgba(239, 68, 68, 0.25);
+            color: #fca5a5;
+            padding: 3px 9px;
+            border-radius: 8px;
+            font-weight: 800;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .drawer-footer-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px;
+            margin-top: auto;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 16px;
+            color: #34d399;
+            font-weight: 800;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .drawer-footer-link:hover {
+            background: rgba(16, 185, 129, 0.2);
+            box-shadow: 0 6px 22px var(--card-glow);
+            transform: translateY(-2px);
+        }
+
+        /* Main Wrapper & Container Layout */
+        .main-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 110px 20px 50px 20px;
+            min-height: 100vh;
         }
 
         .box { 
             width: 100%; 
             max-width: 480px; 
             background: var(--glass-bg); 
-            padding: 32px 20px; 
-            border-radius: 32px; 
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 
+            padding: 36px 24px; 
+            border-radius: 36px; 
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.7), 
                         0 0 0 1px var(--glass-border) inset; 
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
             position: relative;
-            animation: fadeIn 0.5s ease-out;
+            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(20px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         .tabs { 
-            display: flex; 
-            gap: 6px; 
-            margin-bottom: 24px; 
-            background: rgba(255, 255, 255, 0.06);
-            padding: 5px;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            flex-wrap: wrap;
-        }
-
-        .tab-btn { 
-            flex: 1; 
-            min-width: 70px;
-            padding: 10px 4px; 
-            border: none; 
-            background: transparent; 
-            color: var(--text-dim);
-            border-radius: 12px; 
-            cursor: pointer; 
-            font-weight: 700; 
-            font-family: 'Cairo', sans-serif;
-            font-size: 0.75rem;
-            transition: all 0.3s ease;
-            position: relative;
-            text-decoration: none;
-            text-align: center;
-        }
-
-        .tab-btn.active { 
-            background: linear-gradient(135deg, var(--primary) 0%, #004400 100%); 
-            color: #ffffff; 
-            box-shadow: 0 4px 15px var(--card-glow);
-        }
-
-        .coming-soon-badge {
-            font-size: 0.55rem;
-            color: #ef4444;
-            font-weight: 900;
-            display: block;
-            line-height: 1;
-            margin-top: 2px;
-            letter-spacing: 0.5px;
-        }
-
-        .tab-btn.active .coming-soon-badge {
-            color: #fca5a5;
+            display: none; 
         }
 
         .content { display: none; }
-        .content.active { display: block; animation: tabFade 0.3s ease-out; }
+        .content.active { display: block; animation: tabFade 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
 
         @keyframes tabFade {
-            from { opacity: 0; transform: translateY(8px); }
+            from { opacity: 0; transform: translateY(12px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .title { 
             text-align: center; 
-            font-size: 1.8rem; 
-            margin-bottom: 20px; 
+            font-size: 1.9rem; 
+            margin-bottom: 22px; 
             font-weight: 900; 
             letter-spacing: -0.5px;
-            background: linear-gradient(180deg, #ffffff 30%, #86efac 100%);
+            background: linear-gradient(180deg, #ffffff 20%, #86efac 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 10px rgba(16, 185, 129, 0.2));
         }
 
         .coming-soon-container {
             text-align: center;
-            padding: 20px 10px;
+            padding: 24px 10px;
         }
 
         .pulse-icon {
-            font-size: 3.5rem;
-            margin-bottom: 15px;
-            animation: bounce 2s infinite;
+            font-size: 4rem;
+            margin-bottom: 18px;
+            animation: bounce 2s infinite ease-in-out;
+            filter: drop-shadow(0 6px 15px rgba(0,0,0,0.3));
         }
 
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-12px); }
         }
 
         .rules-box { 
-            background: rgba(23, 37, 65, 0.65); 
-            padding: 20px; 
-            border-radius: 20px; 
-            margin-bottom: 22px; 
-            font-size: 0.88rem; 
+            background: rgba(18, 30, 53, 0.75); 
+            padding: 22px; 
+            border-radius: 22px; 
+            margin-bottom: 24px; 
+            font-size: 0.9rem; 
             color: #e2e8f0; 
             border-right: 4px solid var(--card-accent); 
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-right-width: 4px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .rules-box:hover {
+            border-color: rgba(255, 255, 255, 0.18);
+            border-right-color: var(--card-accent);
         }
 
         .prize-section { 
-            margin-bottom: 12px; 
-            padding-bottom: 10px; 
+            margin-bottom: 14px; 
+            padding-bottom: 12px; 
             border-bottom: 1px dashed rgba(255, 255, 255, 0.12); 
         }
 
@@ -168,24 +369,34 @@
         }
 
         .draw-list { 
-            margin: 6px 0 0 0; 
-            padding-right: 18px; 
-            line-height: 1.6; 
+            margin: 8px 0 0 0; 
+            padding-right: 20px; 
+            line-height: 1.7; 
             color: #94a3b8;
+        }
+
+        .draw-list li {
+            margin-bottom: 4px;
+            transition: color 0.2s ease;
+        }
+
+        .draw-list li:hover {
+            color: #e2e8f0;
         }
 
         input, select, textarea { 
             width: 100%; 
-            padding: 14px 16px; 
-            margin: 8px 0; 
+            padding: 15px 18px; 
+            margin: 9px 0; 
             border: 1px solid rgba(255, 255, 255, 0.12); 
-            border-radius: 14px; 
+            border-radius: 16px; 
             box-sizing: border-box; 
             font-family: 'Cairo', sans-serif;
-            font-size: 0.9rem;
-            background: rgba(10, 18, 35, 0.7);
+            font-size: 0.92rem;
+            background: rgba(10, 18, 35, 0.75);
             color: #ffffff;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
         }
 
         input::placeholder, textarea::placeholder {
@@ -193,44 +404,66 @@
         }
 
         select option {
-            background: #172541;
+            background: #101c33;
             color: #ffffff;
+            padding: 12px;
         }
 
         input:focus, select:focus, textarea:focus {
             outline: none;
             border-color: var(--card-accent);
             background: rgba(10, 18, 35, 0.95);
-            box-shadow: 0 0 0 3px var(--card-glow);
+            box-shadow: 0 0 0 4px var(--card-glow), inset 0 2px 4px rgba(0,0,0,0.1);
         }
 
         button[type="submit"] { 
             width: 100%; 
-            padding: 15px; 
-            background: linear-gradient(135deg, var(--primary) 0%, #004400 100%); 
+            padding: 16px; 
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); 
             color: white; 
             border: none; 
-            border-radius: 14px; 
+            border-radius: 16px; 
             font-weight: 800; 
             font-family: 'Cairo', sans-serif;
-            font-size: 1rem;
+            font-size: 1.05rem;
             cursor: pointer; 
-            margin-top: 14px; 
-            transition: all 0.3s ease;
-            box-shadow: 0 6px 20px var(--card-glow);
+            margin-top: 16px; 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 25px var(--card-glow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        button[type="submit"]::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        button[type="submit"]:hover::after {
+            left: 100%;
         }
 
         button[type="submit"]:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px var(--card-glow);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px var(--card-glow);
             filter: brightness(1.1);
         }
 
+        button[type="submit"]:active {
+            transform: translateY(-1px);
+        }
+
         .rank-card { 
-            background: rgba(10, 18, 35, 0.6); 
-            padding: 12px 16px; 
-            border-radius: 14px; 
-            margin-bottom: 10px; 
+            background: rgba(12, 22, 41, 0.7); 
+            padding: 14px 18px; 
+            border-radius: 16px; 
+            margin-bottom: 12px; 
             display: flex; 
             justify-content: space-between; 
             align-items: center;
@@ -238,24 +471,34 @@
             color: #ffffff;
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-right-width: 4px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .rank-card:hover {
+            transform: translateX(-4px);
+            background: rgba(18, 30, 53, 0.9);
+            border-color: rgba(255, 255, 255, 0.15);
+            border-right-color: var(--card-accent);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
         }
 
         .footer { 
             text-align: center; 
-            margin-top: 26px; 
-            padding-top: 18px; 
+            margin-top: 30px; 
+            padding-top: 20px; 
             border-top: 1px solid rgba(255, 255, 255, 0.08); 
             color: var(--text-dim); 
-            font-size: 0.82rem; 
+            font-size: 0.85rem; 
             font-weight: 600;
         }
         
         .sponsor-container { 
-            margin-top: 12px; 
+            margin-top: 14px; 
             display: flex; 
             flex-direction: column; 
             align-items: center; 
-            gap: 6px; 
+            gap: 8px; 
             width: 100%;
         }
 
@@ -263,208 +506,336 @@
             display: flex; 
             justify-content: center; 
             align-items: center; 
-            gap: 12px; 
+            gap: 14px; 
             width: 100%; 
             max-width: 100%;
-            margin-top: 4px;
+            margin-top: 6px;
             overflow: hidden;
         }
 
         .sponsor-logo-uniform { 
-            width: 70px; 
-            height: 70px; 
+            width: 75px; 
+            height: 75px; 
             object-fit: contain;
             display: block;
             flex-shrink: 0;
-            transition: transform 0.3s ease;
-            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4));
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
+        }
+
+        .sponsor-logo-uniform:hover {
+            transform: scale(1.1);
         }
 
         #halha-logo {
-            width: 95px;
-            height: 95px;
+            width: 100px;
+            height: 100px;
             object-fit: contain;
             display: block;
             flex-shrink: 0;
-            transition: transform 0.3s ease;
-            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4));
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
+        }
+
+        #halha-logo:hover {
+            transform: scale(1.08);
         }
 
         #samar-logo {
-            width: 110px;
-            height: 110px;
+            width: 115px;
+            height: 115px;
             object-fit: contain;
             display: block;
             flex-shrink: 0;
             transform: scale(1.5);
-            margin: 0 5px;
-            transition: transform 0.3s ease;
-            filter: drop-shadow(0 6px 15px rgba(0,0,0,0.6));
+            margin: 0 6px;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            filter: drop-shadow(0 6px 18px rgba(0,0,0,0.5));
+        }
+
+        #samar-logo:hover {
+            transform: scale(1.62);
+        }
+
+        /* Match details enhanced card styling */
+        .match-details-box {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.85) 0%, rgba(15, 23, 42, 0.9) 100%);
+            color: #ffffff;
+            padding: 18px;
+            border-radius: 18px;
+            margin-bottom: 22px;
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(10px);
+        }
+
+        .match-details-box h3 {
+            margin-top: 0;
+            color: #38bdf8;
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+        }
+
+        .notice-box {
+            background: rgba(15, 23, 42, 0.6);
+            padding: 16px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
         }
     </style>
 </head>
 <body>
 
-    
-<div class="box">
-    <div class="tabs">
-        <button class="tab-btn active" onclick="showTab('about', event)">منصتنا</button>
-        <button class="tab-btn" onclick="showTab('prediction', event)">سجل توقعك</button>
-        <button class="tab-btn" onclick="showTab('leaderboard', event)">الجدول</button>
-        <a href="https://alza3eemkw.github.io/sport-id/" class="tab-btn">Sport ID</a>
-        <button class="tab-btn" onclick="showTab('kickoff', event)">
-            Kick off
-            <span class="coming-soon-badge">soon</span>
+    <!-- Sticky Header (Logo non-clickable / decorative only as requested) -->
+    <header class="sticky-header">
+        <div class="header-logo">
+            <img src="https://i.ibb.co/Q3417SNF/972-CDF93-4-F40-4-B7-D-82-A1-FCC9-BB608-B51.png" alt="Alza3eem Logo">
+        </div>
+        <button class="hamburger-btn" id="hamburgerToggle" aria-label="فتح القائمة">
+            ☰
         </button>
+    </header>
+
+    <!-- Side Drawer & Overlay -->
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="side-drawer" id="sideDrawer">
+        <div class="drawer-header">
+            <span class="drawer-title">قائمة المنصة</span>
+            <button class="close-drawer" id="closeDrawer" aria-label="إغلاق القائمة">✕</button>
+        </div>
+        <nav class="drawer-nav">
+            <a href="#" class="drawer-item active" data-tab="about" onclick="switchTab('about', event)">
+                <span class="icon">🏠</span>
+                <span>منصتنا</span>
+            </a>
+            <a href="#" class="drawer-item" data-tab="prediction" onclick="switchTab('prediction', event)">
+                <span class="icon">🎯</span>
+                <span>سجل توقعك</span>
+            </a>
+            <a href="#" class="drawer-item" data-tab="leaderboard" onclick="switchTab('leaderboard', event)">
+                <span class="icon">📊</span>
+                <span>الجدول</span>
+            </a>
+            <a href="https://alza3eemkw.github.io/sport-id/" class="drawer-item">
+                <span class="icon">🪪</span>
+                <span>Sport ID</span>
+            </a>
+            <a href="#" class="drawer-item" data-tab="kickoff" onclick="switchTab('kickoff', event)">
+                <span class="icon">⏳</span>
+                <span>Kick off</span>
+                <span class="coming-soon-badge-drawer">soon</span>
+            </a>
+        </nav>
+        <a href="https://instagram.com/alza3eem__kw" target="_blank" class="drawer-footer-link">
+            <span>📸</span>
+            <span>تواصل معنا</span>
+        </a>
     </div>
 
-    <div id="about" class="content active">
-        <div class="title">منصة الزعيم الرياضية ⚽️</div>
-
-        <div class="rules-box" style="text-align: center; line-height: 1.7; font-size: 0.95rem;">
-          منصة رياضية تفاعلية تقدم محتوى متخصص لجماهير النادي العربي، وتوفر خدمات رياضية مبتكرة تخدم اللاعبين، الفرق، الجماهير، وصنّاع المحتوى الرياضي.
-        </div>
-        
-        <div class="rules-box">
-            <h3 style="margin-top: 0; margin-bottom: 12px; font-weight: 700;">🏆 نظام الجوائز والبروتوكول:</h3>
-            
-            <div class="prize-section">
-                <div><b>المركز الأول (على مستوى الموسم):</b></div>
-                <div style="margin-top: 4px;">10$ ( gift card من اختيارك ) + جوائز مميزة من لعبة <b>Samar</b>.</div>
+    <!-- Main Content Layout -->
+    <div class="main-wrapper">
+        <div class="box">
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('about', event)">منصتنا</button>
+                <button class="tab-btn" onclick="showTab('prediction', event)">سجل توقعك</button>
+                <button class="tab-btn" onclick="showTab('leaderboard', event)">الجدول</button>
+                <a href="https://alza3eemkw.github.io/sport-id/" class="tab-btn">Sport ID</a>
+                <button class="tab-btn" onclick="showTab('kickoff', event)">
+                    Kick off
+                    <span class="coming-soon-badge">soon</span>
+                </button>
             </div>
 
-            <div class="prize-section">
-                <div><b>سحوبات المباريات (الدربيات):</b></div>
-                <ul class="draw-list">
-                    <li>5$ ( gift card من اختيارك )</li>
-                    <li>كود لعبة من سمر</li>
-                    <li>كود لعبة من حلها</li>
-                    <li>جولة من لعبة اضمنها</li>
-                </ul>
-                <div style="margin-top: 8px; font-size: 0.82rem; font-weight: 700; line-height: 1.6; color: #cbd5e1;">
-                    سيتم سحب اسم عشوائياً من الذين توقعوا توقع صحيح<br>
-                    (على المباريات التي سيتم الاعلان عنها بالحساب (انستاغرام))<br>
-                    يشترط إضافة حسابات الرعاة:<br>
-                    @7lha.app<br>
-                    @play_samar<br>
-                    @idmanhakw
+            <div id="about" class="content active">
+                <div class="title">منصة الزعيم الرياضية ⚽️</div>
+
+                <div class="rules-box" style="text-align: center; line-height: 1.7; font-size: 0.95rem;">
+                  منصة رياضية تفاعلية تقدم محتوى متخصص لجماهير النادي العربي، وتوفر خدمات رياضية مبتكرة تخدم اللاعبين، الفرق، الجماهير، وصنّاع المحتوى الرياضي.
+                </div>
+                
+                <div class="rules-box">
+                    <h3 style="margin-top: 0; margin-bottom: 12px; font-weight: 700;">🏆 نظام الجوائز والبروتوكول:</h3>
+                    
+                    <div class="prize-section">
+                        <div><b>المركز الأول (على مستوى الموسم):</b></div>
+                        <div style="margin-top: 4px;">10$ ( gift card من اختيارك ) + جوائز مميزة من لعبة <b>Samar</b>.</div>
+                    </div>
+
+                    <div class="prize-section">
+                        <div><b>سحوبات المباريات (الدربيات):</b></div>
+                        <ul class="draw-list">
+                            <li>5$ ( gift card من اختيارك )</li>
+                            <li>كود لعبة من سمر</li>
+                            <li>كود لعبة من حلها</li>
+                            <li>جولة من لعبة اضمنها</li>
+                        </ul>
+                        <div style="margin-top: 8px; font-size: 0.82rem; font-weight: 700; line-height: 1.6; color: #cbd5e1;">
+                            سيتم سحب اسم عشوائياً من الذين توقعوا توقع صحيح<br>
+                            (على المباريات التي سيتم الاعلان عنها بالحساب (انستاغرام))<br>
+                            يشترط إضافة حسابات الرعاة:<br>
+                            @7lha.app<br>
+                            @play_samar<br>
+                            @idmanhakw
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 12px; font-weight: 700; background: rgba(0,128,0,0.2); padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(16,185,129,0.3);">
+                        نقطتين للنتيجة | نقطتين لتوقع عدد الأهداف | أربع نقاط لتوقع اسم اللاعب المسجل.
+                    </div>
+                </div>
+
+                <div class="footer">
+                    <p>إدارة المنصة: @alza3eem__kw</p>
+                    <div class="sponsor-container">
+                        <p style="font-size: 0.75rem; font-weight: 700; margin: 0; color: var(--text-dim);">الرعاة الرسميون:</p>
+                        <div class="sponsors-row">
+                            <img src="https://i.ibb.co/v6WXzMpR/IMG-5197.png" alt="حلها" id="halha-logo">
+                            <img src="https://i.ibb.co/RTXLRggY/IMG-5213.png" alt="Samar" id="samar-logo">
+                            <img src="https://i.ibb.co/1JZ77zpt/IMG-5227.png" alt="اضمنها" class="sponsor-logo-uniform">
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div style="margin-top: 12px; font-weight: 700; background: rgba(0,128,0,0.2); padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(16,185,129,0.3);">
-                نقطتين للنتيجة | نقطتين لتوقع عدد الأهداف | أربع نقاط لتوقع اسم اللاعب المسجل.
-            </div>
-        </div>
+            <div id="prediction" class="content">
+                <div class="title">منصة الزعيم الرياضية ⚽️</div>
+                
+                <div class="match-details-box">
+                    <h3 style="margin-top: 0; color: #38bdf8; font-size: 18px;">تفاصيل المباراة</h3>
+                    <p style="margin: 5px 0;"><strong>المباراة:</strong> العربي الكويتي × بيراميدز المصري</p>
+                    <p style="margin: 5px 0;"><strong>الموعد:</strong> الثلاثاء 4/8/2026 - الساعة 4:15 مساءً</p>
+                    <p style="margin: 5px 0;"><strong>نوع المباراة:</strong> مباراة ودية</p>
+                    <p style="margin: 5px 0; color: #f87171;"><strong>ملاحظة:</strong> يغلق باب التوقعات في الساعة 4:10 مساءً</p>
+                </div>
 
-        <div class="footer">
-            <p>إدارة المنصة: @alza3eem__kw</p>
-            <div class="sponsor-container">
-                <p style="font-size: 0.75rem; font-weight: 700; margin: 0; color: var(--text-dim);">الرعاة الرسميون:</p>
-                <div class="sponsors-row">
-                    <img src="https://i.ibb.co/v6WXzMpR/IMG-5197.png" alt="حلها" id="halha-logo">
-                    <img src="https://i.ibb.co/RTXLRggY/IMG-5213.png" alt="Samar" id="samar-logo">
-                    <img src="https://i.ibb.co/1JZ77zpt/IMG-5227.png" alt="اضمنها" class="sponsor-logo-uniform">
+                <form action="https://formsubmit.co/alza3eem.kw@gmail.com" method="POST" id="my-form">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_subject" value="توقع جديد في منصة الزعيم ⚽️">
+                    <input type="hidden" name="_next" value="">
+
+                    <input type="text" name="الاسم" id="name-input" placeholder="الاسم الكريم" required>
+                    <input type="text" name="حساب_الانستقرام" id="insta-input" placeholder="@حساب الإنستغرام" required>
+                    <select name="التوقع" id="prediction-select">
+                        <option value="" disabled selected>اختر توقع النتيجة</option>
+                        <option>فوز العربي</option>
+                        <option>تعادل العربي</option>
+                        <option>خسارة العربي</option>
+                    </select>
+                    <input type="text" name="اسم_اللاعب" id="player-input" placeholder="توقع اسم لاعب سيسجل للنادي العربي" required>
+                    <select name="عدد_الاهداف" id="goals-select">
+                        <option value="" disabled selected>توقع عدد أهداف العربي</option>
+                        <option>صفر</option>
+                        <option>أقل من 3</option>
+                        <option>أكثر من 3</option>
+                    </select>
+                    <button type="submit">إرسال التوقع</button>
+                </form>
+                <p id="my-form-status" style="text-align: center; margin-top: 10px; font-weight: 700;"></p>
+                
+                <div class="footer">
+                    <p>إدارة المنصة: @alza3eem__kw</p>
+                    <div class="sponsor-container">
+                        <p style="font-size: 0.75rem; font-weight: 700; margin: 0; color: var(--text-dim);">الرعاة الرسميون:</p>
+                        <div class="sponsors-row">
+                            <img src="https://i.ibb.co/v6WXzMpR/IMG-5197.png" alt="حلها" id="halha-logo">
+                            <img src="https://i.ibb.co/RTXLRggY/IMG-5213.png" alt="Samar" id="samar-logo">
+                            <img src="https://i.ibb.co/1JZ77zpt/IMG-5227.png" alt="اضمنها" class="sponsor-logo-uniform">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="leaderboard" class="content">
+                <div class="title">🏆 جدول التوب 10</div>
+                <div id="rank-list"></div>
+                <div class="footer">
+                    <p>إدارة المنصة: @alza3eem__kw</p>
+                    <div class="sponsor-container">
+                        <p style="font-size: 0.75rem; font-weight: 700; margin: 0; color: var(--text-dim);">الرعاة الرسميون:</p>
+                        <div class="sponsors-row">
+                            <img src="https://i.ibb.co/v6WXzMpR/IMG-5197.png" alt="حلها" id="halha-logo">
+                            <img src="https://i.ibb.co/RTXLRggY/IMG-5213.png" alt="Samar" id="samar-logo">
+                            <img src="https://i.ibb.co/1JZ77zpt/IMG-5227.png" alt="اضمنها" class="sponsor-logo-uniform">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="kickoff" class="content">
+                <div class="coming-soon-container">
+                    <div class="pulse-icon">⏳</div>
+                    <div class="title" style="font-size: 1.6rem;">Kick off</div>
+                    
+                    <div class="notice-box" style="margin-top: 20px; text-align: right; line-height: 1.8;">
+                        🙏 <b>شكراً على انتظاركم،</b><br>
+                        ونعتذر أشد الاعتذار عالتاخير.<br><br>
+                        <b>سبب التأخير:</b> نظراً للعمل على تطوير وتحديث واجهات النظام، إضافة ميزات تفاعلية جديدة، وإجراء اختبارات دقيقة لضمان استقرار المنصة وتقديمها بأفضل شكل ممكن للجميع.
+                    </div>
+
+                    <div class="rules-box" style="text-align: center; margin-top: 20px;">
+                        تابعونا عبر إنستغرام:<br>
+                        <b style="color: var(--card-accent); font-size: 1rem; display: block; margin-top: 8px;">@alza3eem__kw</b>
+                    </div>
+                </div>
+
+                <div class="footer">
+                    <p>إدارة المنصة: @alza3eem__kw</p>
+                    <div class="sponsor-container">
+                        <p style="font-size: 0.75rem; font-weight: 700; margin: 0; color: var(--text-dim);">الرعاة الرسميون:</p>
+                        <div class="sponsors-row">
+                            <img src="https://i.ibb.co/v6WXzMpR/IMG-5197.png" alt="حلها" id="halha-logo">
+                            <img src="https://i.ibb.co/RTXLRggY/IMG-5213.png" alt="Samar" id="samar-logo">
+                            <img src="https://i.ibb.co/1JZ77zpt/IMG-5227.png" alt="اضمنها" class="sponsor-logo-uniform">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <div id="prediction" class="content">
-        <div class="title">منصة الزعيم الرياضية ⚽️</div>
-        
-        <div class="match-details-box" style="background: #1e293b; color: #ffffff; padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #334155;">
-            <h3 style="margin-top: 0; color: #38bdf8; font-size: 18px;">تفاصيل المباراة</h3>
-            <p style="margin: 5px 0;"><strong>المباراة:</strong> العربي الكويتي × بيراميدز المصري</p>
-            <p style="margin: 5px 0;"><strong>الموعد:</strong> الثلاثاء 4/8/2026 - الساعة 4:15 مساءً</p>
-            <p style="margin: 5px 0;"><strong>نوع المباراة:</strong> مباراة ودية</p>
-            <p style="margin: 5px 0; color: #f87171;"><strong>ملاحظة:</strong> يغلق باب التوقعات في الساعة 4:10 مساءً</p>
-        </div>
-
-        <form action="https://formsubmit.co/alza3eem.kw@gmail.com" method="POST" id="my-form">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_subject" value="توقع جديد في منصة الزعيم ⚽️">
-            <input type="hidden" name="_next" value="">
-
-            <input type="text" name="الاسم" id="name-input" placeholder="الاسم الكريم" required>
-            <input type="text" name="حساب_الانستقرام" id="insta-input" placeholder="@حساب الإنستغرام" required>
-            <select name="التوقع" id="prediction-select">
-                <option value="" disabled selected>اختر توقع النتيجة</option>
-                <option>فوز العربي</option>
-                <option>تعادل العربي</option>
-                <option>خسارة العربي</option>
-            </select>
-            <input type="text" name="اسم_اللاعب" id="player-input" placeholder="توقع اسم لاعب سيسجل للنادي العربي" required>
-            <select name="عدد_الاهداف" id="goals-select">
-                <option value="" disabled selected>توقع عدد أهداف العربي</option>
-                <option>صفر</option>
-                <option>أقل من 3</option>
-                <option>أكثر من 3</option>
-            </select>
-            <button type="submit">إرسال التوقع</button>
-        </form>
-        <p id="my-form-status"></p>
-        
-        <div class="footer">
-            <p>إدارة المنصة: @alza3eem__kw</p>
-            <div class="sponsor-container">
-                <p style="font-size: 0.75rem; font-weight: 700; margin: 0; color: var(--text-dim);">الرعاة الرسميون:</p>
-                <div class="sponsors-row">
-                    <img src="https://i.ibb.co/v6WXzMpR/IMG-5197.png" alt="حلها" id="halha-logo">
-                    <img src="https://i.ibb.co/RTXLRggY/IMG-5213.png" alt="Samar" id="samar-logo">
-                    <img src="https://i.ibb.co/1JZ77zpt/IMG-5227.png" alt="اضمنها" class="sponsor-logo-uniform">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="leaderboard" class="content">
-        <div class="title">🏆 جدول التوب 10</div>
-        <div id="rank-list"></div>
-        <div class="footer">
-            <p>إدارة المنصة: @alza3eem__kw</p>
-            <div class="sponsor-container">
-                <p style="font-size: 0.75rem; font-weight: 700; margin: 0; color: var(--text-dim);">الرعاة الرسميون:</p>
-                <div class="sponsors-row">
-                    <img src="https://i.ibb.co/v6WXzMpR/IMG-5197.png" alt="حلها" id="halha-logo">
-                    <img src="https://i.ibb.co/RTXLRggY/IMG-5213.png" alt="Samar" id="samar-logo">
-                    <img src="https://i.ibb.co/1JZ77zpt/IMG-5227.png" alt="اضمنها" class="sponsor-logo-uniform">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="kickoff" class="content">
-        <div class="coming-soon-container">
-            <div class="pulse-icon">⏳</div>
-            <div class="title" style="font-size: 1.6rem;">Kick off</div>
-            
-            <div class="notice-box" style="margin-top: 20px; text-align: right; line-height: 1.8;">
-                🙏 <b>شكراً على انتظاركم،</b><br>
-                ونعتذر أشد الاعتذار عالتاخير.<br><br>
-                <b>سبب التأخير:</b> نظراً للعمل على تطوير وتحديث واجهات النظام، إضافة ميزات تفاعلية جديدة، وإجراء اختبارات دقيقة لضمان استقرار المنصة وتقديمها بأفضل شكل ممكن للجميع.
-            </div>
-
-            <div class="rules-box" style="text-align: center; margin-top: 20px;">
-                تابعونا عبر إنستغرام:<br>
-                <b style="color: var(--card-accent); font-size: 1rem; display: block; margin-top: 8px;">@alza3eem__kw</b>
-            </div>
-        </div>
-
-        <div class="footer">
-            <p>إدارة المنصة: @alza3eem__kw</p>
-            <div class="sponsor-container">
-                <p style="font-size: 0.75rem; font-weight: 700; margin: 0; color: var(--text-dim);">الرعاة الرسميون:</p>
-                <div class="sponsors-row">
-                    <img src="https://i.ibb.co/v6WXzMpR/IMG-5197.png" alt="حلها" id="halha-logo">
-                    <img src="https://i.ibb.co/RTXLRggY/IMG-5213.png" alt="Samar" id="samar-logo">
-                    <img src="https://i.ibb.co/1JZ77zpt/IMG-5227.png" alt="اضمنها" class="sponsor-logo-uniform">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <script>
+    // Navigation Drawer Toggle Logic
+    const hamburgerBtn = document.getElementById('hamburgerToggle');
+    const closeDrawerBtn = document.getElementById('closeDrawer');
+    const sideDrawer = document.getElementById('sideDrawer');
+    const drawerOverlay = document.getElementById('drawerOverlay');
+
+    function toggleDrawer(open) {
+        if (open) {
+            sideDrawer.classList.add('open');
+            drawerOverlay.classList.add('open');
+        } else {
+            sideDrawer.classList.remove('open');
+            drawerOverlay.classList.remove('open');
+        }
+    }
+
+    if (hamburgerBtn) hamburgerBtn.addEventListener('click', () => toggleDrawer(true));
+    if (closeDrawerBtn) closeDrawerBtn.addEventListener('click', () => toggleDrawer(false));
+    if (drawerOverlay) drawerOverlay.addEventListener('click', () => toggleDrawer(false));
+
+    // Tab Switching Function integrated seamlessly
+    window.switchTab = function(tabId, event) {
+        if (event) event.preventDefault();
+        
+        // Use original showTab function logic
+        window.showTab(tabId, null);
+
+        // Update Drawer active state styling
+        document.querySelectorAll('.drawer-item').forEach(item => {
+            item.classList.remove('active');
+            if (item.getAttribute('data-tab') === tabId) {
+                item.classList.add('active');
+            }
+        });
+
+        // Close drawer on mobile selection
+        toggleDrawer(false);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
     window.showTab = function(tabId, event) {
         document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -546,8 +917,6 @@
             });
         });
     }
-
-    
 </script>
 
 </body>
