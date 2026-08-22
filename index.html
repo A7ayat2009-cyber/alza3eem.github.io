@@ -41,7 +41,6 @@
             color: var(--text-light);
         }
 
-        /* Modern Sticky Header with Glassmorphism & Micro-interactions */
         .sticky-header {
             position: fixed;
             top: 0;
@@ -103,11 +102,6 @@
             box-shadow: 0 6px 18px var(--card-glow);
         }
 
-        .hamburger-btn:active {
-            transform: translateY(0);
-        }
-
-        /* Side Drawer Overlay & Panel */
         .drawer-overlay {
             position: fixed;
             top: 0;
@@ -186,7 +180,6 @@
             transform: rotate(90deg);
         }
 
-        /* Scrollable Navigation Container Added */
         .drawer-nav-container {
             flex: 1;
             overflow-y: auto;
@@ -199,7 +192,6 @@
             margin-bottom: 10px;
         }
 
-        /* Custom Scrollbar for Drawer Nav */
         .drawer-nav-container::-webkit-scrollbar {
             width: 5px;
         }
@@ -212,10 +204,6 @@
         .drawer-nav-container::-webkit-scrollbar-thumb {
             background: rgba(16, 185, 129, 0.3);
             border-radius: 10px;
-        }
-
-        .drawer-nav-container::-webkit-scrollbar-thumb:hover {
-            background: var(--card-accent);
         }
 
         .drawer-nav {
@@ -253,10 +241,6 @@
             color: #ffffff;
             transform: translateX(-6px);
             border-color: rgba(255, 255, 255, 0.15);
-        }
-
-        .drawer-item:hover span.icon {
-            transform: scale(1.15);
         }
 
         .drawer-item.active {
@@ -301,7 +285,6 @@
             transform: translateY(-2px);
         }
 
-        /* Main Wrapper & Container Layout */
         .main-wrapper {
             width: 100%;
             display: flex;
@@ -322,25 +305,11 @@
             backdrop-filter: blur(30px);
             -webkit-backdrop-filter: blur(30px);
             position: relative;
-            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px) scale(0.98); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        .tabs { 
-            display: none; 
-        }
-
+        .tabs { display: none; }
         .content { display: none; }
-        .content.active { display: block; animation: tabFade 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-
-        @keyframes tabFade {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .content.active { display: block; }
 
         .title { 
             text-align: center; 
@@ -351,7 +320,6 @@
             background: linear-gradient(180deg, #ffffff 20%, #86efac 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 2px 10px rgba(16, 185, 129, 0.2));
         }
 
         .coming-soon-container {
@@ -362,13 +330,6 @@
         .pulse-icon {
             font-size: 4rem;
             margin-bottom: 18px;
-            animation: bounce 2s infinite ease-in-out;
-            filter: drop-shadow(0 6px 15px rgba(0,0,0,0.3));
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
         }
 
         .rules-box { 
@@ -378,16 +339,8 @@
             margin-bottom: 24px; 
             font-size: 0.9rem; 
             color: #e2e8f0; 
-            border-right: 4px solid var(--card-accent); 
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-right-width: 4px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease;
-        }
-
-        .rules-box:hover {
-            border-color: rgba(255, 255, 255, 0.18);
-            border-right-color: var(--card-accent);
+            border-right: 4px solid var(--card-accent); 
         }
 
         .prize-section { 
@@ -409,15 +362,6 @@
             color: #94a3b8;
         }
 
-        .draw-list li {
-            margin-bottom: 4px;
-            transition: color 0.2s ease;
-        }
-
-        .draw-list li:hover {
-            color: #e2e8f0;
-        }
-
         input, select, textarea { 
             width: 100%; 
             padding: 15px 18px; 
@@ -429,25 +373,12 @@
             font-size: 0.92rem;
             background: rgba(10, 18, 35, 0.75);
             color: #ffffff;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
-        }
-
-        input::placeholder, textarea::placeholder {
-            color: #64748b;
-        }
-
-        select option {
-            background: #101c33;
-            color: #ffffff;
-            padding: 12px;
         }
 
         input:focus, select:focus, textarea:focus {
             outline: none;
             border-color: var(--card-accent);
-            background: rgba(10, 18, 35, 0.95);
-            box-shadow: 0 0 0 4px var(--card-glow), inset 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 0 0 4px var(--card-glow);
         }
 
         button[type="submit"] { 
@@ -462,35 +393,7 @@
             font-size: 1.05rem;
             cursor: pointer; 
             margin-top: 16px; 
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 0 8px 25px var(--card-glow);
-            position: relative;
-            overflow: hidden;
-        }
-
-        button[type="submit"]::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: 0.5s;
-        }
-
-        button[type="submit"]:hover::after {
-            left: 100%;
-        }
-
-        button[type="submit"]:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px var(--card-glow);
-            filter: brightness(1.1);
-        }
-
-        button[type="submit"]:active {
-            transform: translateY(-1px);
         }
 
         .rank-card { 
@@ -501,20 +404,9 @@
             display: flex; 
             justify-content: space-between; 
             align-items: center;
-            border-right: 4px solid var(--card-accent); 
             color: #ffffff;
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-right-width: 4px;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.2);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .rank-card:hover {
-            transform: translateX(-4px);
-            background: rgba(18, 30, 53, 0.9);
-            border-color: rgba(255, 255, 255, 0.15);
-            border-right-color: var(--card-accent);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            border-right: 4px solid var(--card-accent); 
         }
 
         .footer { 
@@ -540,58 +432,40 @@
             display: flex; 
             justify-content: center; 
             align-items: center; 
-            gap: 14px; 
+            gap: 16px; 
             width: 100%; 
             max-width: 100%;
             margin-top: 6px;
-            overflow: hidden;
         }
 
+        /* تعديل مقاسات وأبعاد لوقوات الرعاة بدقة لضمان عدم قص أي جزء منها */
         .sponsor-logo-uniform { 
-            width: 75px; 
-            height: 75px; 
+            width: 60px; 
+            height: 60px; 
             object-fit: contain;
             display: block;
             flex-shrink: 0;
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
             filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
-        }
-
-        .sponsor-logo-uniform:hover {
-            transform: scale(1.1);
         }
 
         #halha-logo {
-            width: 100px;
-            height: 100px;
+            width: 65px;
+            height: 65px;
             object-fit: contain;
             display: block;
             flex-shrink: 0;
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
             filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
         }
 
-        #halha-logo:hover {
-            transform: scale(1.08);
-        }
-
         #samar-logo {
-            width: 115px;
-            height: 115px;
+            width: 70px;
+            height: 70px;
             object-fit: contain;
             display: block;
             flex-shrink: 0;
-            transform: scale(1.5);
-            margin: 0 6px;
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            filter: drop-shadow(0 6px 18px rgba(0,0,0,0.5));
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
         }
 
-        #samar-logo:hover {
-            transform: scale(1.62);
-        }
-
-        /* Match details enhanced card styling */
         .match-details-box {
             background: linear-gradient(135deg, rgba(30, 41, 59, 0.85) 0%, rgba(15, 23, 42, 0.9) 100%);
             color: #ffffff;
@@ -599,16 +473,6 @@
             border-radius: 18px;
             margin-bottom: 22px;
             border: 1px solid rgba(56, 189, 248, 0.25);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
-            backdrop-filter: blur(10px);
-        }
-
-        .match-details-box h3 {
-            margin-top: 0;
-            color: #38bdf8;
-            font-size: 1.1rem;
-            font-weight: 800;
-            letter-spacing: -0.3px;
         }
 
         .notice-box {
@@ -616,10 +480,26 @@
             padding: 16px;
             border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
         }
 
-        /* Scroll Alert Banner Added */
+        /* تنبيه وسهم القائمة الجانبية في الصفحة الرئيسية */
+        .sidebar-hint-banner {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(0, 128, 0, 0.2) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            color: #34d399;
+            padding: 14px 18px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            text-align: right;
+            font-size: 0.9rem;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
         .scroll-alert-banner {
             background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(0, 128, 0, 0.2) 100%);
             border: 1px solid rgba(16, 185, 129, 0.35);
@@ -630,23 +510,14 @@
             text-align: center;
             font-size: 0.9rem;
             font-weight: 700;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            animation: pulseAlert 2.5s infinite ease-in-out;
         }
 
-        @keyframes pulseAlert {
-            0%, 100% { border-color: rgba(16, 185, 129, 0.35); box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-            50% { border-color: rgba(16, 185, 129, 0.7); box-shadow: 0 6px 20px var(--card-glow); }
-        }
-
-        /* BUILD YOUR XI Specific Styles */
-        .xi-container {
-            width: 100%;
-        }
+        /* BUILD YOUR XI Styles */
+        .xi-container { width: 100%; }
         .xi-controls-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -678,16 +549,10 @@
             border-radius: 50%;
             border: 2px solid rgba(255, 255, 255, 0.2);
             cursor: pointer;
-            transition: transform 0.2s ease, border-color 0.2s ease;
-        }
-        .xi-color-dot:hover {
-            transform: scale(1.15);
-            border-color: #fff;
         }
         .xi-color-dot.active {
             border-color: var(--card-accent);
             transform: scale(1.15);
-            box-shadow: 0 0 10px var(--card-glow);
         }
         .xi-pitch-wrapper {
             position: relative;
@@ -697,7 +562,6 @@
             border-radius: 20px;
             border: 2px solid rgba(255, 255, 255, 0.25);
             overflow: hidden;
-            box-shadow: inset 0 0 30px rgba(0,0,0,0.5), 0 10px 25px rgba(0,0,0,0.3);
             margin: 16px 0;
         }
         .xi-svg-pitch {
@@ -717,8 +581,6 @@
             font-weight: 900;
             font-size: 1.1rem;
             color: #fff;
-            text-shadow: 0 2px 6px rgba(0,0,0,0.8);
-            letter-spacing: -0.5px;
             z-index: 5;
             pointer-events: none;
         }
@@ -731,7 +593,6 @@
             font-weight: 700;
             font-size: 0.75rem;
             color: rgba(255,255,255,0.7);
-            text-shadow: 0 1px 4px rgba(0,0,0,0.8);
             z-index: 5;
             pointer-events: none;
         }
@@ -742,12 +603,8 @@
             flex-direction: column;
             align-items: center;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 10;
             width: 58px;
-        }
-        .xi-player-node:hover {
-            transform: translate(-50%, -50%) scale(1.1);
         }
         .xi-player-circle {
             width: 38px;
@@ -758,14 +615,11 @@
             justify-content: center;
             font-weight: 900;
             font-size: 0.9rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.4), inset 0 2px 4px rgba(255,255,255,0.3);
             border: 2px solid rgba(255,255,255,0.8);
-            transition: background-color 0.3s ease, color 0.3s ease;
         }
         .xi-player-name-badge {
             margin-top: 3px;
             background: rgba(0, 0, 0, 0.65);
-            backdrop-filter: blur(4px);
             padding: 2px 6px;
             border-radius: 6px;
             font-size: 0.65rem;
@@ -775,44 +629,31 @@
             overflow: hidden;
             text-overflow: ellipsis;
             border: 1px solid rgba(255, 255, 255, 0.15);
-            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
             text-align: center;
         }
-        .xi-actions-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            margin-top: 14px;
-        }
-        .xi-action-btn {
-            padding: 12px 8px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.12);
+        
+        /* تعديل الأزرار في Build Your XI: إبقاء زر المشاركة فقط وإزالة السيف وكوبي */
+        .xi-action-btn-single {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.4);
             border-radius: 14px;
-            color: var(--text-light);
+            color: #fff;
             font-family: 'Cairo', sans-serif;
             font-weight: 800;
-            font-size: 0.85rem;
+            font-size: 0.95rem;
             cursor: pointer;
-            transition: all 0.3s ease;
             text-align: center;
-        }
-        .xi-action-btn:hover {
-            background: rgba(16, 185, 129, 0.18);
-            border-color: var(--card-accent);
-            color: var(--card-accent);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 18px var(--card-glow);
-        }
-        .xi-action-btn.primary {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            border-color: rgba(16, 185, 129, 0.4);
-            color: #fff;
+            margin-top: 14px;
             box-shadow: 0 4px 15px var(--card-glow);
+            transition: all 0.3s ease;
         }
-        .xi-action-btn.primary:hover {
+        .xi-action-btn-single:hover {
             filter: brightness(1.1);
+            transform: translateY(-2px);
         }
+
         .xi-modal-overlay {
             position: fixed;
             top: 0;
@@ -843,11 +684,6 @@
             border-radius: 24px;
             padding: 24px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.7);
-            transform: translateY(20px);
-            transition: transform 0.3s ease;
-        }
-        .xi-modal-overlay.open .xi-modal-box {
-            transform: translateY(0);
         }
         .xi-modal-title {
             font-size: 1.1rem;
@@ -870,36 +706,25 @@
             font-weight: 800;
             cursor: pointer;
             border: none;
-            transition: all 0.2s ease;
-        }
-        .xi-btn-save {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: #fff;
-            box-shadow: 0 4px 15px var(--card-glow);
         }
         .xi-btn-cancel {
             background: rgba(255, 255, 255, 0.08);
             color: var(--text-dim);
             border: 1px solid rgba(255, 255, 255, 0.1) !important;
         }
-        .xi-btn-cancel:hover {
-            background: rgba(255, 255, 255, 0.12);
-            color: #fff;
-        }
         .xi-btn-remove {
             background: rgba(239, 68, 68, 0.2);
             color: #fca5a5;
             border: 1px solid rgba(239, 68, 68, 0.3) !important;
         }
-        .xi-btn-remove:hover {
-            background: rgba(239, 68, 68, 0.3);
+        .xi-btn-save {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: #fff;
         }
     </style>
 </head>
 <body>
 
-    <!-- Sticky Header -->
     <header class="sticky-header">
         <div class="header-logo">
             <img src="https://i.ibb.co/Q3417SNF/972-CDF93-4-F40-4-B7-D-82-A1-FCC9-BB608-B51.png" alt="Alza3eem Logo">
@@ -909,7 +734,6 @@
         </button>
     </header>
 
-    <!-- Side Drawer & Overlay with Scrollable Navigation Container -->
     <div class="drawer-overlay" id="drawerOverlay"></div>
     <div class="side-drawer" id="sideDrawer">
         <div class="drawer-header">
@@ -951,7 +775,6 @@
         </a>
     </div>
 
-    <!-- Main Content Layout -->
     <div class="main-wrapper">
         <div class="box">
             <div class="tabs">
@@ -967,7 +790,12 @@
             </div>
 
             <div id="about" class="content active">
-                <!-- Top Page Scroll Alert Banner Added -->
+                <!-- تنبيه وسهم القائمة الجانبية في الصفحة الرئيسية -->
+                <div class="sidebar-hint-banner">
+                    <div>💡 تنبيه: جميع أقسام وخدمات المنصة متاحة داخل قائمة الثلاث خطوط في الأعلى</div>
+                    <div style="font-size: 1.3rem;">⬆️</div>
+                </div>
+
                 <div class="scroll-alert-banner">
                     <span>⬇️</span>
                     <span>يرجى التمرير حتى أسفل الصفحة لمتابعة القراءة بالكامل</span>
@@ -1146,12 +974,9 @@
                         <div id="xiPlayersContainer"></div>
                     </div>
 
-                    <div class="xi-actions-grid">
-                        <button class="xi-action-btn primary" id="xiSaveImgBtn">SAVE IMAGE</button>
-                        <button class="xi-action-btn" id="xiShareBtn">SHARE</button>
-                        <button class="xi-action-btn" id="xiCopyLinkBtn">COPY LINK</button>
-                    </div>
-                    <button class="xi-action-btn" id="xiResetBtn" style="width: 100%; margin-top: 8px; background: rgba(239, 68, 68, 0.15); border-color: rgba(239, 68, 68, 0.3); color: #fca5a5;">RESET XI</button>
+                    <!-- تم إبقاء زر SHARE فقط وإزالة Save Image و Copy Link -->
+                    <button class="xi-action-btn-single" id="xiShareBtn">SHARE</button>
+                    <button class="xi-action-btn-single" id="xiResetBtn" style="margin-top: 8px; background: rgba(239, 68, 68, 0.15); border-color: rgba(239, 68, 68, 0.3); color: #fca5a5;">RESET XI</button>
                 </div>
 
                 <div class="footer">
@@ -1215,7 +1040,6 @@
         </div>
     </div>
 
-    <!-- BUILD YOUR XI Modal -->
     <div class="xi-modal-overlay" id="xiModalOverlay">
         <div class="xi-modal-box">
             <div class="xi-modal-title" id="xiModalTitle">PLAYER</div>
@@ -1235,7 +1059,6 @@
         </div>
     </div>
 
-    <!-- Reset Confirmation Modal -->
     <div class="xi-modal-overlay" id="xiResetModalOverlay">
         <div class="xi-modal-box">
             <div class="xi-modal-title">Reset your current XI?</div>
@@ -1247,7 +1070,6 @@
     </div>
 
 <script>
-    // Navigation Drawer Toggle Logic
     const hamburgerBtn = document.getElementById('hamburgerToggle');
     const closeDrawerBtn = document.getElementById('closeDrawer');
     const sideDrawer = document.getElementById('sideDrawer');
@@ -1267,19 +1089,15 @@
     if (closeDrawerBtn) closeDrawerBtn.addEventListener('click', () => toggleDrawer(false));
     if (drawerOverlay) drawerOverlay.addEventListener('click', () => toggleDrawer(false));
 
-    // Tab Switching Function integrated seamlessly
     window.switchTab = function(tabId, event) {
         if (event) event.preventDefault();
-        
         window.showTab(tabId, null);
-
         document.querySelectorAll('.drawer-item').forEach(item => {
             item.classList.remove('active');
             if (item.getAttribute('data-tab') === tabId) {
                 item.classList.add('active');
             }
         });
-
         toggleDrawer(false);
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
@@ -1328,7 +1146,6 @@
         form.addEventListener("submit", function(event) {
             event.preventDefault();
             const status = document.getElementById("my-form-status");
-            
             const nameVal = document.getElementById("name-input").value.trim();
             const instaVal = document.getElementById("insta-input").value.trim();
             const predVal = document.getElementById("prediction-select").value;
@@ -1366,7 +1183,6 @@
         });
     }
 
-    // BUILD YOUR XI Implementation Logic
     const formationsCoords = {
         "4-3-3": [
             { x: 50, y: 88, role: "GK" },
@@ -1446,9 +1262,7 @@
         } else {
             const saved = localStorage.getItem('alza3eem_xi_state');
             if (saved) {
-                try {
-                    xiState = Object.assign(xiState, JSON.parse(saved));
-                } catch(e) {}
+                try { xiState = Object.assign(xiState, JSON.parse(saved)); } catch(e) {}
             }
         }
     }
@@ -1490,7 +1304,6 @@
     function renderPitch() {
         if (!xiPlayersContainer) return;
         xiPlayersContainer.innerHTML = '';
-        
         xiTeamNameDisplay.textContent = xiState.teamName ? xiState.teamName : '';
         xiCreatedByDisplay.textContent = xiState.createdBy ? `Created by: ${xiState.createdBy}` : '';
 
@@ -1513,7 +1326,6 @@
                     <div class="xi-player-circle" style="background-color: rgba(0,0,0,0.4); color: #FFFFFF;">+</div>
                 `;
             }
-
             node.addEventListener('click', () => openPlayerModal(index));
             xiPlayersContainer.appendChild(node);
         });
@@ -1532,17 +1344,10 @@
         activePlayerIndex = index;
         const coords = formationsCoords[xiState.formation] || formationsCoords["4-3-3"];
         const player = xiState.players[index];
-        
         xiModalTitle.textContent = player ? `EDIT PLAYER (${coords[index].role})` : `ADD PLAYER (${coords[index].role})`;
         xiModalNameInput.value = player ? player.name : '';
         xiModalNumberInput.value = player ? player.number : (index + 1);
-
-        if (player) {
-            xiModalRemoveBtn.style.display = 'block';
-        } else {
-            xiModalRemoveBtn.style.display = 'none';
-        }
-
+        xiModalRemoveBtn.style.display = player ? 'block' : 'none';
         xiModalOverlay.classList.add('open');
     }
 
@@ -1552,9 +1357,7 @@
     }
 
     if (xiModalCancelBtn) xiModalCancelBtn.addEventListener('click', closePlayerModal);
-    if (xiModalOverlay) xiModalOverlay.addEventListener('click', (e) => {
-        if (e.target === xiModalOverlay) closePlayerModal();
-    });
+    if (xiModalOverlay) xiModalOverlay.addEventListener('click', (e) => { if (e.target === xiModalOverlay) closePlayerModal(); });
 
     if (xiModalSaveBtn) xiModalSaveBtn.addEventListener('click', () => {
         if (activePlayerIndex === null) return;
@@ -1642,23 +1445,9 @@
     const xiResetCancelBtn = document.getElementById('xiResetCancelBtn');
     const xiResetConfirmBtn = document.getElementById('xiResetConfirmBtn');
 
-    if (xiResetBtn) {
-        xiResetBtn.addEventListener('click', () => {
-            xiResetModalOverlay.classList.add('open');
-        });
-    }
-
-    if (xiResetCancelBtn) {
-        xiResetCancelBtn.addEventListener('click', () => {
-            xiResetModalOverlay.classList.remove('open');
-        });
-    }
-
-    if (xiResetModalOverlay) {
-        xiResetModalOverlay.addEventListener('click', (e) => {
-            if (e.target === xiResetModalOverlay) xiResetModalOverlay.classList.remove('open');
-        });
-    }
+    if (xiResetBtn) xiResetBtn.addEventListener('click', () => xiResetModalOverlay.classList.add('open'));
+    if (xiResetCancelBtn) xiResetCancelBtn.addEventListener('click', () => xiResetModalOverlay.classList.remove('open'));
+    if (xiResetModalOverlay) xiResetModalOverlay.addEventListener('click', (e) => { if (e.target === xiResetModalOverlay) xiResetModalOverlay.classList.remove('open'); });
 
     if (xiResetConfirmBtn) {
         xiResetConfirmBtn.addEventListener('click', () => {
@@ -1674,26 +1463,11 @@
         });
     }
 
-    const xiCopyLinkBtn = document.getElementById('xiCopyLinkBtn');
-    if (xiCopyLinkBtn) {
-        xiCopyLinkBtn.addEventListener('click', () => {
-            updateXiUrlHash();
-            navigator.clipboard.writeText(window.location.href).then(() => {
-                const originalText = xiCopyLinkBtn.textContent;
-                xiCopyLinkBtn.textContent = "COPIED!";
-                setTimeout(() => { xiCopyLinkBtn.textContent = originalText; }, 2000);
-            }).catch(() => {
-                alert("Copied link successfully!");
-            });
-        });
-    }
-
     function generateXiCanvas() {
         const canvas = document.createElement('canvas');
         canvas.width = 1080;
         canvas.height = 1350;
         const ctx = canvas.getContext('2d');
-
         const bgGrad = ctx.createLinearGradient(0, 0, 1080, 1350);
         bgGrad.addColorStop(0, '#134e2e');
         bgGrad.addColorStop(1, '#0d381f');
@@ -1702,45 +1476,21 @@
 
         ctx.strokeStyle = 'rgba(255,255,255,0.3)';
         ctx.lineWidth = 6;
-
         ctx.strokeRect(60, 60, 960, 1230);
         ctx.beginPath();
         ctx.moveTo(60, 675);
         ctx.lineTo(1020, 675);
         ctx.stroke();
-
         ctx.beginPath();
         ctx.arc(540, 675, 135, 0, Math.PI * 2);
         ctx.stroke();
-        ctx.beginPath();
-        ctx.arc(540, 675, 8, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255,255,255,0.3)';
-        ctx.fill();
-
-        ctx.strokeRect(315, 60, 450, 180);
-        ctx.strokeRect(405, 60, 270, 70);
-        ctx.beginPath();
-        ctx.arc(540, 130, 8, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255,255,255,0.3)';
-        ctx.fill();
-
-        ctx.strokeRect(315, 1110, 450, 180);
-        ctx.strokeRect(405, 1220, 270, 70);
-        ctx.beginPath();
-        ctx.arc(540, 1220, 8, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255,255,255,0.3)';
-        ctx.fill();
 
         if (xiState.teamName) {
             ctx.fillStyle = '#FFFFFF';
             ctx.font = 'bold 44px "Cairo", sans-serif';
             ctx.textAlign = 'center';
-            ctx.shadowColor = 'rgba(0,0,0,0.8)';
-            ctx.shadowBlur = 15;
             ctx.fillText(xiState.teamName, 540, 120);
-            ctx.shadowBlur = 0;
         }
-
         if (xiState.createdBy) {
             ctx.fillStyle = 'rgba(255,255,255,0.8)';
             ctx.font = 'bold 28px "Cairo", sans-serif';
@@ -1757,64 +1507,21 @@
             const py = (pos.y / 100) * 1350;
 
             if (player) {
-                ctx.save();
                 ctx.beginPath();
                 ctx.arc(px, py - 12, 44, 0, Math.PI * 2);
                 ctx.fillStyle = xiState.kitColor;
-                ctx.shadowColor = 'rgba(0,0,0,0.5)';
-                ctx.shadowBlur = 12;
                 ctx.fill();
                 ctx.lineWidth = 4;
                 ctx.strokeStyle = 'rgba(255,255,255,0.9)';
                 ctx.stroke();
-                ctx.restore();
 
                 ctx.fillStyle = textColorCode;
                 ctx.font = '900 32px "Cairo", sans-serif';
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
                 ctx.fillText(player.number, px, py - 12);
-
-                ctx.save();
-                ctx.font = '700 22px "Cairo", sans-serif';
-                const metrics = ctx.measureText(player.name);
-                const boxWidth = metrics.width + 24;
-                const boxHeight = 36;
-
-                ctx.fillStyle = 'rgba(0, 0, 0, 0.75)';
-                ctx.beginPath();
-                ctx.roundRect(px - boxWidth / 2, py + 34, boxWidth, boxHeight, 8);
-                ctx.fill();
-                ctx.lineWidth = 1;
-                ctx.strokeStyle = 'rgba(255,255,255,0.2)';
-                ctx.stroke();
-
-                ctx.fillStyle = textColorCode;
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-                ctx.fillText(player.name, px, py + 34 + boxHeight / 2);
-                ctx.restore();
-            } else {
-                ctx.save();
-                ctx.beginPath();
-                ctx.arc(px, py - 12, 44, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
-                ctx.shadowColor = 'rgba(0,0,0,0.5)';
-                ctx.shadowBlur = 12;
-                ctx.fill();
-                ctx.lineWidth = 4;
-                ctx.strokeStyle = 'rgba(255,255,255,0.9)';
-                ctx.stroke();
-                ctx.restore();
-
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = '900 36px "Cairo", sans-serif';
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-                ctx.fillText('+', px, py - 12);
             }
         });
-
         return canvas;
     }
 
@@ -1825,16 +1532,10 @@
             const canvas = generateXiCanvas();
             canvas.toBlob(async (blob) => {
                 if (!blob) return;
-                const file = new File([blob], 'Build-Your-XI.png', {
-                    type: 'image/png'
-                });
-                
+                const file = new File([blob], 'Build-Your-XI.png', { type: 'image/png' });
                 if (navigator.canShare && navigator.canShare({ files: [file] })) {
                     try {
-                        await navigator.share({
-                            title: xiState.teamName || 'BUILD YOUR XI',
-                            files: [file]
-                        });
+                        await navigator.share({ title: xiState.teamName || 'BUILD YOUR XI', files: [file] });
                     } catch(err) {}
                 } else {
                     const dataUrl = canvas.toDataURL('image/png');
@@ -1844,18 +1545,6 @@
                     link.click();
                 }
             }, 'image/png');
-        });
-    }
-
-    const xiSaveImgBtn = document.getElementById('xiSaveImgBtn');
-    if (xiSaveImgBtn) {
-        xiSaveImgBtn.addEventListener('click', () => {
-            const canvas = generateXiCanvas();
-            const dataUrl = canvas.toDataURL('image/png');
-            const link = document.createElement('a');
-            link.download = 'Build-Your-XI.png';
-            link.href = dataUrl;
-            link.click();
         });
     }
 
