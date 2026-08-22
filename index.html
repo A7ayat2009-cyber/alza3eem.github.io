@@ -1478,8 +1478,9 @@
             const py = (pos.y / 100) * 1350;
 
             if (player) {
+                // رسم دائرة اللاعب ورقمة
                 ctx.beginPath();
-                ctx.arc(px, py - 12, 44, 0, Math.PI * 2);
+                ctx.arc(px, py - 18, 44, 0, Math.PI * 2);
                 ctx.fillStyle = xiState.kitColor;
                 ctx.fill();
                 ctx.lineWidth = 4;
@@ -1490,7 +1491,28 @@
                 ctx.font = '900 32px "Cairo", sans-serif';
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
-                ctx.fillText(player.number, px, py - 12);
+                ctx.fillText(player.number, px, py - 18);
+
+                // رسم شريط اسم اللاعب تحث الدائرة تماماً
+                ctx.font = '700 22px "Cairo", sans-serif';
+                const textMetrics = ctx.measureText(player.name);
+                const badgeWidth = Math.max(textMetrics.width + 24, 70);
+                const badgeHeight = 34;
+                const badgeX = px - badgeWidth / 2;
+                const badgeY = py + 30;
+
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.75)';
+                ctx.beginPath();
+                ctx.roundRect(badgeX, badgeY, badgeWidth, badgeHeight, 8);
+                ctx.fill();
+                ctx.lineWidth = 2;
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+                ctx.stroke();
+
+                ctx.fillStyle = textColorCode;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(player.name, px, badgeY + badgeHeight / 2);
             }
         });
         return canvas;
