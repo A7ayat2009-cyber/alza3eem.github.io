@@ -438,28 +438,10 @@
             margin-top: 6px;
         }
 
-        /* تعديل مقاسات وأبعاد لوقوات الرعاة بدقة لضمان عدم قص أي جزء منها */
-        .sponsor-logo-uniform { 
-            width: 60px; 
-            height: 60px; 
-            object-fit: contain;
-            display: block;
-            flex-shrink: 0;
-            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
-        }
-
-        #halha-logo {
-            width: 65px;
-            height: 65px;
-            object-fit: contain;
-            display: block;
-            flex-shrink: 0;
-            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
-        }
-
-        #samar-logo {
-            width: 70px;
-            height: 70px;
+        /* تعديل مقاسات وأبعاد لوقوات الرعاة لضمان التناسق التام والاحترافي */
+        .sponsor-logo-uniform, #halha-logo, #samar-logo { 
+            width: 65px; 
+            height: 65px; 
             object-fit: contain;
             display: block;
             flex-shrink: 0;
@@ -632,7 +614,6 @@
             text-align: center;
         }
         
-        /* تعديل الأزرار في Build Your XI: إبقاء زر المشاركة فقط وإزالة السيف وكوبي */
         .xi-action-btn-single {
             width: 100%;
             padding: 14px;
@@ -790,7 +771,6 @@
             </div>
 
             <div id="about" class="content active">
-                <!-- تنبيه وسهم القائمة الجانبية في الصفحة الرئيسية -->
                 <div class="sidebar-hint-banner">
                     <div>💡 تنبيه: جميع أقسام وخدمات المنصة متاحة داخل قائمة الثلاث خطوط في الأعلى</div>
                     <div style="font-size: 1.3rem;">⬆️</div>
@@ -974,7 +954,6 @@
                         <div id="xiPlayersContainer"></div>
                     </div>
 
-                    <!-- تم إبقاء زر SHARE فقط وإزالة Save Image و Copy Link -->
                     <button class="xi-action-btn-single" id="xiShareBtn">SHARE</button>
                     <button class="xi-action-btn-single" id="xiResetBtn" style="margin-top: 8px; background: rgba(239, 68, 68, 0.15); border-color: rgba(239, 68, 68, 0.3); color: #fca5a5;">RESET XI</button>
                 </div>
@@ -1527,24 +1506,26 @@
 
     const xiShareBtn = document.getElementById('xiShareBtn');
     if (xiShareBtn) {
-        xiShareBtn.addEventListener('click', async () => {
+        xiShareBtn.addEventListener('click', () => {
             updateXiUrlHash();
-            const canvas = generateXiCanvas();
-            canvas.toBlob(async (blob) => {
-                if (!blob) return;
-                const file = new File([blob], 'Build-Your-XI.png', { type: 'image/png' });
-                if (navigator.canShare && navigator.canShare({ files: [file] })) {
-                    try {
-                        await navigator.share({ title: xiState.teamName || 'BUILD YOUR XI', files: [file] });
-                    } catch(err) {}
-                } else {
-                    const dataUrl = canvas.toDataURL('image/png');
-                    const link = document.createElement('a');
-                    link.download = 'Build-Your-XI.png';
-                    link.href = dataUrl;
-                    link.click();
-                }
-            }, 'image/png');
+            requestAnimationFrame(() => {
+                const canvas = generateXiCanvas();
+                canvas.toBlob(async (blob) => {
+                    if (!blob) return;
+                    const file = new File([blob], 'Build-Your-XI.png', { type: 'image/png' });
+                    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                        try {
+                            await navigator.share({ title: xiState.teamName || 'BUILD YOUR XI', files: [file] });
+                        } catch(err) {}
+                    } else {
+                        const dataUrl = canvas.toDataURL('image/png');
+                        const link = document.createElement('a');
+                        link.download = 'Build-Your-XI.png';
+                        link.href = dataUrl;
+                        link.click();
+                    }
+                }, 'image/png');
+            });
         });
     }
 
