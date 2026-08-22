@@ -409,44 +409,12 @@
             border-right: 4px solid var(--card-accent); 
         }
 
-        .footer { 
-            text-align: center; 
-            margin-top: 30px; 
-            padding-top: 20px; 
-            border-top: 1px solid rgba(255, 255, 255, 0.08); 
-            color: var(--text-dim); 
-            font-size: 0.85rem; 
-            font-weight: 600;
-        }
-        
-        .sponsor-container { 
-            margin-top: 14px; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            gap: 8px; 
-            width: 100%;
-        }
-
-        .sponsors-row { 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            gap: 16px; 
-            width: 100%; 
-            max-width: 100%;
-            margin-top: 6px;
-        }
-
-        /* تعديل مقاسات وأبعاد لوقوات الرعاة لضمان التناسق التام والاحترافي */
-        .sponsor-logo-uniform, #halha-logo, #samar-logo { 
-            width: 65px; 
-            height: 65px; 
-            object-fit: contain;
-            display: block;
-            flex-shrink: 0;
-            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
-        }
+        .footer { text-align: center; margin-top: 25px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08); color: var(--text-dim); font-size: 0.82rem; font-weight: 600; }
+        .sponsor-container { margin-top: 12px; display: flex; flex-direction: column; align-items: center; gap: 6px; width: 100%; }
+        .sponsors-row { display: flex; justify-content: center; align-items: center; gap: 12px; width: 100%; margin-top: 4px; }
+        .sponsor-logo-uniform { width: 65px; height: 65px; object-fit: contain; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4)); }
+        #halha-logo { width: 90px; height: 90px; object-fit: contain; }
+        #samar-logo { width: 100px; height: 100px; object-fit: contain; transform: scale(1.4); margin: 0 4px; }
 
         .match-details-box {
             background: linear-gradient(135deg, rgba(30, 41, 59, 0.85) 0%, rgba(15, 23, 42, 0.9) 100%);
@@ -464,7 +432,6 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        /* تنبيه وسهم القائمة الجانبية في الصفحة الرئيسية */
         .sidebar-hint-banner {
             background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(0, 128, 0, 0.2) 100%);
             border: 1px solid rgba(16, 185, 129, 0.4);
@@ -633,6 +600,28 @@
         .xi-action-btn-single:hover {
             filter: brightness(1.1);
             transform: translateY(-2px);
+        }
+
+        #shareToast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: rgba(16, 185, 129, 0.95);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 14px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            z-index: 3000;
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none;
+        }
+        #shareToast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
         }
 
         .xi-modal-overlay {
@@ -1018,6 +1007,9 @@
             </div>
         </div>
     </div>
+
+    <!-- عنصر التنبيه (Toast) لزر المشاركة -->
+    <div id="shareToast">انقر مرتين لمشاركة التشكيلة !</div>
 
     <div class="xi-modal-overlay" id="xiModalOverlay">
         <div class="xi-modal-box">
@@ -1504,9 +1496,22 @@
         return canvas;
     }
 
+    let toastTimeout;
+    function showShareToast() {
+        const toast = document.getElementById('shareToast');
+        if (!toast) return;
+        toast.classList.add('show');
+        clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
+    }
+
     const xiShareBtn = document.getElementById('xiShareBtn');
     if (xiShareBtn) {
         xiShareBtn.addEventListener('click', () => {
+            showShareToast();
+
             updateXiUrlHash();
             requestAnimationFrame(() => {
                 const canvas = generateXiCanvas();
